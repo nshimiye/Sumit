@@ -1,4 +1,4 @@
 Sumit
 =====
 
-Hosting open source projects to accelerate collaboration in the global development community
+Welcome to the Summit, a [Creative Commons](http://en.wikipedia.org/wiki/Creative_Commons) innovation platform devoted to the systematic development of actionable solutions the world's toughest challenges.
