@@ -1,15 +1,57 @@
 <template name="postItem">
-  <div class="post" {{attributes}}>
-    <a href="#" class="upvote btn {{upvotedClass}}">⬆</a>
-    <div class="post-content">
-      <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
-      <p>
-          {{pluralize votes "Vote"}},
-          submitted by {{author}}
-          <a href="{{pathFor 'postPage'}}">{{commentsCount}} comments</a>
-          {{#if ownPost}}<a href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
-      </p>
+<div class=" {{#if isPostPage}} media {{/if}} post" {{attributes}}>
+    
+    <div class="pull-left" style="text-align: center; width: 64px; overflow-x: hidden;">
+       	<a  href="#">
+    		<img class="media-object" data-src="holder.js/64x64" 
+    		alt="64x64" src="/img/iconDown.png" style="width: 60px; height: 25px;">
+                                                            </a>
+     	<span>{{votes}}</span>
+      	<a  href="#">
+      	<img class="media-object" data-src="holder.js/64x64" 
+      		alt="64x64" src="/img/iconUp.png" style="width: 60px; height: 25px;">
+
+      </a>
+   	</div>
+
+    <div class="row" style="margin: 0px;">
+        <div class="col-xs-6">
+            <div class="media-body">
+
+                {{#if isPostPage}}
+                <h3 class="media-heading"> <a href="{{url}}">{{title}}</a> </h3>
+                <p>{{message}}</p>
+                {{else}}
+                <div class="media-heading for-post"> <a href="{{url}}">{{title}}</a> </div>
+                {{/if}}
+
+                <span >Author: {{author}}</span>
+                <br>
+                <span>Affiliation: {{domain}}</span>
+            </div>
+        </div>
+
+        <div class="col-xs-5">                                 
+            <span >Issue Type: Logistics, Infrastructure</span>
+            <br>
+            <span>Thematic Groups: Health, Transportation</span>
+            <br>
+            <a href="{{pathFor 'postPage'}}">
+
+                <span>Comments: {{commentsCount}}</span>
+            </a>
+            <br>
+
+            <button class="btn btn-warning evidence">Evidence</button>
+            <button class="btn btn-success innovation">Innovations</button>
+            <a href="{{pathFor 'postPage'}}" class="discuss btn btn-default">Discuss</a>
+            {{#if ownPost}}<a  class=" edit" href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
+
+
+        </div>
+        
     </div>
-    <a href="{{pathFor 'postPage'}}" class="discuss btn">Discuss</a>
-  </div>
+
+</div>
+
 </template>

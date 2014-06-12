@@ -11,10 +11,12 @@ Template.postItem.helpers({
         return a.hostname;
     },
 
+
+	// we will have to edit this function
     upvotedClass: function() {
         var userId = Meteor.userId();
         if (userId && !_.include(this.upvoters, userId)) {
-            return 'btn-primary upvotable';
+            return 'upvotable';
         } else {
             return 'disabled';
         }

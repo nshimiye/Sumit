@@ -1,9 +1,52 @@
 <template name="comment">
-    <li>
-        <h4>
-            <span class="author">{{author}}</span>
-            <span class="date">on {{submittedText}}</span>
-        </h4>
-        <p>{{body}}</p>
+     <li class="media"
+                                                        style="
+                                                        border-bottom: 2px solid grey;
+                                                        padding: 0.5em;
+                                                        "
+                                                        >
+    
+        
+        
+        
+     <div class="pull-left" style="text-align: center; width: 64px; overflow-x: hidden;">
+       	<a  href="#">
+    		<img class="media-object" data-src="holder.js/64x64" 
+    		alt="64x64" src="/img/iconDown.png" style="width: 60px; height: 25px;">
+                                                            </a>
+     	<span>-{{votes}}-</span>
+      	<a  href="#">
+      	<img class="media-object" data-src="holder.js/64x64" 
+      		alt="64x64" src="/img/iconUp.png" style="width: 60px; height: 25px;">
+
+      </a>
+   	</div>
+                                                            
+                                                        <div class="row" style="margin: 0px;">
+                                                            <div class="col-xs-11">
+                                                                <div class="media-body">
+                                                                    <div class="media-heading for-post">{{body}} </div>
+
+                                                                    <span class="author">Author: {{author}}</span>
+                                                                    <br>
+                                                                    <span>Affiliation: {{domain}}</span>
+                                                                    <br>
+                                                                    <span class="date">Time posted: {{submittedText}}</span>
+
+                                                                </div>
+                                                                <div style="
+                                                                     position: absolute;
+                                                                     right: 0em;
+                                                                     bottom: 0;
+                                                                     ">
+                                                                    <span>Comment</span> | <span> Save </span> | <span>Report</span>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+        
+        
+        
     </li>
 </template>

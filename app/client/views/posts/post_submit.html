@@ -1,30 +1,37 @@
-    <template name="postSubmit">
-    <form class="main">
-        <div class="control-group">
-            <label class="control-label" for="url">URL</label>
-            <div class="controls">
-                <input name="url" type="text" value="" placeholder="Your URL"/>
-            </div>
-        </div>
+<template name="postSubmit">
+    
 
-        <div class="control-group">
-            <label class="control-label" for="title">Title</label>
-            <div class="controls">
-                <input name="title" type="text" value="" placeholder="Name your post"/>
-            </div>
-        </div>
+<span>Report issues from the field:</span><br>
 
-        <div class="control-group">
-            <label class="control-label" for="message">Message</label>
-            <div class="controls">
-                <textarea name="message" type="text" value=""></textarea>
-            </div>
-        </div>
+<form class="main" role="form" style="
+      padding-bottom: 50px;">
+    <div class="form-group">
 
-        <div class="control-group">
-            <div class="controls">
-                <input type="submit" value="Submit" class="btn btn-primary"/>
-            </div>
-        </div>
-    </form>
+        <input type="text" class="form-control" id="title" name="title" placeholder="title" style="
+
+               font-size: 1.5em;
+
+               ">
+    </div>
+    <div class="form-group">
+
+        <textarea class="form-control" name="message" placeholder="Explain your challenge here" rows="3" 
+                  style="resize: none; font-size: 1.5em;"
+                  ></textarea>
+
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="url" name="url" placeholder="Tags"
+               style="font-size: 1.5em;"
+               >
+    </div>
+
+    <div style="
+         position: relative;
+         ">
+        <button type="submit" value="submit" class="btn btn-primary" style="position: absolute; right: 3em;">Submit</button>
+    </div>
+</form>
+    
+    
 </template>
