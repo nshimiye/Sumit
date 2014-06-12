@@ -43,6 +43,10 @@ and open the template in the editor.
     color:  #999999;
 }
 
+.tag-order-active{
+    background: #CCCDCE;
+}
+
 .tag-title{
     font-weight: bold;
 }

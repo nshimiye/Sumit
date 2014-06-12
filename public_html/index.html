@@ -52,6 +52,23 @@
                 <div class="navbar-collapse collapse">
 
 
+                    <!--user information here lol!-->
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="fat-menu" class="dropdown">
+                            <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Dropdown 3 <b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                                <li ><a role="menuitem" tabindex="-1" href="http://twitter.com/fat">Action</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!--end of user-->
+
+
+
+
                     <form class="navbar-form navbar-right" role="form">
 
                         <div class="form-group navbar-right">
@@ -61,9 +78,10 @@
                     </form>
 
 
-                    <form class="navbar-form navbar-right" role="form">
-                        <button type="submit" class="btn btn-primary">New Post</button>
+                    <form class="navbar-form navbar-right">
+                        <a href="#" class="btn btn-primary">New Post</a>
                     </form>
+
 
 
                 </div><!--/.navbar-collapse -->
@@ -73,10 +91,8 @@
         <div style="min-height: 7em;">
             <!--navigation bar spacer-->
         </div>
-
-
-
         <!--end of navigation bar-->
+
 
 
         <div class="container" style="width: 95%;">
@@ -92,7 +108,7 @@
                         <div style="
                              /*border: 1px solid grey;*/
 
-                             display: none;
+                             display: block;
 
                              ">
                             <span>Report issues from the field:</span>
@@ -132,6 +148,12 @@
                         </div>
                         <!--end of posting new entries-->
 
+
+
+
+                        <!---------------------------------------start of post ------------------------>
+
+
                         <ul class="media-list">
                             <li class="media" style="
                                 padding: 0.5em;
@@ -144,21 +166,19 @@
                                         <div class="panel-heading">
                                             <div class="panel-title">
 
-
-
                                                 <a class="pull-left" href="#">
-                                                    <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" style="width: 64px; height: 64px;">
+                                                    <img class="media-object" data-src="holder.js/64x64" alt="64x32" src="assets/img/iconDown.png" style="width: 64px; height: 32px;">
                                                 </a>
+
                                                 <div class="row" style="margin: 0px;">
                                                     <div class="col-xs-7">
                                                         <div class="media-body">
-                                                            <a data-toggle="collapse" data-parent="#sumitpost" href="#clpsPost1">
+
+                                                            <div class="media-heading for-post">Reduced potency of vaccines due to logistical 
+                                                                factors that prevent proper cold chain maintenance.
+                                                            </div>
 
 
-                                                                <div class="media-heading for-post">Reduced potency of vaccines due to logistical 
-                                                                    factors that prevent proper cold chain maintenance.</div>
-
-                                                            </a>
                                                             <span >Author:</span>
                                                             <br>
                                                             <span>Affiliation: </span>
@@ -171,44 +191,39 @@
                                                         <br>
                                                         <span>Thematic Groups: Health, Transportation</span>
                                                         <br>
-                                                        <span>Comments: 2113</span>
+                                                        <a data-toggle="collapse" data-parent="#sumitpost" href="#clpsPost1">
+
+                                                            <span>Comments: 2113</span>
+                                                        </a>
                                                         <br>
 
                                                         <button class="btn btn-warning evidence">Evidence</button>
                                                         <button class="btn btn-success innovation">Innovations</button>
 
-                                                       
-                                                        
+
+
                                                     </div>
-                                                    
-                                                    
-                                                    
-                                                    
+
+
+
+
                                                 </div>
+
+                                                <!-------------------------------------->
 
                                             </div>
                                         </div>
 
-
-
-
                                         <div id="clpsPost1" class="panel-collapse collapse in">
-                                            <div class="panel-body ">
+                                            <div class="panel-body " style="padding-top: 0; padding-bottom: 0;">
 
 
                                                 <!--body of the panel ...-->
 
                                                 <ul class="media-list">
 
-                                                     <li class="media"
-                                                        style="
-                                                        display: none;
-                                                        "
-                                                         >
-                                                            
-                                                         <input type="text" class="form-control" placeholder="add new comments">
-                                                     </li>
-                                                    
+
+
                                                     <li class="media"
                                                         style="
                                                         border-bottom: 2px solid grey;
@@ -218,7 +233,7 @@
 
 
                                                         <a class="pull-left" href="#">
-                                                            <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" style="width: 64px; height: 64px;">
+                                                            <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="assets/img/iconDown.png" style="width: 64px; height: 32px;">
                                                         </a>
                                                         <div class="row" style="margin: 0px;">
                                                             <div class="col-xs-11">
@@ -253,14 +268,31 @@
                                                         >
 
 
-                                                        <a class="pull-left" href="#">
-                                                            <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIi8+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+" style="width: 64px; height: 64px;">
-                                                        </a>
+                                                        <div class="pull-left" style="text-align: center; width: 64px; overflow-x: hidden;">
+                                                            <a  href="#">
+                                                            <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="assets/img/iconDown.png" style="width: 60px; height: 30px;">
+                                                            </a>
+                                                            <span>2343243234234sds32</span>
+                                                            <a  href="#">
+                                                                <img class="media-object" data-src="holder.js/64x64" alt="64x64" src="assets/img/iconUp.png" style="width: 60px; height: 30px;">
+
+                                                            </a>
+                                                        </div>
+
                                                         <div class="row" style="margin: 0px;">
                                                             <div class="col-xs-11">
                                                                 <div class="media-body">
                                                                     <div class="media-heading for-post">Reduced potency of vaccines due to logistical 
-                                                                        factors that prevent proper cold chain maintenance.</div>
+                                                                        factors that prevent proper cold chain maintenance.
+                                                                        Reduced potency of vaccines due to logistical 
+                                                                        factors that prevent proper cold chain maintenance.
+                                                                        Reduced potency of vaccines due to logistical 
+                                                                        factors that prevent proper cold chain maintenance.
+                                                                        Reduced potency of vaccines due to logistical 
+                                                                        factors that prevent proper cold chain maintenance.
+                                                                        Reduced potency of vaccines due to logistical 
+                                                                        factors that prevent proper cold chain maintenance.
+                                                                    </div>
 
                                                                     <span >Author:</span>
                                                                     <br>
@@ -274,6 +306,7 @@
                                                                      right: 0em;
                                                                      bottom: 0;
                                                                      ">
+
                                                                     <span>Comment</span> | <span> Save </span> | <span>Report</span>
 
                                                                 </div>
@@ -283,6 +316,24 @@
 
 
                                                         </div>
+
+                                                    </li>
+                                                    <li class="media"
+
+                                                        >
+                                                        <a href="#" class="btn btn-default btn-sm"
+                                                           style="border-radius: 0px; border-top: none; display: block;;
+                                                           "
+                                                           >Login to add your own comment!</a>
+
+
+
+                                                        <form class="" role="form" style="display: none; ">
+                                                            <input type="text" class="form-control" placeholder="Comment on this post!">
+                                                            <br>
+                                                            <button class="btn btn-default" type="button">Add comment</button>
+
+                                                        </form><!-- /form here -->
 
                                                     </li>
 
@@ -376,7 +427,7 @@
                                         <ul class="list-group tag-list">
 
                                             <li class="list-group-item mytag">
-                                                <a href="#" class="btn btn-default btn-sm tag-btn">New</a>
+                                                <a href="#" class="btn btn-default btn-sm tag-btn tag-order-active">New</a>
                                             </li>
                                             <li class="list-group-item mytag">
                                                 <a href="#" class="btn btn-default btn-sm tag-btn" style="border-radius: 5em;">Old</a>
