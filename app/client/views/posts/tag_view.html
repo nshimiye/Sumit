@@ -1,0 +1,115 @@
+<template name="tagView">
+
+<div style="
+     min-height: 200px;
+     background-color: #f4f4f4;
+
+
+     ">
+
+    <!--Sort by :-->
+    <div class="panel-group" >
+        <div class="panel panel-default tags">
+
+            <div class="panel-heading">
+                <h3 class="panel-title tag-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        Sort by: <span class="glyphicon glyphicon-play"></span>
+                    </a>
+                </h3>
+            </div>
+
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body tag-body">
+                    <ul class="list-group tag-list">
+
+                        {{#each orderingKeys}}
+                        <li class="list-group-item mytag">
+                            <a href="#" class="btn btn-default btn-sm tag-btn tag-order-active">{{orderingKey}}</a>
+                        </li>
+                        {{/each}}
+                        <li class="list-group-item mytag">
+                            <a href="#" class="btn btn-default btn-sm tag-btn tag-order-active">New</a>
+                        </li>
+                        <li class="list-group-item mytag">
+                            <a href="#" class="btn btn-default btn-sm tag-btn" style="border-radius: 5em;">Old</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--Cross-cutting Issues:-->
+
+        <div class="panel panel-default tags">
+            <div class="panel-heading">
+                <h3 class="panel-title tag-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        Cross-cutting Issues: <span class="glyphicon glyphicon-play"></span>
+                    </a>
+                </h3>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse in">
+                <div class="panel-body tag-body">
+                    <ul class="list-group tag-list">
+                        {{#each ccIssues}}
+                        <li class="list-group-item mytag">
+                            <a href="#" class="btn btn-default btn-sm tag-btn"> {{ccissue}}</a>
+                        </li>
+                        {{/each}}
+                        <li class="list-group-item mytag">
+                            <a href="#" class="btn btn-default btn-sm tag-btn"> Logistics</a>
+                        </li>
+
+                        <li class="list-group-item mytag">
+                            <a href="#" class="btn btn-default btn-sm tag-btn" style="border-radius: 5em;"> Physical Infrastructure</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--Thematic Groups:-->
+
+        <div class="panel panel-default tags">
+            <div class="panel-heading">
+                <h3 class="panel-title tag-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        Thematic Groups: <span class="glyphicon glyphicon-play"></span>
+                    </a>
+                </h3>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse in">
+                <div class="panel-body tag-body">
+                    <ul class="list-group">
+
+                        {{#each themeGroups}}
+                        <li class="list-group-item mytag">
+                            <a href="#" class="btn btn-default btn-sm tag-btn"> {{themeGroup}}</a>
+                        </li>
+                        {{/each}}
+
+                        <li class="list-group-item mytag">
+                            <a href="#" class="btn btn-default btn-sm tag-btn" 
+                               title="Macroeconomics, Population Dynamics, and Planetary Boundaries"
+
+                               >
+                                Macroeconomics, Population ...
+                            </a>
+                        </li>
+                        <li class="list-group-item mytag">
+                            <a href="#" class="btn btn-default btn-sm  tag-btn"
+                               title="Reducing Poverty and Building Peace in Fragile Regions"
+                               style="border-radius: 5em;">Poverty & Peace Building ... </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</template>

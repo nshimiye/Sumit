@@ -1,0 +1,37 @@
+<template name="postEdit">
+
+
+
+<span>Report issues from the field:</span><br>
+
+<form class="main" role="form" style="
+      padding-bottom: 50px;">
+    <div class="form-group">
+
+        <input type="text" class="form-control" id="title" value="{{title}}" name="title" placeholder="title" style="
+
+               font-size: 1.5em;
+
+               ">
+    </div>
+    <div class="form-group">
+
+        <textarea class="form-control" name="message" value="nnnmnmn mnnm" placeholder="Explain your challenge here" rows="3" 
+                  style="resize: none; font-size: 1.5em;"
+                  ></textarea>
+
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" id="url" value="{{url}}" name="url" placeholder="Tags"
+               style="font-size: 1.5em;"
+               >
+    </div>
+
+    <div style="
+         position: relative;
+         ">
+        <button type="submit" value="submit" class="btn btn-primary" style="position: absolute; right: 3em;">Submit</button>
+        <button class="btn btn-danger delete" type="button">Delete post</button>
+    </div>
+</form>
+</template>

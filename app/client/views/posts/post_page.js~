@@ -1,0 +1,16 @@
+Template.postPage.helpers({
+    comments: function() {
+        return Comments.find({postId: this._id});
+    }
+});
+
+Template.postPage.events({
+
+	'click .loginTrigger': function(e){
+		e.preventDefault();
+		console.log("tetst action");
+	 	$("#login-dropdown-list").removeClass("open");
+	
+	}
+});
+

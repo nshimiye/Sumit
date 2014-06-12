@@ -1,0 +1,57 @@
+<template name="postItem">
+<div class=" {{#if isPostPage}} media {{/if}} post" {{attributes}}>
+    
+    <div class="pull-left" style="text-align: center; width: 64px; overflow-x: hidden;">
+       	<a  href="#">
+    		<img class="media-object" data-src="holder.js/64x64" 
+    		alt="64x64" src="/img/iconDown.png" style="width: 60px; height: 25px;">
+                                                            </a>
+     	<span>{{vote}}</span>
+      	<a  href="#">
+      	<img class="media-object" data-src="holder.js/64x64" 
+      		alt="64x64" src="/img/iconUp.png" style="width: 60px; height: 25px;">
+
+      </a>
+   	</div>
+
+    <div class="row" style="margin: 0px;">
+        <div class="col-xs-6">
+            <div class="media-body">
+
+                {{#if isPostPage}}
+                <h3 class="media-heading"> <a href="{{url}}">{{title}}</a> </h3>
+                <p>{{message}}</p>
+                {{else}}
+                <div class="media-heading for-post"> <a href="{{url}}">{{title}}</a> </div>
+                {{/if}}
+
+                <span >Author: {{author}}</span>
+                <br>
+                <span>Affiliation: {{domain}}</span>
+            </div>
+        </div>
+
+        <div class="col-xs-5">                                 
+            <span >Issue Type: Logistics, Infrastructure</span>
+            <br>
+            <span>Thematic Groups: Health, Transportation</span>
+            <br>
+            <a href="{{pathFor 'postPage'}}">
+
+                <span>Comments: {{commentsCount}}</span>
+            </a>
+            <br>
+
+            <button class="btn btn-warning evidence">Evidence</button>
+            <button class="btn btn-success innovation">Innovations</button>
+            <a href="{{pathFor 'postPage'}}" class="discuss btn btn-default">Discuss</a>
+            {{#if ownPost}}<a  class=" edit" href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
+
+
+        </div>
+        
+    </div>
+
+</div>
+
+</template>

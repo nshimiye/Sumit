@@ -1,0 +1,29 @@
+<template name="postsList">
+  
+<div class="col-lg-9 col-md-9 col-xs-9" >
+  
+  <div class="posts">
+	<ul class="media-list">
+    {{#each postsWithRank}}
+    	<li class="media" style=" padding: 0.5em; background-color: #f3f3f3">
+      		{{> postItem}}
+      	</li>
+    {{/each}}
+    
+	</ul>
+	
+    {{#if nextPath}}
+        <a class="load-more" href="{{nextPath}}">Load more</a>
+    {{/if}}
+  </div>
+  
+</div>
+
+
+<div class="col-lg-3 col-md-3 col-xs-3" >
+
+
+
+</div>
+
+</template>
