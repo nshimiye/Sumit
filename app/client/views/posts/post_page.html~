@@ -1,60 +1,80 @@
 <template name="postPage">
+<div class="panel-group" >
+    <div class="panel panel-default tags">
 
-                                <div class="panel-group" >
-                                    <div class="panel panel-default tags">
+        <div class="panel-heading">
+            <div class="panel-title">
 
-                                        <div class="panel-heading">
-                                            <div class="panel-title">
+                {{> postItem}}
 
+            </div>
+        </div>
+	<hr>
+        <div id="clpsPost1" class="panel-collapse collapse in">
+            <div class="panel-body " style="padding-top: 0; padding-bottom: 0; border: none;">
 
-    {{> postItem}}
-    
+                <ul class="media-list comments">
+				{{#if innovate}}
+				
+					{{#each innovations}}
 
-                                            </div>
-                                        </div>
+                        {{> innovation}}
+                        
+                    {{/each}}
+				
+				{{else}}
+				{{#if evident}}
+				
+					{{#each evidences}}
 
-                                        <div id="clpsPost1" class="panel-collapse collapse in">
-                                            <div class="panel-body " style="padding-top: 0; padding-bottom: 0;">
-                                            
-                                            
-                                            
-                                                <ul class="media-list comments">
+                        {{> evidence}}
+                        
+                    {{/each}}
+				
+				{{else}}
+                    {{#each comments}}
 
-                                                    {{#each comments}}
-
-                                                   
-
-       
-            {{> comment}}
-        {{/each}}
-
-    
-                                                         <li class="media">
-
-{{#if currentUser}}
-		{{> commentSubmit}}
-
-                                                     
- {{else}}
-                                                         <button class="btn btn-default btn-sm loginTrigger"
-                                                           style=" border-radius: 0px; border-top: none; "
-                                                          type="button"
-                                                           >Login to add your own comment!</button>
- {{/if}}
-                                                    </li>
-    
-        
-                                                </ul>
+                        {{> comment}}
+                        
+                    {{/each}}
 
 
+                    <li class="media">
+
+                        {{#if currentUser}}
+                            {{> commentSubmit}}
 
 
-                                                <!--end of body panel ....-->
+                        {{else}}
+                        <button class="btn btn-default btn-sm loginTrigger"
+                                style=" border-radius: 0px; border-top: none; " type="button">
+                            Login to add your own comment!
+                        </button>
+                        {{/if}}
+                    </li>
+				
+                </ul>
+                {{/if}} <!-- close evident -->
+               {{/if}} <!-- close innovate -->
+                <!--end of body panel ....-->
 
-                                            </div>
-                                        </div>
-                                    </div>
-                              	</div>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
+
+
+<template name="evidences">
 
 
 </template>
+
+
+
+<template name="innovations">
+
+</template>
+
+

@@ -9,7 +9,7 @@ Router.configure({
 //Route Controller 
 PostsListController = RouteController.extend({
     template: 'postsList',
-    increment: 5,
+    increment: 7,
     limit: function() {
         return parseInt(this.params.postsLimit) || this.increment;
     },
@@ -39,12 +39,28 @@ NewPostsListController = PostsListController.extend({
     }
 });
 
+OldPostsListController = PostsListController.extend({
+    sort: {submitted: 1, _id: 1},
+    nextPath: function() {
+        return Router.routes.newPosts.path({postsLimit: this.limit() + this.increment})
+    }
+});
+
 BestPostsListController = PostsListController.extend({
     sort: {votes: -1, submitted: -1, _id: -1},
     nextPath: function() {
         return Router.routes.bestPosts.path({postsLimit: this.limit() + this.increment})
     }
 });
+
+// controversial
+BestPostsListController = PostsListController.extend({
+    sort: {votes: -1, submitted: -1, _id: -1},
+    nextPath: function() {
+        return Router.routes.bestPosts.path({postsLimit: this.limit() + this.increment})
+    }
+});
+
 
 Router.map(function() {
     this.route('home', {
@@ -55,6 +71,11 @@ Router.map(function() {
     this.route('newPosts', {
         path: '/new/:postsLimit?',
         controller: NewPostsListController
+    });
+    
+    this.route('oldPosts', {
+        path: '/old/:postsLimit?',
+        controller: OldPostsListController
     });
 
     this.route('bestPosts', {

@@ -15,6 +15,10 @@ Posts.deny({
 });
 
 Meteor.methods({
+	search_post: function(postAttributes) {
+		return Posts.find();
+	},
+
     post: function(postAttributes) {
         var user = Meteor.user(),
             postWithSameLink = Posts.findOne({url: postAttributes.url});
@@ -25,9 +29,13 @@ Meteor.methods({
 
         //ensure the post has a title
         if (!postAttributes.title)
-            throw new Meteor.Error(422, 'Please fill in a headline');
+            throw new Meteor.Error(422, 'Please fill in a title');
 
-        //check that there are no previous posts with the same link
+ 		//ensure the post has a message
+        if (!postAttributes.message)
+            throw new Meteor.Error(422, 'post body is required');
+
+        //check that there are no previous posts with the same link === dead code
         if (postAttributes.url && postWithSameLink) {
             throw new Meteor.Error(302,
                 'This link has already been posted',
@@ -35,13 +43,15 @@ Meteor.methods({
         }
 
         //pick out the whitelisted keys
-        var post = _.extend(_.pick(postAttributes, 'url', 'title', 'message'), {
+        var post = _.extend(_.pick(postAttributes, 'url', 'title', 'message', 'tags'), {
             title: postAttributes.title,
             userId: user._id,
             author: user.username,
+            affiliate: "default-sumit", //to be fixed
             submitted: new Date().getTime(),
             commentsCount: 0,
             upvoters: [],
+            downvoters: [],
             votes: 0
         });
 

@@ -50,3 +50,128 @@ and open the template in the editor.
 .tag-title{
     font-weight: bold;
 }
+
+/* ---- */
+
+/*=========================== for search textarea ===========*/
+.autocmp{
+
+    position: absolute;
+    
+
+    top: 46px;
+    left: 0.5%;
+    
+
+    background-color: rgba(254, 254, 254, 1);
+    width: 99%;
+    z-index: 9;
+    font-size: 1.3em;
+    font-weight: 400;
+    box-shadow: 0 0 10px 0 rgba(162, 196, 201, 0.5);
+}
+
+.autocmp a{
+    text-decoration: none;
+    color: rgb(62, 78, 81);
+}
+a .auto-view{
+    border-bottom: 1px solid rgba(37, 64, 82, 0.2);
+    width: 100%;
+    padding: 0.5em;
+}
+a .auto-view:hover{background-color:rgba(162, 196, 201, 0.2)}
+
+/*-------------tag display-----------------*/
+
+.sumit_tag{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    background-color: white;
+    padding-bottom: 5px;
+
+    position: relative;
+    margin: 15px;
+    margin-left: 0px;
+    height: inherit;
+}
+
+.sumit_tag:hover{
+    cursor: text;
+}
+
+.sumit_tag_focus{
+     border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.sumit_tag_body{
+
+    border: 1px solid lightgray; 
+
+
+    padding-left: 10px;
+
+
+    padding-right: 10px;
+
+    margin: 5px; 
+    margin-bottom: 0px; 
+    float: left;
+
+}
+
+.sumit_tag_body:hover{
+    /* padding-left: 5px; */
+    /* padding-right: 5px; */
+}
+
+.tag_input{
+
+    border: 0px solid lightgray; 
+
+    padding: 0px;
+
+    margin: 0px; 
+    margin-top: 7px; 
+    float: left;
+}
+
+.tag_input .sumit_tag_in{
+    min-width: 10px;
+    padding-left: 0px;
+    padding-right: 3px;
+    box-shadow: inset 0 -10px 10px -10px #D7EEF1;
+}
+
+.tag_input .sumit_tag_in:focus, input:focus{
+    outline: 0;
+
+}
+
+.sumit_tag_del{
+
+}
+
+.mngDelete{
+    display: none;
+}
+
+
+.searchRes{
+    position: absolute;
+    top: 1.5em;
+    left: 0px;
+    min-width: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/*------------------------------------------*/
+
+
+
+
+

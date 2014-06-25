@@ -15,8 +15,8 @@ Template.postsList.helpers({
         this.posts.rewind();
         return this.posts.map(function(post, index, cursor) {
          	
-        
             post._rank = index;
+            //console.log(post);
             return post;
         });
     },

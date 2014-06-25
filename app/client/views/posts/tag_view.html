@@ -7,9 +7,11 @@
 
      ">
 
-    <!--Sort by :-->
+
     <div class="panel-group" >
-        <div class="panel panel-default tags">
+    
+        <!--Sort by :-->
+        <div class="panel panel-default tags sortby">
 
             <div class="panel-heading">
                 <h3 class="panel-title tag-title">
@@ -24,16 +26,12 @@
                     <ul class="list-group tag-list">
 
                         {{#each orderingKeys}}
-                        <li class="list-group-item mytag">
-                            <a href="#" class="btn btn-default btn-sm tag-btn tag-order-active">{{orderingKey}}</a>
+                        <li class="list-group-item mytag ">
+                            <a href="{{tagRoute}}" class="btn btn-default btn-sm tag-btn {{sid}} 
+                            {{#if active}} tag-order-active {{/if}}">{{orderingKey}}</a>
                         </li>
                         {{/each}}
-                        <li class="list-group-item mytag">
-                            <a href="#" class="btn btn-default btn-sm tag-btn tag-order-active">New</a>
-                        </li>
-                        <li class="list-group-item mytag">
-                            <a href="#" class="btn btn-default btn-sm tag-btn" style="border-radius: 5em;">Old</a>
-                        </li>
+     
                     </ul>
                 </div>
             </div>
@@ -54,16 +52,11 @@
                     <ul class="list-group tag-list">
                         {{#each ccIssues}}
                         <li class="list-group-item mytag">
-                            <a href="#" class="btn btn-default btn-sm tag-btn"> {{ccissue}}</a>
+                            <a href="#" class="btn btn-default btn-sm tag-btn"
+                            title="{{themeGroup}}"
+                            > {{shortenString ccissue}}</a>
                         </li>
                         {{/each}}
-                        <li class="list-group-item mytag">
-                            <a href="#" class="btn btn-default btn-sm tag-btn"> Logistics</a>
-                        </li>
-
-                        <li class="list-group-item mytag">
-                            <a href="#" class="btn btn-default btn-sm tag-btn" style="border-radius: 5em;"> Physical Infrastructure</a>
-                        </li>
 
                     </ul>
                 </div>
@@ -86,23 +79,11 @@
 
                         {{#each themeGroups}}
                         <li class="list-group-item mytag">
-                            <a href="#" class="btn btn-default btn-sm tag-btn"> {{themeGroup}}</a>
+                            <a href="#" class="btn btn-default btn-sm tag-btn"
+                             title="{{themeGroup}}"
+                            > {{shortenString themeGroup}}</a>
                         </li>
                         {{/each}}
-
-                        <li class="list-group-item mytag">
-                            <a href="#" class="btn btn-default btn-sm tag-btn" 
-                               title="Macroeconomics, Population Dynamics, and Planetary Boundaries"
-
-                               >
-                                Macroeconomics, Population ...
-                            </a>
-                        </li>
-                        <li class="list-group-item mytag">
-                            <a href="#" class="btn btn-default btn-sm  tag-btn"
-                               title="Reducing Poverty and Building Peace in Fragile Regions"
-                               style="border-radius: 5em;">Poverty & Peace Building ... </a>
-                        </li>
 
                     </ul>
                 </div>

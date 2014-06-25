@@ -46,5 +46,31 @@ Template.postItem.events({
     'click .upvotable': function(e) {
         e.preventDefault();
         Meteor.call('upvote', this._id);
-    }
+    },
+    'click .downvotable': function(e) {
+        e.preventDefault();
+        Meteor.call('downvote', this._id);
+    },
+    
+    
+    "click .evidence" : function(e) {
+        e.preventDefault();
+        Session.set("evident", true); //evident = true
+        Session.set("innovate", false);
+    },
+    "click .innovation" : function(e) {
+        e.preventDefault(); 
+        Session.set("innovate", true);//innovate = true
+        Session.set("evident", false);
+       
+    },
+     "click .comment" : function(e) {
+        e.preventDefault(); 
+        Session.set("innovate", false);//innovate = true
+        Session.set("evident", false);
+       
+    },
+    
+    
+    
 });

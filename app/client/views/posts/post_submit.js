@@ -1,11 +1,30 @@
+
+
+
 Template.postSubmit.events({
     'submit form': function(e) {
         e.preventDefault();
+        
+        var myTags = $(e.target).find('[name=sumit_tag]').children(".sumit_tag_body");
+        var newTags = new Array();
+        
+        //parse the tagContainer to get all input tags
+        myTags.each(function(i, mytag){
+        	console.log(mytag);
+        	newtag = $(mytag).children(".sumit_tag_in").text()
+        	
+        	if(newtag.trim() !== "")
+        		if(newTags.indexOf() <= -1)
+        			newTags.push(newtag.trim());
+        });
+        
+        console.log(newTags);
 
+	//create a post with user info
         var post = {
-            url: $(e.target).find('[name=url]').val(),
             title: $(e.target).find('[name=title]').val(),
-            message: $(e.target).find('[name=message]').val()
+            message: $(e.target).find('[name=message]').val(),
+            tags: newTags
         }
 
         Meteor.call('post', post, function(error, id) {
@@ -19,5 +38,5 @@ Template.postSubmit.events({
                 Router.go('postPage', {_id: id});
             }
         });
-    }
+    },
 });

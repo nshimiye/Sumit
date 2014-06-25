@@ -9,12 +9,29 @@
 
             </div>
         </div>
-
+	<hr>
         <div id="clpsPost1" class="panel-collapse collapse in">
-            <div class="panel-body " style="padding-top: 0; padding-bottom: 0;">
+            <div class="panel-body " style="padding-top: 0; padding-bottom: 0; border: none;">
 
                 <ul class="media-list comments">
+				{{#if innovate}}
+				
+					{{#each innovations}}
 
+                        {{> innovation}}
+                        
+                    {{/each}}
+				
+				{{else}}
+				{{#if evident}}
+				
+					{{#each evidences}}
+
+                        {{> evidence}}
+                        
+                    {{/each}}
+				
+				{{else}}
                     {{#each comments}}
 
                         {{> comment}}
@@ -35,12 +52,29 @@
                         </button>
                         {{/if}}
                     </li>
-
-                </ul>
+				
+                
+                {{/if}} <!-- close evident -->
+               {{/if}} <!-- close innovate -->
                 <!--end of body panel ....-->
-
+			</ul>
             </div>
         </div>
     </div>
 </div>
 </template>
+
+
+
+<template name="evidences">
+
+
+</template>
+
+
+
+<template name="innovations">
+
+</template>
+
+

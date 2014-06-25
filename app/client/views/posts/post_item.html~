@@ -2,12 +2,12 @@
 <div class=" {{#if isPostPage}} media {{/if}} post" {{attributes}}>
     
     <div class="pull-left" style="text-align: center; width: 64px; overflow-x: hidden;">
-       	<a  href="#">
+       	<a  href="#" class="upvote {{upvotedClass}}">
     		<img class="media-object" data-src="holder.js/64x64" 
     		alt="64x64" src="/img/iconDown.png" style="width: 60px; height: 25px;">
                                                             </a>
-     	<span>{{vote}}</span>
-      	<a  href="#">
+     	<span>{{votes}}</span>
+      	<a  href="#" class="downVote {{downvotedClass}}">
       	<img class="media-object" data-src="holder.js/64x64" 
       		alt="64x64" src="/img/iconUp.png" style="width: 60px; height: 25px;">
 
@@ -19,10 +19,10 @@
             <div class="media-body">
 
                 {{#if isPostPage}}
-                <h3 class="media-heading"> <a href="{{url}}">{{title}}</a> </h3>
+                <h3 class="media-heading"> <a href="{{pathFor 'postPage'}}">{{title}}</a> </h3>
                 <p>{{message}}</p>
                 {{else}}
-                <div class="media-heading for-post"> <a href="{{url}}">{{title}}</a> </div>
+                <div class="media-heading for-post"> <a href="{{pathFor 'postPage'}}">{{title}}</a> </div>
                 {{/if}}
 
                 <span >Author: {{author}}</span>
@@ -44,7 +44,6 @@
 
             <button class="btn btn-warning evidence">Evidence</button>
             <button class="btn btn-success innovation">Innovations</button>
-            <a href="{{pathFor 'postPage'}}" class="discuss btn btn-default">Discuss</a>
             {{#if ownPost}}<a  class=" edit" href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
 
 
