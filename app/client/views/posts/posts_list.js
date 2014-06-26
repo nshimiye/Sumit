@@ -1,3 +1,4 @@
+allPOSTS = new Array(); //make it global
 //Adds posts key and postsData value and
 //passing that object to the helperList function
 Template.postsList.helpers({
@@ -20,4 +21,7 @@ Template.postsList.helpers({
             return post;
         });
     },
+    show_submit : function(){
+    	return Session.get("show_post_form");
+    }
 });

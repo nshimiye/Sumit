@@ -1,16 +1,17 @@
 <template name="postPage">
-<div class="panel-group" >
+{{ waitOn }}
+
     <div class="panel panel-default tags">
 
         <div class="panel-heading">
             <div class="panel-title">
-
+			 
                 {{> postItem}}
 
             </div>
         </div>
-	<hr>
-        <div id="clpsPost1" class="panel-collapse collapse in">
+
+        <div id="Post{{spostid}}" class="panel-collapse collapse {{#if isPostPage}} in {{/if}}">
             <div class="panel-body " style="padding-top: 0; padding-bottom: 0; border: none;">
 
                 <ul class="media-list comments">
@@ -39,7 +40,9 @@
                     {{/each}}
 
 
-                    <li class="media">
+                    <li class="media" style="
+                                           		margin-top: 15px;
+                                                        ">
 
                         {{#if currentUser}}
                             {{> commentSubmit}}
@@ -53,11 +56,11 @@
                         {{/if}}
                     </li>
 				
-                </ul>
+                
                 {{/if}} <!-- close evident -->
                {{/if}} <!-- close innovate -->
                 <!--end of body panel ....-->
-
+			</ul>
             </div>
         </div>
     </div>
@@ -65,16 +68,5 @@
 </template>
 
 
-
-<template name="evidences">
-
-
-</template>
-
-
-
-<template name="innovations">
-
-</template>
 
 

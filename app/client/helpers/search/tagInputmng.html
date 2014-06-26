@@ -1,0 +1,54 @@
+<template name="tagview">
+ 	<div class="sumit_tag row form-control" name="sumit_tag" >
+
+	{{#each foundTags}}
+		{{> tag_view_template}}
+	{{/each}}
+
+    	<div class=" tag_input" style="  position: relative;  ">
+    	
+    	
+    		<div class="sumit_tag_in" contenteditable="true" >
+    		{{#if false}}
+    			Tags
+    		{{/if}}
+    		</div>
+
+    		<div class="searchRes list-group" >
+    			{{> tagsearch_view_template }}
+    		</div>
+
+    	</div>
+	</div>
+	
+</template>
+
+	<!--selected tags appear below -->
+        <template name="tag_view_template">
+			<div class="sumit_tag_body  btn btn-default btn-sm tag-btn">
+				
+			
+            	<span class="sumit_tag_in">
+            		{{ tagname }}
+            	</span>
+            	<a class="sumit_tag_del mngDelete" href="#" >
+            		<span class="glyphicon glyphicon-remove"></span>
+            	</a>
+			</div>
+        </template>
+
+		<!-- searched results will appear in the template below -->
+
+        <template name="tagsearch_view_template">
+            {{#if searchOK }}
+
+            {{#each foundTags1 }}
+                <a href="#" class="list-group-item ">
+                    {{ tagname }}
+                </a>
+            {{/each}}
+				<!--a href="#" class="list-group-item btn btn-primary tag_addnew"> Add new  </a-->
+            {{/if}}
+            
+        
+        </template>

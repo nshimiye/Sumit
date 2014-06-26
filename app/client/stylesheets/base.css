@@ -7,14 +7,43 @@ and open the template in the editor.
     Created on : Jun 6, 2014, 5:41:18 PM
     Author     : mars
 */
-
+*{
+	font-family: 'Raleway', sans-serif;
+	color: #999999;
+}
 .post h4{
     color: #45818e;
 }
 
+.post{
+	font-size: 12pt;
+}
+.post .entry{
+	font-weight: bold;
+}
+.post .entry1{
+	font-weight: 600;
+}
+.post .sumit_vote{
+	font-weight: 600;
+	color: #45818e;
+}
+
 .post .for-post{
     color: #45818e;
+
 }
+.for-post{
+	font-weight: 600;
+}
+.post .for-post a{
+	color:  #45818e;
+	
+	text-decoration: none;
+	
+}
+
+
 
 .tags{
     background-color: transparent;
@@ -41,6 +70,8 @@ and open the template in the editor.
     border-radius: 5em;
     background: #f4f4f4;
     color:  #999999;
+    font-size: 10pt;
+    font-weight: 500;
 }
 
 .tag-order-active{
@@ -69,6 +100,7 @@ and open the template in the editor.
     font-size: 1.3em;
     font-weight: 400;
     box-shadow: 0 0 10px 0 rgba(162, 196, 201, 0.5);
+    z-index: 10;
 }
 
 .autocmp a{

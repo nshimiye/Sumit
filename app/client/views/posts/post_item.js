@@ -10,8 +10,14 @@ Template.postItem.helpers({
         a.href = this.url;
         return a.hostname;
     },
-
-
+    postOpen : function(){
+    	
+    	return Session.get(this._id+"Open");
+    },
+    spostid : function(){
+    	return this._id;
+    
+    },
 	// we will have to edit this function
     upvotedClass: function() {
         var userId = Meteor.userId();
@@ -71,6 +77,51 @@ Template.postItem.events({
        
     },
     
+   "click .collapseit" : function(e){
+   
+   		console.log("data-id", $(e.target).attr("data-id"));
+   		console.log("data-id", $(e.target));
+   
+    	if($(e.target).attr("data-id") === this._id){
+    		
+				for(var i=0 ; i < allPOSTS.length; i++){
+				var item = allPOSTS[i];
+					Session.set(item+"Open", false);
+				}
+				
+    		Session.set(this._id+"Open", true);
+    		//$('#Post'+this._id).collapse({parent: "#accordion_post", toggle: true});
+    	}
+},
     
+   "click .evidence" : function(e){
+   
+   		console.log("data-id", $(e.target).attr("data-id"));
+   		console.log("data-id", $(e.target));
+
+    		$('#Post'+this._id).collapse("show");
+    		
+},
+    
+   "click .evidence" : function(e){
+   
+   		console.log("data-id", $(e.target).attr("data-id"));
+   		console.log("data-id", $(e.target));
+
+    		$('#Post'+this._id).collapse("show");
+    		
+    		//more staff in here
+    		
+    	},
+    	
+       "click .comment" : function(e){
+   
+   		console.log("data-id", $(e.target).attr("data-id"));
+   		console.log("data-id", $(e.target));
+
+    		$('#Post'+this._id).collapse("show");
+    		
+    	},
+    	
     
 });

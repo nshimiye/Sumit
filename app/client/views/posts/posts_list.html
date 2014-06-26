@@ -2,15 +2,23 @@
   
 <div class="col-lg-9 col-md-9 col-xs-9" >
   
+  <div id="for_psubmit" style="display: {{#if show_submit}}block{{else}}none{{/if}};">
+  	
+  	{{ > postSubmit}}
+  
+  </div>
+  
   <div class="posts">
-	<ul class="media-list">
+	<div id="accordion_post" class="panel-group inPost"  style="margin-bottom: 0px;">
     {{#each postsWithRank}}
-    	<li class="media" style=" padding: 0.5em; background-color: #f3f3f3">
-      		{{> postItem}}
-      	</li>
+    
+    <!-- style="/* padding: 1em; background-color: #f3f3f3*/" -->
+    	
+      		{{> postPage}}
+      	
     {{/each}}
     
-	</ul>
+	</div>
 	
     {{#if nextPath}}
         <a class="load-more" href="{{nextPath}}">Load more</a>

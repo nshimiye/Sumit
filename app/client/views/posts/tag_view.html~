@@ -1,0 +1,96 @@
+<template name="tagView">
+
+<div style="
+     min-height: 200px;
+     background-color: #f4f4f4;
+
+
+     ">
+
+
+    <div class="panel-group" >
+    
+        <!--Sort by :-->
+        <div class="panel panel-default tags sortby">
+
+            <div class="panel-heading">
+                <h3 class="panel-title tag-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        Sort by: <!-- span class="glyphicon glyphicon-play"></span -->
+                    </a>
+                </h3>
+            </div>
+
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body tag-body">
+                    <ul class="list-group tag-list">
+
+                        {{#each orderingKeys}}
+                        <li class="list-group-item mytag ">
+                            <a href="{{tagRoute}}" class="btn btn-default btn-sm tag-btn {{sid}} 
+                            {{#if active}} tag-order-active {{/if}}">{{orderingKey}}</a>
+                        </li>
+                        {{/each}}
+     
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--Cross-cutting Issues:-->
+
+        <div class="panel panel-default tags">
+            <div class="panel-heading">
+                <h3 class="panel-title tag-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        Cross-cutting Issues: <!-- span class="glyphicon glyphicon-play"></span -->
+                    </a>
+                </h3>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse in">
+                <div class="panel-body tag-body">
+                    <ul class="list-group tag-list">
+                        {{#each ccIssues}}
+                        <li class="list-group-item mytag">
+                            <a href="#" class="btn btn-default btn-sm tag-btn"
+                            title="{{themeGroup}}"
+                            > {{shortenString ccissue}}</a>
+                        </li>
+                        {{/each}}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--Thematic Groups:-->
+
+        <div class="panel panel-default tags">
+            <div class="panel-heading">
+                <h3 class="panel-title tag-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        Thematic Groups: <span class="glyphicon glyphicon-play"></span>
+                    </a>
+                </h3>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse in">
+                <div class="panel-body tag-body">
+                    <ul class="list-group">
+
+                        {{#each themeGroups}}
+                        <li class="list-group-item mytag">
+                            <a href="#" class="btn btn-default btn-sm tag-btn"
+                             title="{{themeGroup}}"
+                            > {{shortenString themeGroup}}</a>
+                        </li>
+                        {{/each}}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</template>

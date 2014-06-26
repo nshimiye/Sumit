@@ -12,12 +12,12 @@
      <div class="pull-left" style="text-align: center; width: 64px; overflow-x: hidden;">
        	<a  href="#">
     		<img class="media-object" data-src="holder.js/64x64" 
-    		alt="64x64" src="img/iconDown.png" style="width: 60px; height: 25px;">
+    		alt="64x64" src="/img/iconUp.png" style="width: 60px; height: 25px;">
                                                             </a>
      	<span>-{{votes}}-</span>
       	<a  href="#">
       	<img class="media-object" data-src="holder.js/64x64" 
-      		alt="64x64" src="img/iconUp.png" style="width: 60px; height: 25px;">
+      		alt="64x64" src="/img/iconDown.png" style="width: 60px; height: 25px;">
 
       </a>
    	</div>

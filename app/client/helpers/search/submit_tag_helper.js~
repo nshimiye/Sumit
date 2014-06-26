@@ -1,0 +1,293 @@
+            //testing data
+            tags = {a: ["abc", "word 1", "contre"],
+                b: ["me", "bs", "I am tired"],
+                c: [],
+                other: []};
+
+            // this is how you sta
+            mytag = null;
+            tagin = null;
+//            jQuery plugin
+            (function($) {
+
+
+   function tagMNG() {
+                    
+                    var DATA = {};
+                    var displayedData = null;
+                    var newTag = {};
+                    var tagsViewHolder = null;
+                    var sarea = null; //searc area where results of search will appear
+                    var GtagInput = "";
+					var constructed = false;
+                    this.getEl = function(){return $(".sumit_tag")};
+					this.initOn = function(){
+						return constructed;
+					}
+                    this.construct = function(options) {
+	
+                    var tanobj = this;
+constructed = true;
+//                    console.log(DATA);
+                        DATA = options.data;
+                        tagsViewHolder = this.getEl();
+                    
+                        displayedData = new Array();
+
+                        $.each(options.initData, function(i, item) {
+                            tanobj.createTagView({tagname: item, viewHolder: tagsViewHolder});
+                        });
+
+console.log(displayedData);
+                        $(".searchRes").click(function(evt) {
+                            evt.preventDefault();
+//
+                            var selectedTag = $(evt.target).text().trim();
+
+                            var addnew = !tanobj.search({name: GtagInput, sarea: sarea, data: DATA});
+ 
+                            if (addnew) { // add new tag to DATA -- means the "Add new" btn is clicked
+
+                                //addNew({tagname: GtagInput, dataHolder: DATA});
+                                tanobj.createTagView({tagname: GtagInput, viewHolder: tagsViewHolder});
+
+                                $(newTag).text("");
+                                $(sarea).html("");
+
+                            } else { // create a tag and append it to tagContainer
+                                DATA.splice(DATA.indexOf(selectedTag),1);
+//                            console.log(" ---------------- viewHolder ==----------------- ");
+//                            console.log(tagsViewHolder);
+//                            console.log(" ---------------- viewHolder &&     ----------------- ");
+                                tanobj.createTagView({tagname: selectedTag, viewHolder: tagsViewHolder});
+
+                                $(newTag).text("");
+                                $(sarea).html("");
+
+
+                            }
+                        });
+
+constructed = true;
+
+                        return this;
+                    };
+                    // make focused the input area of the tag container
+                    // expect child element with class -- tag_input and inside you need .sumit_tag_in
+                    this.focusTags = function(options) {
+//                    console.log(DATA);
+                        var tagCTN = this.getEl();
+                        var tagobj = this;
+
+//                    console.log(tagCTN.children());
+
+                        var tagInputCTN = tagCTN.children(".tag_input");
+                        var tagInput = $(tagInputCTN).children(".sumit_tag_in");
+//                    console.log(tagInput);
+
+                        if (tagInput === null) {
+
+//                        console.log("error occured - make sure you have .sumit_tag_in elt as child of .tag_input ");
+
+                            return;
+                        }
+                        $(tagInput).focus();
+
+                        // we collect tag content and create/display a new tag
+                        $(tagInput).keyup(function(evt) {
+                            evt.preventDefault();
+
+                            newTag = this;
+                            var searchid = $(newTag).text();
+//                        console.log(searchid);
+
+                            sarea = $(newTag).parent().children(".searchRes");
+
+                            if (searchid.trim() === "") {
+                                $(sarea).html("");
+                                return;
+                            }
+
+                            GtagInput = searchid.trim();
+
+                            tagobj.search({name: searchid.trim(), sarea: sarea, data: DATA});
+
+                            if (evt.which === 13) {
+
+                                //search first and save tag if not found
+                                var addnew = !tagobj.search({name: searchid.trim(), sarea: sarea, data: DATA});
+
+                                // add tag to the list
+                                if (addnew) {
+
+//                                console.log("searchid yes yes yes yes yes");
+
+                                    $(newTag).text("");
+                                    // addNew({tagname: searchid.trim(), dataHolder: DATA});
+                                    tagobj.createTagView({tagname: searchid.trim(), viewHolder: tagsViewHolder});
+
+                                } else {
+                                    $(newTag).text(searchid.trim());
+                                }
+                                return;
+                            }
+
+                        });
+
+//                     ================================
+
+                        return tagInput;
+
+                    };
+
+
+
+                    // searching for available tags
+                    // need to check for false input
+                   this.search = function(options) {
+
+                        var sname = options.name;
+                        var searcha = options.sarea,
+                                data = options.data;
+
+                        // searching happens here
+
+                        $(searcha).html("");
+                        var res = -1;
+                        var count = 0;
+                        $.each(data, function(i, item) {
+                            //populate search result area
+                            res = item.search(sname.toString().trim());
+                            if (res !== -1) {
+                                $(searcha).append(
+                                        '<a href="#" class="list-group-item ">' +
+                                        item +
+                                        '</a>');
+                                count += 1;
+                                res = -1;
+                            }
+                            // console.log(item);
+
+                        });
+
+                        if (count === 0) {
+                            $(searcha).append(
+                                    '<a href="#" class="list-group-item btn btn-primary "> Add new' +
+                                    '</a>');
+
+
+                            return false;
+                        } else {
+                            return true;
+                        }
+
+                        // ===========================
+
+                    };
+
+                    // add a given string to the array of tags
+                   this.addNew = function(options) {
+
+                        options.dataHolder.push(options.tagname);
+
+                    };
+
+                    this.createTagView = function(options) {
+
+ console.log("===================== ", displayedData + "<<>>" +  options.tagname );
+
+                        if (displayedData.indexOf(options.tagname) === -1) {
+
+                            console.log("===================== -------------1 ");
+                            console.log(options.viewHolder);
+
+                            console.log("===================== ");
+
+                            displayedData.push(options.tagname);
+
+                            console.log(displayedData);
+
+                            var newTagview = $(
+                                    '<div class="sumit_tag_body  btn btn-default btn-sm tag-btn" style="position: relative; ">' +
+                                    '<span class="sumit_tag_in">'
+                                    + options.tagname +
+                                    '</span>' +
+                                    '  <a class="sumit_tag_del " href="#" >' +
+                                    '<span class="glyphicon glyphicon-remove"></span>' +
+                                    ' </a>' +
+                                    '</div>'
+                                    );
+
+                            $(newTagview).insertBefore($(options.viewHolder).children(".tag_input"));
+                            this.addClickListener(newTagview, DATA, displayedData);
+
+
+                        } else {
+                            return;
+                        }
+
+                    };
+
+                    this.addClickListener = function(element, dataIn, dataOut) {
+                        var delbtn = $(element).children(".sumit_tag_del");
+                        var inputarea = $(element).children(".sumit_tag_in");
+
+
+
+
+                        $(element).hover(function(evt) {
+
+                            $(delbtn).css({
+                                display: "inline"
+                            });
+                           
+
+                        }, function(evt) { //out
+                            $(delbtn).css({
+                                display: "none"
+                            });
+                        });
+
+                        //delete this element
+                        $(delbtn).click(function(evt) {
+                            evt.preventDefault();
+console.log(element);
+                            $(element).remove();
+
+                            var tagtext = $(inputarea).text().trim();
+
+                            dataIn.push(tagtext);
+                            dataOut.splice(dataOut.indexOf(tagtext), 1);
+
+ console.log(dataIn);
+ console.log(dataOut);
+
+                            return false;
+                        });
+
+                    };
+
+
+                }
+
+
+
+
+                // this is how you sta
+                mytag = new tagMNG();
+               
+
+
+
+            })(jQuery);
+
+
+
+                    console.log("===&&&&&&&&&&&&&====");
+console.log(mytag);
+
+            
+
+          
+
+

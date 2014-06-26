@@ -83,4 +83,66 @@ if (Posts.find().count() === 0) {
             upvoters: [], votes: 0
         });
     }
+    
+    
+    
+    var marsId = Meteor.users.insert({
+        profile: { name: 'Marcellin Nshimiyimana' }
+    });
+    var mars = Meteor.users.findOne(marsId);
+    
+     var postId = Posts.insert({
+        title: 'Difficulties of improving crop yields due to prohibitive land use policies',
+        userId: mars._id,
+        author: mars.profile.name,
+        url: 'http://nshimiye.com',
+        submitted: now - 7 * 3600 * 1000,
+        commentsCount: 0,
+        upvoters: [], votes: 54321
+    });
+    
+     var postId = Posts.insert({
+        title: 'Low adoption rate of sexual health behaviors because of gaps in communication and local involvement',
+        userId: mars._id,
+        author: mars.profile.name,
+        url: 'http://nshimiye.com',
+        submitted: now - 7 * 3600 * 1000,
+        commentsCount: 0,
+        upvoters: [], votes: 1256
+    });
+
+
+ var postId = Posts.insert({
+        title: 'Limited and unreliable bednet distribution channels in malaria prevention programs',
+        userId: mars._id,
+        author: mars.profile.name,
+        url: 'http://nshimiye.com',
+        submitted: now - 7 * 3600 * 1000,
+        commentsCount: 0,
+        upvoters: [], votes: 1233
+    });
+    
+    
+     var postId = Posts.insert({
+        title: 'Reduce potency of vaccines due to logical factors that prevent proper cold chain maintenance',
+        userId: mars._id,
+        author: mars.profile.name,
+        url: 'http://nshimiye.com',
+        submitted: now - 7 * 3600 * 1000,
+        commentsCount: 0,
+        upvoters: [], votes: 230
+    });
+
+ for (var i = 0; i < 10; i++) {
+    var cid = Comments.insert({
+        postId: postId,
+        userId: sacha._id,
+        author: sacha.profile.name,
+        submitted: now - 5 * 3600 * 1000,
+        body: 'Interesting project ---, can I get involved? counting ' + i
+    });
+
+    Posts.update(postId, {$inc: {commentsCount: 1}});
+    
+   }
 }

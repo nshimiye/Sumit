@@ -9,7 +9,7 @@ Router.configure({
 //Route Controller 
 PostsListController = RouteController.extend({
     template: 'postsList',
-    increment: 5,
+    increment: 7,
     limit: function() {
         return parseInt(this.params.postsLimit) || this.increment;
     },

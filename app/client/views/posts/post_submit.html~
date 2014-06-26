@@ -7,7 +7,7 @@
       padding-bottom: 50px;">
     <div class="form-group">
 
-        <input type="text" class="form-control" id="title" name="title" placeholder="title" style="
+        <input type="text" class="form-control" id="title" name="title" placeholder="Title" style="
 
                font-size: 1.5em;
 
@@ -15,19 +15,24 @@
     </div>
     <div class="form-group">
 
-        <textarea class="form-control" name="message" placeholder="Explain your challenge here" rows="3" 
+        <textarea class="form-control" name="message" placeholder="Explain your challenge" rows="3" 
                   style="resize: none; font-size: 1.5em;"
                   ></textarea>
 
     </div>
     <div class="form-group">
-        {{tagview}}
+        {{> tagview}}
     </div>
 
     <div style="
          position: relative;
          ">
-        <button type="submit" value="submit" class="btn btn-primary" style="position: absolute; right: 3em;">Submit</button>
+          <a href="#" value="cancel" class=" attach_new" >Attach</a> | 
+          <a href="#" value="cancel" class=" links_new" >Links</a>
+        <button type="submit" value="submit" class="btn btn-primary" style="position: absolute; right: 5em;">Submit</button>
+        <a href="#" value="cancel" class=" cancel_new_post" 
+        style="position: absolute; right: 1em;">Cancel</a>
+        
     </div>
 </form>
 

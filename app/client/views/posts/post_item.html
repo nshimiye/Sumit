@@ -4,46 +4,63 @@
     <div class="pull-left" style="text-align: center; width: 64px; overflow-x: hidden;">
        	<a  href="#" class="upvote {{upvotedClass}}">
     		<img class="media-object" data-src="holder.js/64x64" 
-    		alt="64x64" src="/img/iconDown.png" style="width: 60px; height: 25px;">
+    		alt="64x64" src="/img/iconUp.png" style="width: 60px; height: 25px;">
                                                             </a>
-     	<span>{{votes}}</span>
+     	<span class="sumit_vote">{{votes}}</span>
       	<a  href="#" class="downVote {{downvotedClass}}">
       	<img class="media-object" data-src="holder.js/64x64" 
-      		alt="64x64" src="/img/iconUp.png" style="width: 60px; height: 25px;">
+      		alt="64x64" src="/img/iconDown.png" style="width: 60px; height: 25px;">
 
       </a>
    	</div>
 
     <div class="row" style="margin: 0px;">
-        <div class="col-xs-6">
+        <div class="col-xs-7" style="padding-left: 24pt;">
             <div class="media-body">
-
-                {{#if isPostPage}}
-                <h3 class="media-heading"> <a href="{{pathFor 'postPage'}}">{{title}}</a> </h3>
-                <p>{{message}}</p>
-                {{else}}
-                <div class="media-heading for-post"> <a href="{{pathFor 'postPage'}}">{{title}}</a> </div>
-                {{/if}}
-
-                <span >Author: {{author}}</span>
+				<a data-toggle="collapse" class="collapseit" data-id="{{spostid}}" 
+					data-parent="#accordion_post" href="#Post{{spostid}}">
+                	{{#if isPostPage}}
+               	 	<!--h3 class="media-heading"> <a href="#{{pathFor 'postPage'}}">{{title}}</a> </h3-->
+                	<!-- p>{{message}}</p -->
+                	<div class="media-heading for-post" data-id="{{spostid}}"> {{title}} </div>
+                	{{else}}
+                	<div class="media-heading for-post" data-id="{{spostid}}"> {{title}} </div>
+                	{{/if}}
+				</a>
+                Author: <span class="entry1"> {{author}}</span>
                 <br>
-                <span>Affiliation: {{domain}}</span>
+                Affiliation:<span class="entry1"> {{domain}}</span>
             </div>
         </div>
 
-        <div class="col-xs-5">                                 
-            <span >Issue Type: Logistics, Infrastructure</span>
+        <div class="col-xs-4">                                 
+           Issue Type:<span class="entry" 
+           	title="Logistics, Infrastructure, Logistics,  Logistics">
+            {{shortenString "Logistics, Infrastructure, Logistics,  Logistics"}} </span>
             <br>
-            <span>Thematic Groups: Health, Transportation</span>
+            Thematic Groups:<span class="entry" title="Health, Transportation"> 
+            
+            Health, Transportation</span>
             <br>
-            <a href="{{pathFor 'postPage'}}">
+            <a class="collapseit comment" data-id="{{spostid}}" data-me="comment"
+					data-parent="#accordion_post" href="#Post{{spostid}}">
 
-                <span>Comments: {{commentsCount}}</span>
+                Comments:<span class="entry" data-id="{{spostid}}"> {{commentsCount}}</span>
             </a>
             <br>
 
-            <a href="#" class="btn btn-warning evidence">Evidence</a>
-            <a href="#" class="btn btn-success innovation">Innovations</a>
+
+{{#if postOpen}}
+	<a data-me="evidence" class="collapseit btn btn-warning evidence" data-id="{{spostid}}" 
+					data-parent="#accordion_post" href="#Post{{spostid}}">
+            Evidence</a>
+             <a data-me="innovation" class="collapseit btn btn-success innovation" data-id="{{spostid}}" 
+					data-parent="#accordion_post" href="#Post{{spostid}}">
+            Innovations</a>
+            
+{{/if}}            
+            
+
             {{#if ownPost}}<a  class=" edit" href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
 
 

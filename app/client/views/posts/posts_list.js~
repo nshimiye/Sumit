@@ -16,8 +16,11 @@ Template.postsList.helpers({
         return this.posts.map(function(post, index, cursor) {
          	
             post._rank = index;
-            console.log(post);
+            //console.log(post);
             return post;
         });
     },
+    show_submit : function(){
+    	return Session.get("show_post_form");
+    }
 });

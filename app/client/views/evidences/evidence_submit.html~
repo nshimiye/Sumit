@@ -1,0 +1,12 @@
+<template name="commentSubmit">
+    
+      <form class="comment-form" role="form" name="comment">
+      		<textarea name="body" class="form-control" placeholder="Comment on this post!" rows="3" style="resize: none;"></textarea>
+                                                            <br>
+                                                                <button class="btn btn-default" type="submit">Add comment</button>
+                                                            
+                                                        </form><!-- /form here -->
+    
+    
+    
+</template>

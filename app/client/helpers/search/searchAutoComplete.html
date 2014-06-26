@@ -1,0 +1,22 @@
+<template name="searchAutoComplete">
+ {{ waitOn }}
+ <form class="navbar-form navbar-right searchForm" role="form" style="position: relative;">
+
+                <div class="form-group navbar-right">
+                    <input type="text" class="form-control postSearchInput"
+                    	placeholder="Sarch for problems, challenges, locations" style="width: 500px;">
+                </div>
+    <div id="autocmp1" class="autocmp">
+	{{#each postSearchResults}}
+	<a href="/posts/{{post_id}}" class="presult" data-id="{{post_id}}">
+ 		<div class="auto-view">
+      		{{ postSearch }}
+
+		</div>
+	</a>
+	{{/each }}
+	
+		</div>
+	</form>
+	
+</template>

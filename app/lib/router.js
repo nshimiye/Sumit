@@ -65,7 +65,7 @@ BestPostsListController = PostsListController.extend({
 Router.map(function() {
     this.route('home', {
         path: '/',
-        controller: NewPostsListController
+        controller: BestPostsListController
     });
 
     this.route('newPosts', {
