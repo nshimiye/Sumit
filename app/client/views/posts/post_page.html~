@@ -1,22 +1,24 @@
 <template name="postPage">
 {{ waitOn }}
-
+<div class="col-lg-9 col-md-9 col-xs-9" >
+	  <div id="for_psubmit" style="display: {{#if show_submit}}block{{else}}none{{/if}};">
+  	
+  		{{ > postSubmit}}
+  
+  	</div>
     <div class="panel panel-default tags">
 
-        <div class="panel-heading">
-            <div class="panel-title">
 			 
                 {{> postItem}}
 
-            </div>
-        </div>
+
 
         <div id="Post{{spostid}}" class="panel-collapse collapse {{#if isPostPage}} in {{/if}}">
             <div class="panel-body " style="padding-top: 0; padding-bottom: 0; border: none;">
 
                 <ul class="media-list comments">
 				{{#if innovate}}
-				
+				--yes--
 					{{#each innovations}}
 
                         {{> innovation}}
@@ -64,7 +66,16 @@
             </div>
         </div>
     </div>
+    
+    </div>
+
+
+<div class="col-lg-3 col-md-3 col-xs-3" >
+
+{{> tagView}}
+
 </div>
+
 </template>
 
 

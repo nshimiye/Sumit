@@ -22,12 +22,12 @@ Template.header_alt.events({
 		//
 		
 		if(!Session.get("show_post_form")){
-			Session.set("show_post_form", true);
+			
 		 	$( "#for_psubmit" ).animate({
     			height: "toggle"
   			}, 2000, function() {
     		// Animation complete.
-    			
+    		Session.set("show_post_form", true);	
   			});
 	}
 	}

@@ -4,7 +4,10 @@ Template.postItem.helpers({
     ownPost: function() {
         return this.userId == Meteor.userId();
     },
-
+    waitOn : function(){
+    	allPOSTS.push(this._id);
+    	
+    },
     domain: function() {
         var a = document.createElement('a');
         a.href = this.url;
@@ -17,6 +20,15 @@ Template.postItem.helpers({
     spostid : function(){
     	return this._id;
     
+    },
+    canUpvote: function() {
+        var userId = Meteor.userId();
+        if (userId && _.include(this.upvoters, userId)) {
+            return false;
+        } else {
+ 
+            return true;
+        }
     },
 	// we will have to edit this function
     upvotedClass: function() {
@@ -60,32 +72,37 @@ Template.postItem.events({
     
     
     "click .evidence" : function(e) {
-        e.preventDefault();
+        
         Session.set("evident", true); //evident = true
         Session.set("innovate", false);
+           		console.log("data-id", $(e.target).attr("data-id"));
+   		console.log("data-id", $(e.target));
     },
     "click .innovation" : function(e) {
-        e.preventDefault(); 
+        
         Session.set("innovate", true);//innovate = true
         Session.set("evident", false);
+        
+           		console.log("data-id", $(e.target).attr("data-id"));
+   		console.log("data-id", $(e.target));
        
     },
      "click .comment" : function(e) {
-        e.preventDefault(); 
+        //e.preventDefault(); 
         Session.set("innovate", false);//innovate = true
         Session.set("evident", false);
-       
     },
     
    "click .collapseit" : function(e){
    
-   		console.log("data-id", $(e.target).attr("data-id"));
-   		console.log("data-id", $(e.target));
+   		//console.log("data-id", $(e.target).attr("data-id"));
+   		//console.log("data-id", $(e.target));
    
     	if($(e.target).attr("data-id") === this._id){
     		
 				for(var i=0 ; i < allPOSTS.length; i++){
 				var item = allPOSTS[i];
+				console.log(item);
 					Session.set(item+"Open", false);
 				}
 				
@@ -93,35 +110,7 @@ Template.postItem.events({
     		//$('#Post'+this._id).collapse({parent: "#accordion_post", toggle: true});
     	}
 },
-    
-   "click .evidence" : function(e){
-   
-   		console.log("data-id", $(e.target).attr("data-id"));
-   		console.log("data-id", $(e.target));
-
-    		$('#Post'+this._id).collapse("show");
-    		
-},
-    
-   "click .evidence" : function(e){
-   
-   		console.log("data-id", $(e.target).attr("data-id"));
-   		console.log("data-id", $(e.target));
-
-    		$('#Post'+this._id).collapse("show");
-    		
-    		//more staff in here
-    		
-    	},
-    	
-       "click .comment" : function(e){
-   
-   		console.log("data-id", $(e.target).attr("data-id"));
-   		console.log("data-id", $(e.target));
-
-    		$('#Post'+this._id).collapse("show");
-    		
-    	},
+ 
     	
     
 });

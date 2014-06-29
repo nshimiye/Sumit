@@ -12,7 +12,7 @@ Meteor.methods({
             throw new Meteor.Error(402, "Please write some content");
 
         if(!post)
-            throw new Meteor.Error(422, "You must comment on a Challenge");
+            throw new Meteor.Error(422, "You must comment on a post");
 
         comment = _.extend(_.pick(commentAttributes, 'postId', 'body'), {
             userId: user._id,

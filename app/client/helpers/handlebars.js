@@ -14,8 +14,8 @@ UI.registerHelper('pluralize', function(n, thing) {
 // developper should find better ways/hints to display full tag to user 
 UI.registerHelper('shortenString', function(inputString) {
     var saveString = inputString;
-    if (saveString.length > 20) {
-        saveString = inputString.substring(0, 20) + " ...";
+    if (saveString.length > 25) {
+        saveString = inputString.substring(0, 25) + " ...";
     }
     return saveString;
 });

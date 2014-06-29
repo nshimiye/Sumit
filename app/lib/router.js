@@ -42,7 +42,7 @@ NewPostsListController = PostsListController.extend({
 OldPostsListController = PostsListController.extend({
     sort: {submitted: 1, _id: 1},
     nextPath: function() {
-        return Router.routes.newPosts.path({postsLimit: this.limit() + this.increment})
+        return Router.routes.oldPosts.path({postsLimit: this.limit() + this.increment})
     }
 });
 
@@ -53,11 +53,11 @@ BestPostsListController = PostsListController.extend({
     }
 });
 
-// controversial
-BestPostsListController = PostsListController.extend({
+// controversial -- to be fixed??????????
+ControversialListController = PostsListController.extend({
     sort: {votes: -1, submitted: -1, _id: -1},
     nextPath: function() {
-        return Router.routes.bestPosts.path({postsLimit: this.limit() + this.increment})
+        return Router.routes.ControversialPosts.path({postsLimit: this.limit() + this.increment})
     }
 });
 
@@ -78,6 +78,11 @@ Router.map(function() {
         controller: OldPostsListController
     });
 
+    this.route('ControversialPosts', {
+        path: '/votes1to1/:postsLimit?',
+        controller: ControversialListController
+    });
+
     this.route('bestPosts', {
         path: '/best/:postsLimit?',
         controller: BestPostsListController
@@ -88,7 +93,8 @@ Router.map(function() {
         waitOn: function() {
             return [
                 Meteor.subscribe('singlePost', this.params._id),
-                Meteor.subscribe('comments', this.params._id)
+                Meteor.subscribe('comments', this.params._id),
+                Meteor.subscribe('evidences', this.params._id)
             ];
         },
         data: function() { return Posts.findOne(this.params._id); }

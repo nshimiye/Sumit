@@ -99,7 +99,8 @@ and open the template in the editor.
     z-index: 9;
     font-size: 1.3em;
     font-weight: 400;
-    box-shadow: 0 0 10px 0 rgba(162, 196, 201, 1);
+    box-shadow: 0 0 10px 0 rgba(162, 196, 201, 0.5);
+    z-index: 10;
 }
 
 .autocmp a{
@@ -107,11 +108,11 @@ and open the template in the editor.
     color: rgb(62, 78, 81);
 }
 a .auto-view{
-    border-bottom: 1px solid rgba(37, 64, 82, 1);
+    border-bottom: 1px solid rgba(37, 64, 82, 0.2);
     width: 100%;
     padding: 0.5em;
 }
-a .auto-view:hover{background-color:rgba(162, 196, 201, 1)}
+a .auto-view:hover{background-color:rgba(162, 196, 201, 0.2)}
 
 /*-------------tag display-----------------*/
 

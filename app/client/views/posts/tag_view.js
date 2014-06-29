@@ -1,15 +1,15 @@
 var tags = {
-	sortby : [{sid: "n", orderingKey: "New", tagRoute: "/new"}, 
+	sortby : [{sid: "u", orderingKey: "Popular", tagRoute: "/best"}, {sid: "n", orderingKey: "New", tagRoute: "/new"}, 
 		{sid: "o", orderingKey: "Old", tagRoute: "/old"}, 
-		{sid: "c", orderingKey: "Controversial"}, {sid: "u", orderingKey: "Upvotes", tagRoute: "/best"}],
+		{sid: "c", orderingKey: "Controversial", tagRoute: "/votes1to1"}],
 	ccIssues : [ {ccissue: "Logistics"}, { ccissue: "Physical Infrastructure"}, 
 					{ ccissue: "Communications"}, { ccissue: "Social Context"},
 					 { ccissue: "Politics"}, { ccissue: "Legislation"}, { ccissue: "Human Resources"}],
 	
 	themeGroups : [{themeGroup: "Macroeconomics, Population Dynamics, and Planetary Boundaries"},
 	 				{themeGroup: "Reducing Poverty and Building Peace in Fragile Regions"},
-	 				{themeGroup: ""},{themeGroup: ""}, 
-	 				{themeGroup: ""}, {themeGroup: ""}, {themeGroup: ""}]
+	 				{themeGroup: "Social Inclusion"},{themeGroup: "Childhood Development"}, 
+	 				{themeGroup: "Health for All"}, {themeGroup: "Decarbonization"}, {themeGroup: "Sustainable Agriculture"}]
 	};
 Template.tagView.helpers({
     orderingKeys: function() {
@@ -21,8 +21,8 @@ Template.tagView.helpers({
          	
        	//===================================
        	
-       	if(typeof(tags.sortby[3].active) === "undefined")
-      		tags.sortby[3].active = true; // add "active" attribute to new tag by defualt
+       	if(typeof(tags.sortby[0].active) === "undefined")
+      		tags.sortby[0].active = true; // add "active" attribute to new tag by defualt
       		
        	return tags.sortby;
     },
@@ -37,7 +37,7 @@ Template.tagView.helpers({
 Template.tagView.events({
 	'click .sortby' : function (evt){
 		
-		var tagSID = evt.target.classList[4]; //we have five classes, so the forth is the tag sid
+		var tagSID = evt.target.classList[1]; //we have 2 classes, so the 2 is the tag sid
 		
 		for(var i in tags.sortby){
 

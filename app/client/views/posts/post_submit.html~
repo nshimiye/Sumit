@@ -26,12 +26,16 @@
 
     <div style="
          position: relative;
-         ">
-          <a href="#" value="cancel" class=" attach_new" >Attach</a> | 
-          <a href="#" value="cancel" class=" links_new" >Links</a>
+         "><input type="file" id="attach" name="attach"   multiple="multiple">
+          <a href="#" value="cancel" class=" attach_new " >
+          <img src="/img/add_attach.png" alt="attach file" style="width: 40px; margin-right: 10px;">
+          </a>
+          <a href="#" value="cancel" class=" links_new" >
+          <img src="/img/add_link.png" alt="add a link" style="width: 40px;">
+          </a>
         <button type="submit" value="submit" class="btn btn-primary" style="position: absolute; right: 5em;">Submit</button>
         <a href="#" value="cancel" class=" cancel_new_post" 
-        style="position: absolute; right: 1em;">Cancel</a>
+        style="position: absolute; right: 1em; top: 1em; color: #f55">Cancel</a>
         
     </div>
 </form>

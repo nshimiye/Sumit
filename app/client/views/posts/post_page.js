@@ -1,17 +1,28 @@
 
 Template.postPage.helpers({
     comments: function() {
-    console.log(Comments.find({postId: this._id}).count());
         return Comments.find({postId: this._id});
+    },
+    evidences: function() {
+    console.log("evidence--", Evidences.find({postId: this._id}).count());
+        return Evidences.find({postId: this._id});
     },
     spostid : function(){
     	return this._id;
     
     },
-    waitOn : function(){
-    	allPOSTS.push(this._id);
-    	Meteor.subscribe('comments', this._id)
+    isPostPage : function(){
+    	// it is only userful when postPage template is caled inside another template
+    	Template.postItem.isPostPage = true;
+    	return true; //to be removed
+    },
+    innovate : function(){
+    	return  Session.get("innovate");
+    },
+    evident : function(){
+    	return  Session.get("evident");
     }
+    
 });
 
 Template.postPage.events({

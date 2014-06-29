@@ -3,12 +3,12 @@ Template.evidenceSubmit.events({
         e.preventDefault();
 
         var $body = $(e.target).find('[name=body]');
-        var comment = {
+        var evidence = {
             body: $body.val(),
             postId: template.data._id
         };
 
-        Meteor.call('comment', comment, function(error, commentId) {
+        Meteor.call('comment', evidence, function(error, evidenceId) {
             if (error){
                 Error.throw(error.reason);
             } else {

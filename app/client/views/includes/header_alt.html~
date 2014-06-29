@@ -14,13 +14,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{pathFor 'home'}}"><span
-                    style="
-                    font-size: 2em;
-                    font-weight: bold;
-                    color: rgba(19, 79, 92, 1);
-                    "
-                    >SUMIT</span> Global Challenges Forum</a>
+            <a class="navbar-brand" href="{{pathFor 'home'}}">
+            
+			<img src="/img/logo.png" alt="SUMIT logo" style="height: 50px; vertical-align: text-bottom;">
+                    
+                    
+                     Global Challenges Forum</a>
         </div>
         <div class="navbar-collapse collapse">
 
@@ -51,14 +50,13 @@
    
 
 
-           <!-- {{#if currentUser}}
-             to be modified though {{/if}}-->
+            {{#if currentUser}}
+            <!-- to be modified though -->
             <form class="navbar-form navbar-right {{activeRouteClass 'postSubmit'}}">
                 <!--a href="{{pathFor 'postSubmit'}}" class="btn btn-primary ">New Post</a-->
                  <a href="#" class="btn btn-primary new_post {{#if show_submit}}active{{/if}}">New Post</a>
             </form>
-            
-
+            {{/if}}
         </div><!--/.navbar-collapse -->
     </div>
 </div>

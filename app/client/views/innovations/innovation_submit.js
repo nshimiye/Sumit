@@ -3,12 +3,12 @@ Template.innovationSubmit.events({
         e.preventDefault();
 
         var $body = $(e.target).find('[name=body]');
-        var comment = {
+        var innovation = {
             body: $body.val(),
             postId: template.data._id
         };
 
-        Meteor.call('innovation', comment, function(error, commentId) {
+        Meteor.call('innovation', innovation, function(error, innovationId) {
             if (error){
                 Error.throw(error.reason);
             } else {

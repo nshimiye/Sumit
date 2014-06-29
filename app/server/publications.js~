@@ -10,7 +10,7 @@ Meteor.publish('comments', function(postId){
     return Comments.find({postId: postId});
 });
 Meteor.publish('evidences', function(postId){
-    return Evidences.find({postId: postId});
+    return Comments.find({postId: postId});
 });
 
 Meteor.publish('notifications', function() {

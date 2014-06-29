@@ -1,52 +1,64 @@
-<template name="comment">
+<template name="evidence">
      <li class="media"
                                                         style="
-                                                        border-bottom: 2px solid grey;
-                                                        padding: 0.5em;
-                                                        "
-                                                        >
-    
-        
-        
-        
+                                                        border-bottom: 1px solid #ccc;
+                                                        padding: 1em;
+                                                        ">
+                                                        
      <div class="pull-left" style="text-align: center; width: 64px; overflow-x: hidden;">
        	<a  href="#">
     		<img class="media-object" data-src="holder.js/64x64" 
-    		alt="64x64" src="/img/iconDown.png" style="width: 60px; height: 25px;">
-                                                            </a>
-     	<span>-{{votes}}-</span>
+    		alt="64x64" 
+    		src="/img/{{#if canUpvote}}iconUp.png{{else}}button_upvote_evd.png{{/if}}" style="width: 60px; height: 25px;">
+        </a>
+     	<span style="color: #bf9000">-{{votes}}-</span>
       	<a  href="#">
-      	<img class="media-object" data-src="holder.js/64x64" 
-      		alt="64x64" src="/img/iconUp.png" style="width: 60px; height: 25px;">
+      		<img class="media-object" data-src="holder.js/64x64" 
+      		alt="64x64" src="/img/iconDown.png" style="width: 60px; height: 25px;">
 
-      </a>
+       </a>
    	</div>
                                                             
                                                         <div class="row" style="margin: 0px;">
-                                                            <div class="col-xs-11">
-                                                                <div class="media-body">
-                                                                    <div class="media-heading for-post">{{body}} </div>
+                                                            <div class="col-xs-11" style="padding-top: 1em;">
+                                                            
+   <div class="panel" style="box-shadow: none;">
+    <div>                                                    
+                                                            <div class="media-body">
+                                                             <a data-toggle="collapse" data-parent="#evidenceAccord" href="#evidence{{evdID}}" style="text-decoration: none;">
+        
+                                                                
+                                                                    <div class="media-heading for-post"
+                                                                    style="color: #bf9000">
+                                                                    
+                                                                    {{body}} </div></a>
 
-                                                                    <span class="author">Author: {{author}}</span>
-                                                                    <br>
-                                                                    <span>Affiliation: {{domain}}</span>
-                                                                    <br>
-                                                                    <span class="date">Time posted: {{submittedText}}</span>
+                  Author:<span class="author" style="color: #bf9000; margin-right: 25px;"> {{author}}</span>
+                                                                   
+                 Affiliation:<span style="color: #bf9000;  margin-right: 25px;"> {{domain}}</span>
+                                                                  
+                Time posted:<span class="date" style="margin-right: 25px;"> {{submittedText}}</span>
 
                                                                 </div>
+      </div> <!-- panel-heading -->
+                     <div id="evidence{{evdID}}" class="panel-collapse collapse">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+    
+    </div> <!-- panel panel-default -->
+                            
                                                                 <div style="
                                                                      position: absolute;
-                                                                     right: 0em;
-                                                                     bottom: 0;
+                                                                     right: -1em;
+                                                                     bottom: -1em;
                                                                      ">
-                                                                    <span>Comment</span> | <span> Save </span> | <span>Report</span>
+                                                                    <a href="#"> Save </a> | <a href="#">Report</a>
 
                                                                 </div>
                                                             </div>
 
                                                         </div>
-        
-        
-        
     </li>
 </template>

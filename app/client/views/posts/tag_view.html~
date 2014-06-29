@@ -16,7 +16,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title tag-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                        Sort by: <!-- span class="glyphicon glyphicon-play"></span -->
+                        Sort by <!-- span class="glyphicon glyphicon-play"></span -->
                     </a>
                 </h3>
             </div>
@@ -27,8 +27,9 @@
 
                         {{#each orderingKeys}}
                         <li class="list-group-item mytag ">
-                            <a href="{{tagRoute}}" class="btn btn-default btn-sm tag-btn {{sid}} 
-                            {{#if active}} tag-order-active {{/if}}">{{orderingKey}}</a>
+                            <a href="{{tagRoute}}" class="tag-btn {{sid}} 
+                            {{#if active}} tag-order-active {{/if}}"
+                            style="color: #76a5af;">{{orderingKey}}</a>
                         </li>
                         {{/each}}
      
@@ -43,7 +44,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title tag-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                        Cross-cutting Issues: <!-- span class="glyphicon glyphicon-play"></span -->
+                        Cross-cutting Issues -<!--span class="glyphicon glyphicon-play"></span-->
                     </a>
                 </h3>
             </div>
@@ -52,9 +53,9 @@
                     <ul class="list-group tag-list">
                         {{#each ccIssues}}
                         <li class="list-group-item mytag">
-                            <a href="#" class="btn btn-default btn-sm tag-btn"
+                            <a href="#" class="tag-btn"
                             title="{{themeGroup}}"
-                            > {{shortenString ccissue}}</a>
+                           style="color: #76a5af;" > {{shortenString ccissue}}</a>
                         </li>
                         {{/each}}
 
@@ -69,7 +70,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title tag-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                        Thematic Groups: <span class="glyphicon glyphicon-play"></span>
+                        Thematic Groups <!--span class="glyphicon glyphicon-play"></span-->
                     </a>
                 </h3>
             </div>
@@ -79,9 +80,9 @@
 
                         {{#each themeGroups}}
                         <li class="list-group-item mytag">
-                            <a href="#" class="btn btn-default btn-sm tag-btn"
+                            <a href="#" class="tag-btn"
                              title="{{themeGroup}}"
-                            > {{shortenString themeGroup}}</a>
+                            style="color: #76a5af;"> {{shortenString themeGroup}}</a>
                         </li>
                         {{/each}}
 

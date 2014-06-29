@@ -8,7 +8,7 @@ Template.innovationSubmit.events({
             postId: template.data._id
         };
 
-        Meteor.call('comment', comment, function(error, commentId) {
+        Meteor.call('innovation', comment, function(error, commentId) {
             if (error){
                 Error.throw(error.reason);
             } else {

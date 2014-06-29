@@ -93,6 +93,8 @@ if (Posts.find().count() === 0) {
     
      var postId = Posts.insert({
         title: 'Difficulties of improving crop yields due to prohibitive land use policies',
+        message: 'We would like researcher in agricultural fields to help us with this -'+
+        ' we have a land that is  serves about 8000000 people, but it not fertile now ',
         userId: mars._id,
         author: mars.profile.name,
         url: 'http://nshimiye.com',
@@ -103,6 +105,7 @@ if (Posts.find().count() === 0) {
     
      var postId = Posts.insert({
         title: 'Low adoption rate of sexual health behaviors because of gaps in communication and local involvement',
+        message: 'how do you make couple stay attached without cheating - if they live far away from each other',
         userId: mars._id,
         author: mars.profile.name,
         url: 'http://nshimiye.com',
@@ -114,6 +117,7 @@ if (Posts.find().count() === 0) {
 
  var postId = Posts.insert({
         title: 'Limited and unreliable bednet distribution channels in malaria prevention programs',
+        message: 'Malaria is still a problem in developing countries, and the nowadays prevention is not enough',
         userId: mars._id,
         author: mars.profile.name,
         url: 'http://nshimiye.com',
@@ -125,6 +129,7 @@ if (Posts.find().count() === 0) {
     
      var postId = Posts.insert({
         title: 'Reduce potency of vaccines due to logical factors that prevent proper cold chain maintenance',
+        message: 'vaccines are bad for environment and yet they really help in preventing a lot of desease',
         userId: mars._id,
         author: mars.profile.name,
         url: 'http://nshimiye.com',
@@ -141,8 +146,17 @@ if (Posts.find().count() === 0) {
         submitted: now - 5 * 3600 * 1000,
         body: 'Interesting project ---, can I get involved? counting ' + i
     });
-    var comm = Meteor.Comments.findOne(cid);
-    Posts.update(comm.postId, {$inc: {commentsCount: 1}});
-    
+
+    Posts.update(postId, {$inc: {commentsCount: 1}});
+ if(i%2 === 0){
+ var eid = Evidences.insert({
+        postId: postId,
+        userId: sacha._id,
+        author: sacha.profile.name,
+        submitted: now - 5 * 3600 * 1000,
+        body: 'Great suggestions ---, your  ' + i +' proof stands out though waw!'
+    });   
+    Posts.update(postId, {$inc: {evidencesCount: 1}});
+    }
    }
 }

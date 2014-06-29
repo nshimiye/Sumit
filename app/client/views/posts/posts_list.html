@@ -1,5 +1,4 @@
 <template name="postsList">
-  
 <div class="col-lg-9 col-md-9 col-xs-9" >
   
   <div id="for_psubmit" style="display: {{#if show_submit}}block{{else}}none{{/if}};">
@@ -13,8 +12,9 @@
     {{#each postsWithRank}}
     
     <!-- style="/* padding: 1em; background-color: #f3f3f3*/" -->
-    	
-      		{{> postPage}}
+    	<div class="panel panel-default tags">
+      		{{> postItem}}
+      	</div>
       	
     {{/each}}
     
@@ -33,5 +33,4 @@
 {{> tagView}}
 
 </div>
-
 </template>

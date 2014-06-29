@@ -75,7 +75,7 @@ and open the template in the editor.
 }
 
 .tag-order-active{
-    background: #CCCDCE;
+   font-weight: bold;
 }
 
 .tag-title{

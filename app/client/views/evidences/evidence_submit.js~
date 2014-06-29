@@ -1,4 +1,4 @@
-Template.commentSubmit.events({
+Template.evidenceSubmit.events({
     'submit form': function(e, template) {
         e.preventDefault();
 

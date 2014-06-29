@@ -1,10 +1,8 @@
-
-
-
 Template.postSubmit.events({
     'submit form': function(e) {
         e.preventDefault();
         
+      
         var myTags = $(e.target).find('[name=sumit_tag]').children(".sumit_tag_body");
         var newTags = new Array();
         
@@ -35,6 +33,14 @@ Template.postSubmit.events({
                 if (error.error === 302)
                     Router.go('postPage', {_id: error.details})
             } else {
+            
+            	$( "#for_psubmit" ).animate({
+    		height: "toggle"
+  		}, 2000, function() {
+    		// Animation complete.
+    		Session.set("show_post_form", false);
+  		});
+            
                 Router.go('postPage', {_id: id});
             }
         });
@@ -52,5 +58,31 @@ Template.postSubmit.events({
   		});
   		}
 		
-	}
+	},
+	"click .attach_new" : function(e){
+		e.preventDefault();
+		$("#attach").trigger("click");
+		
+	},
+	"change #attach": function(event, template){
+   var func = this;
+   //var files = event.currentTarget.files;
+     console.log("--------------------%%%%%%%%%%%%%%%%%%5_____________-----------------");
+     $.each(event.currentTarget.files, function(i, file){
+     	console.log(file.name);
+     })
+         
+        console.log("--------------------%%%%-----------------%%%%%%%%%%%%%%5_____________-----------------");
+   
+   /*     
+   var reader = new FileReader();
+   reader.onload = function(fileLoadEvent) {
+      Meteor.call('file-upload', file, reader.result);
+   };
+   reader.readAsBinaryString(file);
+   
+   */
+   
+}
+	
 });
