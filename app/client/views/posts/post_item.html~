@@ -9,13 +9,13 @@
        	<a  href="#" class="upvote {{upvotedClass}}">
     		<img class="media-object" data-src="holder.js/64x64" 
     		alt="64x64" 
-    		src="/img/{{#if canUpvote}}iconUp.png{{else}}iconUp.png{{/if}}" style="width: 60px; height: 25px;">
+    		src="/img/{{#if canVote or down}}iconUp.png{{else}}button_upvote_clickedComment.png{{/if}}" style="width: 60px; height: 25px;">
                                                             </a>
      	<span class="sumit_vote">{{votes}}</span>
       	<a  href="#" class="downVote {{downvotedClass}}">
       	<img class="media-object" data-src="holder.js/64x64" 
       		alt="64x64" 
-      		src="/img/{{#if canUpvote}}iconDown.png{{else}}iconDown.png{{/if}}" style="width: 60px; height: 25px;">
+      		src="/img/{{#if canVote or up}}iconDown.png{{else}}button_downvote_clickedComment.png{{/if}}" style="width: 60px; height: 25px;">
 
       </a>
    	</div>
@@ -47,7 +47,7 @@
             <a class=" comment" data-id="{{spostid}}" data-me="comment"
 					href="{{pathFor 'postPage'}}">
 
-                Comments:<span class="entry" data-id="{{spostid}}"> {{commentsCount}}</span>
+                Comments:<span class="entry" data-id="{{spostid}}" style="color: #a2c4c9;"> {{commentsCount}}</span>
             </a>
             <br>
 

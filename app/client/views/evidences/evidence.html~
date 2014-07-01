@@ -9,12 +9,12 @@
        	<a  href="#">
     		<img class="media-object" data-src="holder.js/64x64" 
     		alt="64x64" 
-    		src="/img/{{#if canUpvote}}iconUp.png{{else}}button_upvote_evd.png{{/if}}" style="width: 60px; height: 25px;">
+    		src="/img/{{#if up}}button_upvote_evd.png{{else}}iconUp.png{{/if}}" style="width: 60px; height: 25px;">
         </a>
-     	<span style="color: #bf9000">-{{votes}}-</span>
+     	<span style="color: #bf9000">{{votes}}</span>
       	<a  href="#">
       		<img class="media-object" data-src="holder.js/64x64" 
-      		alt="64x64" src="/img/iconDown.png" style="width: 60px; height: 25px;">
+      		alt="64x64" src="/img/{{#if down}}button_downvote_evd.png{{else}}iconDown.png{{/if}}" style="width: 60px; height: 25px;">
 
        </a>
    	</div>
@@ -43,7 +43,12 @@
       </div> <!-- panel-heading -->
                      <div id="evidence{{evdID}}" class="panel-collapse collapse">
       <div class="panel-body">
+      <span style="font-weight: bold;">Summary</span><br>
         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        <a href="#" style="color: #bf9000; margin-right:1em;">Read more </a>
+          <a href="#" style="color: #bf9000;">Download</a>
+        <br><br>
+        <span style="font-weight: bold;">Tags : </span> {{> mytags}}
       </div>
     </div>
     
@@ -61,4 +66,12 @@
 
                                                         </div>
     </li>
+</template>
+<template name="mytags">
+
+	{{#each mts}}
+
+		<span href="#" class="tag-btn" style="background-color: #fff;">{{tag}}</span> -
+
+	{{/each}}
 </template>

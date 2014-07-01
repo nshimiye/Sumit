@@ -76,6 +76,9 @@ Meteor.methods({
         if (!user)
             throw new Meteor.Error(401, "You need to login to upvote");
 
+	
+	// to be fixed
+
         Posts.update({
             _id: postId,
             upvoters: {$ne: user._id}
@@ -84,6 +87,23 @@ Meteor.methods({
             $addToSet: {upvoters: user._id},
             //increments an integer field
             $inc: {votes: 1}
+        });
+    },
+
+    downvote: function(postId) {
+        var user = Meteor.user();
+        //ensure the user is logger in
+        if (!user)
+            throw new Meteor.Error(401, "You need to login to downvote");
+
+        Posts.update({
+            _id: postId,
+            downvoters: {$ne: user._id}
+        }, {
+            //adds an item to an array property as long as it doesn't already exist
+            $addToSet: {downvoters: user._id},
+            //increments an integer field
+            $inc: {votes: -1}
         });
     }
 });

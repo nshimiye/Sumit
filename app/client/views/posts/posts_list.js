@@ -20,7 +20,7 @@ Template.postsList.helpers({
         	Template.postItem.isPostList = (rt.trim() === "postList")? true : false;
        //===================================
         
-        this.posts.rewind();
+        //this.posts.rewind();
         return this.posts.map(function(post, index, cursor) {
          	
             post._rank = index;

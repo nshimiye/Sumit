@@ -12,7 +12,7 @@ Meteor.methods({
             throw new Meteor.Error(402, "Please write some content");
 
         if(!post)
-            throw new Meteor.Error(422, "You must comment on a post");
+            throw new Meteor.Error(422, "You must comment on a Challenge");
 
         comment = _.extend(_.pick(commentAttributes, 'postId', 'body'), {
             userId: user._id,
@@ -30,5 +30,44 @@ Meteor.methods({
         createCommentNotification(comment);
 
         return comment._id;
+    },
+    
+    upvoteComment: function(commentId) {
+        var user = Meteor.user();
+        //ensure the user is logger in
+        if (!user)
+            throw new Meteor.Error(401, "You need to login to upvote");
+
+	
+	// to be fixed
+
+        Comments.update({
+            _id: commentId,
+            upvoters: {$ne: user._id}
+        }, {
+            //adds an item to an array property as long as it doesn't already exist
+            $addToSet: {upvoters: user._id},
+            //increments an integer field
+            $inc: {votes: 1}
+        });
+    },
+
+    downvoteComment: function(commentId) {
+        var user = Meteor.user();
+        //ensure the user is logger in
+        if (!user)
+            throw new Meteor.Error(401, "You need to login to downvote");
+
+        Comments.update({
+            _id: commentId,
+            downvoters: {$ne: user._id}
+        }, {
+            //adds an item to an array property as long as it doesn't already exist
+            $addToSet: {downvoters: user._id},
+            //increments an integer field
+            $inc: {votes: -1}
+        });
     }
+    
+    
 });

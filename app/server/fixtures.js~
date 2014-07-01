@@ -154,7 +154,7 @@ if (Posts.find().count() === 0) {
         userId: sacha._id,
         author: sacha.profile.name,
         submitted: now - 5 * 3600 * 1000,
-        body: 'Great suggestions ---, your  ' + i +' proof stands out though waw!'
+        body: 'Report '+ i +': Cold Chain management power outage strategies'
     });   
     Posts.update(postId, {$inc: {evidencesCount: 1}});
     }

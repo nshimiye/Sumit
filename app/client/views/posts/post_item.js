@@ -21,25 +21,44 @@ Template.postItem.helpers({
     	return this._id;
     
     },
-    canUpvote: function() {
-        var userId = Meteor.userId();
+    up: function(){
+    var userId = Meteor.userId();
         if (userId && _.include(this.upvoters, userId)) {
-            return false;
-        } else {
- 
+        	
             return true;
+        } else{
+        	
+        	return false;
         }
+    },
+    down: function(){
+    	var userId = Meteor.userId();
+        if (userId && _.include(this.downvoters, userId)) {
+        	
+            return true;
+        }else{
+        
+        	return false;
+        } 
+        
     },
 	// we will have to edit this function
     upvotedClass: function() {
         var userId = Meteor.userId();
-        if (userId && !_.include(this.upvoters, userId)) {
+        if (userId && !_.include(this.upvoters, userId) && !_.include(this.downvoters, userId)) {
             return 'upvotable';
         } else {
             return 'disabled';
         }
     },
-
+	downvotedClass: function() {
+        var userId = Meteor.userId();
+        if (userId && !_.include(this.downvoters, userId) && !_.include(this.upvoters, userId)) {
+            return 'downvotable';
+        } else {
+            return 'disabled';
+        }
+    },
     attributes: function() {
         var post = _.extend({}, Positions.findOne({postId: this._id}), this);
         var newPosition = post._rank * POST_HEIGHT;

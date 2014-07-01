@@ -13,5 +13,54 @@ Template.evidence.helpers({
     
     	return this._id;
     
-    }
+    },
+    up: function(){
+    var userId = Meteor.userId();
+        if (userId && _.include(this.upvoters, userId)) {
+        	
+            return true;
+        } else{
+        	
+        	return false;
+        }
+    },
+    down: function(){
+    	var userId = Meteor.userId();
+        if (userId && _.include(this.downvoters, userId)) {
+        	
+            return true;
+        }else{
+        
+        	return false;
+        } 
+        
+    },
+});
+
+Template.evidence.events({
+    'click .upvotable': function(e) {
+        e.preventDefault();
+        Meteor.call('upvoteEvidence', this._id);
+    },
+    'click .downvotable': function(e) {
+        e.preventDefault();
+        Meteor.call('downvoteEvidence', this._id);
+    },
+})
+
+//get tags of this evidence
+Template.mytags.helpers({
+
+	mts : function(){
+	
+		return [
+		{tag: "Vaccination"},{tag: " Cold Chain"},{tag: " Transportation "},
+		{tag: " Technology"},
+		{tag: "Logistics "},{tag: "Health "},{tag: " HIV/AIDS "},{tag: "Viruses"}
+
+
+		];
+	
+	}
+
 });

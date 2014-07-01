@@ -14,13 +14,70 @@ Template.evidence.helpers({
     	return this._id;
     
     },
-    canUpvote: function() {
-        var userId = Meteor.userId();
+    up: function(){
+    var userId = Meteor.userId();
         if (userId && _.include(this.upvoters, userId)) {
-            return false;
-        } else {
- 
+        	
             return true;
+        } else{
+        	
+        	return false;
         }
     },
+    down: function(){
+    	var userId = Meteor.userId();
+        if (userId && _.include(this.downvoters, userId)) {
+        	
+            return true;
+        }else{
+        
+        	return false;
+        } 
+        
+    },
+	// we will have to edit this function
+    upvotedClass: function() {
+        var userId = Meteor.userId();
+        if (userId && !_.include(this.upvoters, userId) && !_.include(this.downvoters, userId)) {
+            return 'upvotable';
+        } else {
+            return 'disabled';
+        }
+    },
+	downvotedClass: function() {
+        var userId = Meteor.userId();
+        if (userId && !_.include(this.downvoters, userId) && !_.include(this.upvoters, userId)) {
+            return 'downvotable';
+        } else {
+            return 'disabled';
+        }
+    },
+});
+
+Template.evidence.events({
+    'click .upvotable': function(e) {
+        e.preventDefault();
+        Meteor.call('upvoteEvidence', this._id);
+    },
+    'click .downvotable': function(e) {
+        e.preventDefault();
+        Meteor.call('downvoteEvidence', this._id);
+    },
+})
+
+//get tags of this evidence
+Template.mytags.helpers({
+
+	mts : function(){
+	
+		return [
+		{tag: "Vaccination"},{tag: " Cold Chain"},{tag: " Transportation "},
+		{tag: " Technology"},
+		{tag: "Logistics "},{tag: "Health "},{tag: " HIV/AIDS "},{tag: "Viruses"}
+
+
+		];
+	
+	}
+
 });

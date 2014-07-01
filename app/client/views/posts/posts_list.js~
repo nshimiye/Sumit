@@ -4,6 +4,7 @@ allPOSTS = new Array(); //make it global
 Template.postsList.helpers({
     postsWithRank: function() {
 
+	// hide all innovations buttons
     for(var i=0 ; i < allPOSTS.length; i++){
 				var item = allPOSTS[i];
 				console.log(item);
