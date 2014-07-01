@@ -39,33 +39,7 @@ console.log(mytag.getSelected());
         }
     },	"click .edit_sumit_tag" :function() {
 	
-	 if (mytag !== null && !mytag.initOn()){
-	  // this is how you sta
-                    mytag.construct({data: tags.c, initData: this.tags}); //
-                    }
-				
-
-                tagin = mytag.focusTags({});
-                console.log(tagin);
-				
-
-
-  				$(document).click(function() {
-  				
-                	console.log($(tagin).is(":focus"));
-                	
-                	if($(tagin).is(":focus")){
-                	
-                		$(".edit_sumit_tag").addClass("sumit_tag_focus");
-                		
-            		}else{
-            		
-                  		$(".edit_sumit_tag").removeClass("sumit_tag_focus");  
-                  		
-                	}
-            	});
-            
-            
+	
 
             }
 });

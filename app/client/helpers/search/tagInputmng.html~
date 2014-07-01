@@ -9,12 +9,12 @@
     	
     	
     		<div class="sumit_tag_in" contenteditable="true" >
-    		{{#if false}}
+    		{{#if nofoundtag}}
     			Tags
     		{{/if}}
     		</div>
 
-    		<div class="searchRes list-group" >
+    		<div class="searchRes list-group" style="z-index: 200;">
     			{{> tagsearch_view_template }}
     		</div>
 
@@ -47,7 +47,7 @@
                     {{ tagname }}
                 </a>
             {{/each}}
-				<a href="#" class="list-group-item btn btn-primary tag_addnew"> Add new  </a>
+				<!--a href="#" class="list-group-item btn btn-primary tag_addnew"> Add new  </a-->
             {{/if}}
             
         

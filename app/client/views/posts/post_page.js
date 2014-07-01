@@ -4,12 +4,18 @@ Template.postPage.helpers({
         return Comments.find({postId: this._id});
     },
     evidences: function() {
+    
     console.log("evidence--", Evidences.find({postId: this._id}).count());
+    
         return Evidences.find({postId: this._id});
     },
     spostid : function(){
     	return this._id;
     
+    },
+    setPostPage : function(){
+    	// it is only userful when postPage template is caled inside another template
+    	Template.postItem.isPostPage = true;
     },
     isPostPage : function(){
     	// it is only userful when postPage template is caled inside another template
@@ -17,12 +23,20 @@ Template.postPage.helpers({
     	return true; //to be removed
     },
     innovate : function(){
+
     	return  Session.get("innovate");
     },
     evident : function(){
+    	if(Evidences.find({postId: this._id}).count() <= 0)
+    		Session.set("noevidence", true);
+    	else
+    		Session.set("noevidence", false);
     	return  Session.get("evident");
-    }
+    },
     
+    noevidence : function(){
+    	return Session.get("noevidence");
+    }
 });
 
 Template.postPage.events({

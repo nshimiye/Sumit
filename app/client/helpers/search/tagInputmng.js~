@@ -54,9 +54,9 @@
         
         create: function(data) { //validation -- prevent same tag to be saved -- prevent tag with empty string too
         
-console.log("=========%%%%%%%%%%%%%%%%%%%%%%");
-console.log(this.remaining());
-console.log("=========%%--------------%%%%%%");
+		console.log("=========%%%%%%%%%%%%%%%%%%%%%%");
+		console.log(this.remaining());
+		console.log("=========%%--------------%%%%%%");
 
             if (data.tagname === "")
                 return false;
@@ -136,6 +136,9 @@ console.log("=========%%--------------%%%%%%");
 			Session.set("selectedTags", Tags.selected());
 			console.log(Session.get("selectedTags"));
 			return Session.get("selectedTags");
+		},
+		nofoundtag : function(){
+			return Session.get("nofoundtag");
 		}
 	});
 	
@@ -156,7 +159,8 @@ console.log("=========%%--------------%%%%%%");
 		searchOK : function(){
 			console.log(Session.get("searchok"));
 			return Session.get("searchok");
-		}
+		},
+		
 	});
 	
 	
@@ -183,19 +187,24 @@ console.log("=========%%--------------%%%%%%");
 				console.log(tagInput);
 				
 				$(tagInput).focus(); //this line is the hello
-
+				
+				
   				$(document).click(function() {
-  				
-                	
                 	
                 	if($(tagInput).is(":focus")){
                 	
                 		$(tags_ctn).addClass("sumit_tag_focus");
+                		Session.set("nofoundtag", "");
                 		
             		}else{
             		
-                  		$(tags_ctn).removeClass("sumit_tag_focus");  
-                	}
+                  		$(tags_ctn).removeClass("sumit_tag_focus"); 
+                  			if(Tags.selected().length <= 0){
+								Session.set("nofoundtag", "Tags");
+							}else{
+								Session.set("nofoundtag", "");
+							} 
+		            	}
             	});
             	
 },
@@ -205,13 +214,12 @@ console.log("=========%%--------------%%%%%%");
 },
 "keyup .sumit_tag_in" : function(e){
 	
-	
 	console.log("keycode");
 
 	console.log(inputArea);
 	
 	var tname = $(e.target).text();
-	console.log(tname);
+	
 	console.log("--------- ============ -----------");
 	
 	if(e.which === 13){
@@ -219,18 +227,23 @@ console.log("=========%%--------------%%%%%%");
 		var tag = Tags.search(tname.trim());
 		console.log(tag);
 		if(!tag){
-		
-			
-			console.log("ssss");
 			
 			return false;
 		}else{
 	// make it selected and update the ui
 	tag.toggle({select : true});
+	
 	Session.set("selectedTags", Tags.selected());
 	Session.set("remainingTags", Tags.searchTag({searchId: ""}));
 	$(inputArea).text("");
-	$(inputArea).focus();	
+	$(inputArea).focus();
+	
+	if(Tags.selected().length <= 0){
+		Session.set("nofoundtag", "Tags");
+	}else{
+		Session.set("nofoundtag", "");
+	}
+	
 	}
 	
 	return false;
@@ -260,8 +273,52 @@ console.log("=========%%--------------%%%%%%");
 	Session.set("remainingTags", Tags.searchTag({searchId: ""}));
 	
 	$(inputArea).text("");
-	$(inputArea).focus();
+	//$(inputArea).focus();
 }
 
 
 });
+
+
+Template.tag_view_template.events({
+"mouseenter .sumit_tag_body" : function(e){
+	e.preventDefault();
+	var delt = $(e.target).children(".sumit_tag_del");
+	
+	$(delt).removeClass("mngDelete");
+},
+"mouseleave .sumit_tag_body" : function(e){
+	e.preventDefault();
+	var delt = $(e.target).children(".sumit_tag_del");
+	
+	$(delt).addClass("mngDelete");
+
+},
+	"click .sumit_tag_del" : function(e){
+		e.preventDefault();
+		
+		var tname = this.tagname;
+		var tag = Tags.search(tname.trim());
+		console.log(tag);
+		if(tag){
+			// make it selected and update the ui
+			tag.toggle({select : false});
+			Session.set("selectedTags", Tags.selected());
+			Session.set("remainingTags", Tags.searchTag({searchId: ""}));
+			console.log("lennnnnnn ::::", Tags.selected().length);
+		if(Tags.selected().length <= 0){
+			Session.set("nofoundtag", "Tags");
+		}else{
+			Session.set("nofoundtag", "");
+		}
+
+			
+			
+			
+			
+		}
+	}
+});
+
+
+

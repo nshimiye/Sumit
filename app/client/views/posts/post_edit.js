@@ -10,14 +10,27 @@ Template.postEdit.helpers({
 Template.postEdit.events({
     'submit form': function(e) {
         e.preventDefault();
+        
+                var myTags = $(e.target).find('[name=sumit_tag]').children(".sumit_tag_body");
+        var newTags = new Array();
+        
+        //parse the tagContainer to get all input tags
+        myTags.each(function(i, mytag){
+        	console.log(mytag);
+        	newtag = $(mytag).children(".sumit_tag_in").text()
+        	
+        	if(newtag.trim() !== "")
+        		if(newTags.indexOf() <= -1)
+        			newTags.push(newtag.trim());
+        });
 
-console.log(mytag.getSelected());
+console.log(newTags);
 
         var currentPostId = this._id;
         var postProperties = {
             title: $(e.target).find('[name=title]').val(),
             message: $(e.target).find('[name=message]').val(),
-            tags: mytag.getSelected()
+            tags: newTags
         }
 
         Posts.update(currentPostId, {$set: postProperties}, function(error) {

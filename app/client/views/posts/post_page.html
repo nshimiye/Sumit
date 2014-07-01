@@ -1,5 +1,5 @@
 <template name="postPage">
-{{ isPostPage }}
+{{setPostPage}}
 <div class="col-lg-9 col-md-9 col-xs-9" >
 	  <div id="for_psubmit" style="display: {{#if show_submit}}block{{else}}none{{/if}};">
   	
@@ -28,12 +28,19 @@
 				{{else}}
 				{{#if evident}}
 				
-					{{#each evidences}}
+					{{#if noevidence
+					}}
+				<span class="btn-sm"
+                                style=" border-radius: 0px; border-top: none; " type="button">
+                            No evidence yet
+                        </span>
+					{{else}}
+						{{#each evidences}}
 
-                        {{> evidence}}
+                        	{{> evidence}}
                         
-                    {{/each}}
-				
+                    	{{/each}}
+					{{/if}}
 				{{else}}
                     {{#each comments}}
 

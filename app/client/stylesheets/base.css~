@@ -75,7 +75,7 @@ and open the template in the editor.
 }
 
 .tag-order-active{
-    background: #CCCDCE;
+   font-weight: bold;
 }
 
 .tag-title{
@@ -199,6 +199,10 @@ a .auto-view:hover{background-color:rgba(162, 196, 201, 0.2)}
     min-width: 200px;
     max-height: 300px;
     overflow-y: auto;
+    
+    box-shadow: 0 0 5px 0 black;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
 }
 
 /*------------------------------------------*/

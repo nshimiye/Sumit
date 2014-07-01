@@ -9,13 +9,13 @@
        	<a  href="#" class="upvote {{upvotedClass}}">
     		<img class="media-object" data-src="holder.js/64x64" 
     		alt="64x64" 
-    		src="/img/{{#if canVote or down}}iconUp.png{{else}}button_upvote_clickedComment.png{{/if}}" style="width: 60px; height: 25px;">
+    		src="/img/{{#if up}}button_upvote_clickedComment.png{{else}}iconUp.png{{/if}}" style="width: 60px; height: 25px;">
                                                             </a>
      	<span class="sumit_vote">{{votes}}</span>
       	<a  href="#" class="downVote {{downvotedClass}}">
       	<img class="media-object" data-src="holder.js/64x64" 
       		alt="64x64" 
-      		src="/img/{{#if canVote or up}}iconDown.png{{else}}button_downvote_clickedComment.png{{/if}}" style="width: 60px; height: 25px;">
+      		src="/img/{{#if down}}button_downvote_clickedComment.png{{else}}iconDown.png{{/if}}" style="width: 60px; height: 25px;">
 
       </a>
    	</div>
@@ -54,7 +54,7 @@
 {{#if isPostPage}}
 	<a data-me="evidence" class="btn btn-warning evidence" data-id="{{spostid}}" 
  			href="{{pathFor 'postPage'}}">
-            Evidence</a>--
+            Evidence</a>
              <!--a data-me="innovation" class="btn btn-success innovation" data-id="{{spostid}}" 
              	 		href="#Post{{spostid}}">
             Innovations</a-->
@@ -71,7 +71,7 @@
 {{/if}}    
 {{/if}}       
 
-            {{#if ownPost}}<a  class=" edit" href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
+            {{#if ownPost and false}}<a  class=" edit" href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
 
 
         </div>
