@@ -27,9 +27,9 @@
                                                                 <div class="media-body">
                                           <div class="media-heading " style="color: #45818e">{{body}} </div>
 
-                                         Author: <span class="author" style="color: #45818e; margin-right: 25px;"> {{author}}</span>
+                                         Author: <a href="{{pathFor 'userProfile' _id=userId}}"><span class="author" style="color: #45818e; margin-right: 25px;"> {{author}}</span></a>
                                                   
-                                         Affiliation: <span style="color: #45818e; margin-right: 25px;"> -{{domain}}-</span>
+                                         Affiliation: <a href="{{pathFor 'organizationProfile' _id=affiliateId}}"><span style="color: #45818e; margin-right: 25px;"> -{{domain}}-</span></a>
                                                                  
                                          Time posted:<span class="date" style=""> {{submittedText}}</span>
 

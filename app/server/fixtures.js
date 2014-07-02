@@ -22,6 +22,8 @@ if (Posts.find().count() === 0) {
         title: 'Introducing Telescope',
         userId: sacha._id,
         author: sacha.profile.name,
+        affiliate: "default-meteor", //to be fixed
+        affiliateId: "g8iWAfxahczTpFTuX", //to be fixed
         url: 'http://sachagreif.com/introducing-telescope/',
         submitted: now - 7 * 3600 * 1000,
         commentsCount: 2,
@@ -59,6 +61,8 @@ if (Posts.find().count() === 0) {
         title: 'Meteor',
         userId: tom._id,
         author: tom.profile.name,
+        affiliate: "default-meteor", //to be fixed
+        affiliateId: "g8iWAfxahczTpFTuX", //to be fixed
         url: 'http://meteor.com',
         submitted: now - 10 * 3600 * 1000,
         commentsCount: 0,
@@ -70,6 +74,8 @@ if (Posts.find().count() === 0) {
         title: 'The Meteor Book',
         userId: tom._id,
         author: tom.profile.name,
+                affiliate: "default-meteor", //to be fixed
+        affiliateId: "g8iWAfxahczTpFTuX", //to be fixed
         url: 'http://themeteorbook.com',
         submitted: now - 12 * 3600 * 1000,
         commentsCount: 0,
@@ -81,6 +87,8 @@ if (Posts.find().count() === 0) {
             title: 'Test post #' + i,
             author: sacha.profile.name,
             userId: sacha._id,
+            affiliate: "default-sumit", //to be fixed
+            affiliateId: "g8iWAfxahczTpFTuQ", //to be fixed
             url: 'http://google.com/?g=test-' + i,
             submitted: now - i * 3600 * 1000,
             commentsCount: 0,
@@ -101,6 +109,8 @@ if (Posts.find().count() === 0) {
         ' we have a land that is  serves about 8000000 people, but it not fertile now ',
         userId: mars._id,
         author: mars.profile.name,
+        affiliate: "default-sumit", //to be fixed
+        affiliateId: "g8iWAfxahczTpFTuQ", //to be fixed
         url: 'http://nshimiye.com',
         submitted: now - 7 * 3600 * 1000,
         commentsCount: 0,
@@ -112,6 +122,8 @@ if (Posts.find().count() === 0) {
         message: 'how do you make couple stay attached without cheating - if they live far away from each other',
         userId: mars._id,
         author: mars.profile.name,
+        affiliate: "default-sumit", //to be fixed
+        affiliateId: "g8iWAfxahczTpFTuQ", //to be fixed
         url: 'http://nshimiye.com',
         submitted: now - 7 * 3600 * 1000,
         commentsCount: 0,
@@ -124,6 +136,8 @@ if (Posts.find().count() === 0) {
         message: 'Malaria is still a problem in developing countries, and the nowadays prevention is not enough',
         userId: mars._id,
         author: mars.profile.name,
+        affiliate: "default-sumit", //to be fixed
+        affiliateId: "g8iWAfxahczTpFTuQ", //to be fixed
         url: 'http://nshimiye.com',
         submitted: now - 7 * 3600 * 1000,
         commentsCount: 0,
@@ -136,6 +150,8 @@ if (Posts.find().count() === 0) {
         message: 'vaccines are bad for environment and yet they really help in preventing a lot of desease',
         userId: mars._id,
         author: mars.profile.name,
+        affiliate: "default-sumit", //to be fixed
+        affiliateId: "g8iWAfxahczTpFTuQ", //to be fixed
         url: 'http://nshimiye.com',
         submitted: now - 7 * 3600 * 1000,
         commentsCount: 0,
