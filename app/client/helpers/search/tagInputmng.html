@@ -1,5 +1,5 @@
 <template name="tagview">
- 	<div class="sumit_tag row form-control" name="sumit_tag" >
+ 	<div class="sumit_tag row form-control" name="sumit_tag" style="float: none;">
 
 	{{#each foundTags}}
 		{{> tag_view_template}}
@@ -12,7 +12,7 @@
     		{{nofoundtag}}
     		</div>
 
-    		<div class="searchRes list-group" style="z-index: 200;">
+    		<div class="searchRes list-group" style="z-index: 1200;">
     			{{> tagsearch_view_template }}
     		</div>
 

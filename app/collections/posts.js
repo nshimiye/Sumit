@@ -1,4 +1,17 @@
 Posts = new Meteor.Collection('posts');
+PostsFS = new FS.Collection("posts", {
+  stores: [new FS.Store.FileSystem("posts", {path: "~/uploads"})]
+});
+
+PostsFS.allow({
+  insert: function (userId, party) {
+    return true;
+  },
+  update:  ownsDocument,
+  remove:  ownsDocument
+});
+
+
 
 //allows posts on the client
 Posts.allow({
@@ -43,7 +56,7 @@ Meteor.methods({
         }
 
         //pick out the whitelisted keys
-        var post = _.extend(_.pick(postAttributes, 'url', 'title', 'message', 'tags'), {
+        var post = _.extend(_.pick(postAttributes, 'url', 'title', 'message', 'tags', 'links','files'), {
             title: postAttributes.title,
             userId: user._id,
             author: user.username,
@@ -105,5 +118,26 @@ Meteor.methods({
             //increments an integer field
             $inc: {votes: -1}
         });
-    }
+    },
+    //upload files here
+     postFS: function(file) {
+        var user = Meteor.user();
+            // postWithSameLink = Posts.findOne({url: postAttributes.url});
+
+        //ensure the user is logged in
+        if (!user)
+            throw new Meteor.Error(401, "You need to login to post new stories");
+            
+            
+            // uploading starts here
+      		PostsFS.insert(file, function (err, fileObj) {
+        		//Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+        		console.log("uploading ...", fileObj);
+        		console.log("error ...", err);
+      		});
+            
+            
+            
+            
+        }
 });

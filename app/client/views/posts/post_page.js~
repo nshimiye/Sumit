@@ -13,6 +13,10 @@ Template.postPage.helpers({
     	return this._id;
     
     },
+    setPostPage : function(){
+    	// it is only userful when postPage template is caled inside another template
+    	Template.postItem.isPostPage = true;
+    },
     isPostPage : function(){
     	// it is only userful when postPage template is caled inside another template
     	Template.postItem.isPostPage = true;

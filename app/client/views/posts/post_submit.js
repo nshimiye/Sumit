@@ -4,9 +4,11 @@ Template.postSubmit.helpers({
 
 	},
 	 attachments : function(){
-	 	return Session.get(" attachments");
+	 	return Session.get("attachments");
+	 },
+	 hasAttach : function(){
+	 	return Session.get("hasAttach");
 	 }
-
 })
 
 Template.postSubmit.events({
@@ -27,7 +29,7 @@ Template.postSubmit.events({
         			newTags.push(newtag.trim());
         });
         
-        console.log(newTags);
+       
 
 	//create a post with user info
         var post = {
@@ -35,30 +37,35 @@ Template.postSubmit.events({
             message: $(e.target).find('[name=message]').val(),
             tags: newTags,
             links: allLinks,
-            files: allFiles
+            files: fileIDS
         }
+        
 
+ console.log(newTags);
         Meteor.call('post', post, function(error, id) {
             if (error) {
                 //display the error to the user
-                Errors.throw(error.reason);
-
+                //Errors.throw(error.reason);
+ console.log(error.reason);
                 if (error.error === 302)
                     Router.go('postPage', {_id: error.details})
             } else {
             
             	$( "#for_psubmit" ).animate({
-    		height: "toggle"
-  		}, 2000, function() {
-    		// Animation complete.
-    		Session.set("show_post_form", false);
-  		});
+    				height: "toggle"
+  					}, 2000, function() {
+    					// Animation complete.
+    					Session.set("show_post_form", false);
+  					});
+  		 		console.log(newTags);
   		
   				//clean up here
   				allLinks = null; allFiles = null; newTags = null;
   				Session.set("attachments", []);
   				Session.set("links", []);
-  				 
+  		$.each(fileIDS, function(i, itemID){
+        	PostsFS.update({_id: itemID}, {$set: {postID: id}});
+        });
             
                 Router.go('postPage', {_id: id});
             }
@@ -83,6 +90,11 @@ Template.postSubmit.events({
 		$("#attach").trigger("click");
 		
 	},
+	"click .attach_span" : function(e){
+		e.preventDefault();
+		$("#attach").trigger("click");
+		
+	},
 	"change #attach": function(event, template){
    var func = this;
    //var files = event.currentTarget.files;
@@ -91,8 +103,26 @@ Template.postSubmit.events({
      	console.log(file.name);
      	
      	
-     	addFile(allFiles, file.name, "attachment");
-     	
+     	var added = addFile(allFiles, file.name, "attachment");
+     	if(added){
+     	var files = event.target.files;
+
+
+var user = Meteor.user();
+	var newFile = new FS.File(file);
+      newFile.metadata = {userId: user._id};
+
+			var idd = PostsFS.insert(newFile, function (err, fileObj) {
+			 
+			 	console.log("post -- uploading ...", fileObj);
+        		console.log("post -- error ...", err);
+        		if(!err)
+        			fileIDS.push(fileObj._id);
+			 
+			 });
+			// console.log("post -- idd ...", idd);
+
+     	}
      	
      });
      
@@ -100,7 +130,13 @@ Template.postSubmit.events({
      $.each(allFiles, function(i, fname){
      	tmp.push({attachment: fname});
      });
-         Session.set("attachments", tmp);
+     
+     if(tmp.length > 0)
+     	Session.set("hasAttach", true);
+     else
+     	Session.set("hasAttach", false);
+     	
+     Session.set("attachments", tmp);
         
         console.log("--------------------%%%%-----------------%%%%%%%%%%%%%%5_____________-----------------");
    
@@ -121,6 +157,13 @@ Template.postSubmit.events({
 			display: "block"
 		});
 		
+		$(".link_input").focus();
+		
+	},
+		"click .add_links" : function(e){
+		e.preventDefault();
+		$(".links_new").trigger("click");
+		
 	}
 	
 });
@@ -128,6 +171,7 @@ Template.postSubmit.events({
 
 //================for files =====
 var allFiles = new Array();
+var fileIDS = new Array();
 function addFile( array, fname, type){ 
 	var fi = array.indexOf(fname);
 	console.log(array);
@@ -144,6 +188,8 @@ function addFile( array, fname, type){
      		tmp.push({link: fname});
      	});
      	console.log(tmp);
+  
+     	
          Session.set("links", tmp);
 	
 	}else{
@@ -153,6 +199,7 @@ function addFile( array, fname, type){
          Session.set("attachments", tmp);
 	}
 	//here we call meteor method that will save the data to server	
+	return true;
 }
 
 function removeFile(array, fname, type){ 

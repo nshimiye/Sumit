@@ -12,3 +12,6 @@ jquery
 accounts-ui-bootstrap-3
 accounts-password
 backbone
+collectionFS
+cfs-filesystem
+cfs-ui

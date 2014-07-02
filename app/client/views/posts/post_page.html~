@@ -1,5 +1,5 @@
 <template name="postPage">
-
+{{setPostPage}}
 <div class="col-lg-9 col-md-9 col-xs-9" >
 	  <div id="for_psubmit" style="display: {{#if show_submit}}block{{else}}none{{/if}};">
   	

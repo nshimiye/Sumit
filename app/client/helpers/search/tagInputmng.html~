@@ -9,12 +9,10 @@
     	
     	
     		<div class="sumit_tag_in" contenteditable="true" >
-    		{{#if nofoundtag}}
-    			Tags
-    		{{/if}}
+    		{{nofoundtag}}
     		</div>
 
-    		<div class="searchRes list-group" style="z-index: 200;">
+    		<div class="searchRes list-group" style="z-index: 1200;">
     			{{> tagsearch_view_template }}
     		</div>
 

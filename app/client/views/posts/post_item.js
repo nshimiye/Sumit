@@ -94,8 +94,8 @@ Template.postItem.events({
         
         Session.set("evident", true); //evident = true
         Session.set("innovate", false);
-           		console.log("data-id", $(e.target).attr("data-id"));
-   		console.log("data-id", $(e.target));
+           		var user = Meteor.user();
+   		console.log("posts--", PostsFS.find({userId: user._id}).count());
     },
     "click .innovation" : function(e) {
         
