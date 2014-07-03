@@ -139,7 +139,7 @@ if (Posts.find().count() === 0) {
         url: 'http://nshimiye.com',
         submitted: now - 7 * 3600 * 1000,
         commentsCount: 0,
-        upvoters: [], votes: 230
+        upvoters: [], votes: 230020
     });
 
  for (var i = 0; i < 10; i++) {

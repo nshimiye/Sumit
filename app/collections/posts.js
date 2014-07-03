@@ -1,8 +1,11 @@
 Posts = new Meteor.Collection('posts');
-PostsFS = new FS.Collection("posts", {
+
+PostsFS = new Meteor.Collection('postsa');
+
+/*PostsFS = new FS.Collection("posts", {
   stores: [new FS.Store.FileSystem("posts", {path: "~/uploads"})]
 });
-
+*/
 PostsFS.allow({
   insert: function (userId, party) {
     return true;

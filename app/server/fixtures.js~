@@ -33,7 +33,8 @@ if (Posts.find().count() === 0) {
         userId: tom._id,
         author: tom.profile.name,
         submitted: now - 5 * 3600 * 1000,
-        body: 'Interesting project Sacha, can I get involved?'
+        body: 'Interesting project Sacha, can I get involved?',
+        upvoters: [], votes: 54
     });
 
     Comments.insert({
@@ -41,7 +42,8 @@ if (Posts.find().count() === 0) {
         userId: sacha._id,
         author: sacha.profile.name,
         submitted: now - 5 * 3600 * 1000,
-        body: 'You sure can Tom!'
+        body: 'You sure can Tom!',
+        upvoters: [], votes: 54
     });
 
     Comments.insert({
@@ -49,7 +51,8 @@ if (Posts.find().count() === 0) {
         userId: niels._id,
         author: niels.profile.name,
         submitted: now - 4 * 3600 * 1000,
-        body: 'How about me! I want to contribute!'
+        body: 'How about me! I want to contribute!',
+        upvoters: [], votes: 54
     });
 
     Posts.insert({
@@ -59,7 +62,8 @@ if (Posts.find().count() === 0) {
         url: 'http://meteor.com',
         submitted: now - 10 * 3600 * 1000,
         commentsCount: 0,
-        upvoters: [], votes: 0
+        upvoters: [], votes: 0,
+        
     });
 
     Posts.insert({
@@ -144,6 +148,7 @@ if (Posts.find().count() === 0) {
         userId: sacha._id,
         author: sacha.profile.name,
         submitted: now - 5 * 3600 * 1000,
+        upvoters: [], votes: 0,
         body: 'Interesting project ---, can I get involved? counting ' + i
     });
 
@@ -154,6 +159,7 @@ if (Posts.find().count() === 0) {
         userId: sacha._id,
         author: sacha.profile.name,
         submitted: now - 5 * 3600 * 1000,
+        upvoters: [], votes: 0,
         body: 'Report '+ i +': Cold Chain management power outage strategies'
     });   
     Posts.update(postId, {$inc: {evidencesCount: 1}});
