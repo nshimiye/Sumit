@@ -165,20 +165,104 @@ if (Posts.find().count() === 0) {
     Posts.update(postId, {$inc: {evidencesCount: 1}});
     }
    }
-}
+   
+   
+   
+   
+   //============== tags here static generation =============
+   
+   
+   var Categories1 = ["THEMATIC GROUPS","CROSS-CUTTING ISSUES","Others"];
+   
+   var category1 =  Categories.insert({
+        userId: niels._id,
+        submitted: now - 4 * 3600 * 1000,
+        cname: 'THEMATIC GROUPS',
+        nid: 'tg'
+    });
+
+var TG = [
+
+"Macroeconomics, Population Dynamics, and Planetary Boundaries",
+"Reducing Poverty and Building Peace in Fragile Regions",
+"Challenges of Social Inclusion: Gender, Inequalities, and Human Rights",
+"Early Childhood Development, Education, and Transition to Work",
+"Health for All",
+"Deep Decarbonization Pathways",
+"Sustainable Agriculture and Food Systems",
+"Forests, Oceans, Biodiversity, and Ecosystem Services",
+"Sustainable Cities: Inclusive, Resilient, and Connected",
+"Good Governance of Extractive and Land Resources",
+"Global Governance and Norms for Sustainable Development",
+"Redefining the Role of Business for Sustainable Development"
+
+];
 
 
-//------===------
-Meteor.autorun(function() {
-    // Whenever this session variable changes, run this function.
-    var message = Session.get('displayMessage');
-    if (message) {
-      var stringArray = message.split('&amp;');
-      ui.notify(stringArray[0], stringArray[1])
-        .effect('slide')
-        .closable();
+   
+TG.forEach(function(item){  
+ 
+  var i=  Tags.insert({
+        userId: niels._id,
+        categoryId : category1,
+        author: niels.profile.name,
+        submitted: now - 4 * 3600 * 1000,
+        tagname: item,
+        ccissue: item
+    });
 
-      Session.set('displayMessage', null);
-    }
 });
+
+  var category2 =   Categories.insert({
+        userId: niels._id,
+        submitted: now - 4 * 3600 * 1000,
+        cname: 'CROSS-CUTTING ISSUES',
+        nid: 'cci'
+    });
+   
+   
+           var CCI = [
+   
+          "Logistics",
+"Physical Infrastructure",
+"Social Context",
+"Communications",
+"Politics",
+"Legislation",
+"Human Resources",
+"Project Management",
+"Monitoring and Evaluation",
+"Accountability",
+"Data Infrastructure",
+"Knowledge Management",
+"Grant Writing",
+"Finances",
+"Capacity Building",
+"Local Partnership"
+            
+        ];
+        
+        
+        
+CCI.forEach(function(item){  
+ 
+    Tags.insert({
+        userId: niels._id,
+        categoryId : category2,
+        author: niels.profile.name,
+        submitted: now - 4 * 3600 * 1000,
+        tagname: item,
+        themeGroup: item
+    });
+   
+   
+});
+   
+   
+   
+   
+   
+   
+   
+}
 

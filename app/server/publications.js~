@@ -1,15 +1,3 @@
- // Whenever this session variable changes, run this function.
-    var message = Session.get('displayMessage');
-    if (message) {
-      var stringArray = message.split('&amp;');
-      ui.notify(stringArray[0], stringArray[1])
-        .effect('slide')
-        .closable();
-
-      Session.set('displayMessage', null);
-    }
-
-
 Meteor.publish('posts', function(options){
     return Posts.find({}, options)
 });
@@ -27,6 +15,14 @@ Meteor.publish('evidences', function(postId){
 
 Meteor.publish('notifications', function() {
     return Notifications.find({userId: this.userId});
+});
+
+Meteor.publish('categories', function() {
+    return Categories.find({});
+});
+
+Meteor.publish('tags', function() {
+    return Tags.find({userId: this.userId});
 });
 
 //Sidebar - Advanced Publications

@@ -1,5 +1,6 @@
 <template name="tagview">
- 	<div class="sumit_tag row form-control" name="sumit_tag" >
+{{waitOn}}
+ 	<div class="sumit_tag row form-control" name="sumit_tag" style="float: none;">
 
 	{{#each foundTags}}
 		{{> tag_view_template}}

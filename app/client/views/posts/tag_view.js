@@ -2,6 +2,7 @@ var tags = {
 	sortby : [{sid: "u", orderingKey: "Popular", tagRoute: "/best"}, {sid: "n", orderingKey: "New", tagRoute: "/new"}, 
 		{sid: "o", orderingKey: "Old", tagRoute: "/old"}, 
 		{sid: "c", orderingKey: "Controversial", tagRoute: "/votes1to1"}],
+		
 	ccIssues : [ {ccissue: "Logistics"}, { ccissue: "Physical Infrastructure"}, 
 					{ ccissue: "Communications"}, { ccissue: "Social Context"},
 					 { ccissue: "Politics"}, { ccissue: "Legislation"}, { ccissue: "Human Resources"}],
@@ -27,10 +28,19 @@ Template.tagView.helpers({
        	return tags.sortby;
     },
     ccIssues : function(){
-    	return tags.ccIssues;
+    	
+    	
+    	var ctr = Categories.findOne({nid: "cci"});
+    	var ts = Tags.find({categoryId: ctr._id});
+
+    	return ts;
     },
     themeGroups : function(){
-    	return tags.themeGroups;
+    	
+    	var ctr = Categories.findOne({nid: "tg"});
+    	var ts = Tags.find({categoryId: ctr._id});
+
+    	return ts;
     }
 });
 

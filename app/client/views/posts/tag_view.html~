@@ -16,7 +16,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title tag-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                        Sort by <!-- span class="glyphicon glyphicon-play"></span -->
+                        Sort by <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
                 </h3>
             </div>
@@ -44,7 +44,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title tag-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                        Cross-cutting Issues -<!--span class="glyphicon glyphicon-play"></span-->
+                        Cross-cutting Issues <span class="glyphicon glyphicon glyphicon-chevron-down"></span>
                     </a>
                 </h3>
             </div>
@@ -55,7 +55,7 @@
                         <li class="list-group-item mytag">
                             <a href="#" class="tag-btn"
                             title="{{themeGroup}}"
-                           style="color: #76a5af;" > {{shortenString ccissue}}</a>
+                           style="color: #76a5af;" > {{shortenString tagname}}</a>
                         </li>
                         {{/each}}
 
@@ -70,7 +70,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title tag-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                        Thematic Groups <!--span class="glyphicon glyphicon-play"></span-->
+                        Thematic Groups <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
                 </h3>
             </div>
@@ -82,7 +82,7 @@
                         <li class="list-group-item mytag">
                             <a href="#" class="tag-btn"
                              title="{{themeGroup}}"
-                            style="color: #76a5af;"> {{shortenString themeGroup}}</a>
+                            style="color: #76a5af;"> {{shortenString tagname}}</a>
                         </li>
                         {{/each}}
 

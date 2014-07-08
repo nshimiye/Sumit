@@ -11,6 +11,9 @@ SplashController = RouteController.extend({
 	template: 'splash',
 });
 
+ProfileController = RouteController.extend({
+	template: 'userProfile',
+});
 
 
 //Route Controller 
@@ -133,7 +136,7 @@ Router.map(function() {
     //from J Walters
     this.route('userProfile', {
         path: '/user',
-        controller: SplashController
+        controller: ProfileController
     });
 
 });

@@ -1,23 +1,5 @@
-	// ===============
-	
-	var tags = {
-	sortby : [{sid: "n", orderingKey: "New", tagRoute: "/new"}, 
-		{sid: "o", orderingKey: "Old", tagRoute: "/old"}, 
-		{sid: "c", orderingKey: "Controversial"}, {sid: "u", orderingKey: "Upvotes", tagRoute: "/best"}],
-	ccIssues : [ {ccissue: "Logistics"}, { ccissue: "Physical Infrastructure"}, 
-					{ ccissue: "Communications"}, { ccissue: "Social Context"},
-					 { ccissue: "Politics"}, { ccissue: "Legislation"}, { ccissue: "Human Resources"}],
-	
-	themeGroups : [{themeGroup: "Macroeconomics, Population Dynamics, and Planetary Boundaries"},
-	 				{themeGroup: "Reducing Poverty and Building Peace in Fragile Regions"},
-	 				{themeGroup: ""},{themeGroup: ""}, 
-	 				{themeGroup: ""}, {themeGroup: ""}, {themeGroup: ""}],
-	others: []
-	};
-	
 	//================== to be removed ================
-	
-	
+
 	    var Tag = Backbone.Model.extend({
         defaults: function() {
 
@@ -73,7 +55,7 @@
             if (allow)
                 this.push(data);
         },
-        selected: function() { // this will be used if we want to send our tags to server?
+        selected: function() { // this will be used if we want to send our localTags to server?
             return this.where({selected: true});
         },
         remaining: function() {
@@ -113,27 +95,35 @@
         }
     });
 
-    var Tags = new Tag_list();
+    var LocalTags = new Tag_list();
 	
 	            //testing data ===================
-	            
-	            $.each(tags.ccIssues, function(index, item){
-	            
-	            	Tags.create({tagname: item.ccissue, category: 1});
-	            });
-	            $.each(tags.themeGroups, function(index, item){
-	            
-	            	Tags.create({tagname: item.themeGroup, category: 2});
-	            });
+	              
 
 			   
 	//======================================
 	
 	//---- ===== ===== ----
 	Template.tagview.helpers({
+		waitOn: function(){
+			  	var ctr = Categories.findOne({nid: "cci"});
+    					var ts = Tags.find({categoryId: ctr._id});
+
+	            
+	            ts.forEach( function(item){
+	            
+	            	LocalTags.create(item);
+	            });
+	            ctr = Categories.findOne({nid: "tg"});
+    				ts = Tags.find({categoryId: ctr._id});
+	            ts.forEach( function(item){
+	            
+	            	LocalTags.create(item);
+	            });
+		},
 		foundTags : function(){
 
-			Session.set("selectedTags", Tags.selected());
+			Session.set("selectedTags", LocalTags.selected());
 			console.log(Session.get("selectedTags"));
 			return Session.get("selectedTags");
 		},
@@ -144,7 +134,7 @@
 	
 	
 	Session.set("searchok", false);
-	Session.set("remainingTags", Tags.remaining());
+	Session.set("remainingTags", LocalTags.remaining());
 	
 	// globalize the input area and the searc result also
 	var inputArea = null;
@@ -169,9 +159,9 @@
 	"click .sumit_tag" :function(e) {
 		e.preventDefault();
 		
-				var tags_ctn = e.target;
-				 console.log(tags_ctn);
-				var tagInputctn = $(tags_ctn).children(".tag_input");
+				var localTags_ctn = e.target;
+				 console.log(localTags_ctn);
+				var tagInputctn = $(localTags_ctn).children(".tag_input");
 				
                 console.log(tagInputctn);
                 
@@ -193,14 +183,14 @@
                 	
                 	if($(tagInput).is(":focus")){
                 	
-                		$(tags_ctn).addClass("sumit_tag_focus");
+                		$(localTags_ctn).addClass("sumit_tag_focus");
                 		Session.set("nofoundtag", "");
                 		
             		}else{
             		
-                  		$(tags_ctn).removeClass("sumit_tag_focus"); 
-                  			if(Tags.selected().length <= 0){
-								Session.set("nofoundtag", "Tags");
+                  		$(localTags_ctn).removeClass("sumit_tag_focus"); 
+                  			if(LocalTags.selected().length <= 0){
+								Session.set("nofoundtag", "LocalTags");
 							}else{
 								Session.set("nofoundtag", "");
 							} 
@@ -224,7 +214,7 @@
 	
 	if(e.which === 13){
 		
-		var tag = Tags.search(tname.trim());
+		var tag = LocalTags.search(tname.trim());
 		console.log(tag);
 		if(!tag){
 			
@@ -233,13 +223,13 @@
 	// make it selected and update the ui
 	tag.toggle({select : true});
 	
-	Session.set("selectedTags", Tags.selected());
-	Session.set("remainingTags", Tags.searchTag({searchId: ""}));
+	Session.set("selectedTags", LocalTags.selected());
+	Session.set("remainingTags", LocalTags.searchTag({searchId: ""}));
 	$(inputArea).text("");
 	$(inputArea).focus();
 	
-	if(Tags.selected().length <= 0){
-		Session.set("nofoundtag", "Tags");
+	if(LocalTags.selected().length <= 0){
+		Session.set("nofoundtag", "LocalTags");
 	}else{
 		Session.set("nofoundtag", "");
 	}
@@ -250,7 +240,7 @@
 	}
 	
 	Session.set("searchok", true);
-	Session.set("remainingTags", Tags.searchTag({searchId: tname.trim()}));
+	Session.set("remainingTags", LocalTags.searchTag({searchId: tname.trim()}));
 	
 },
 "click .searchRes": function(e){
@@ -262,15 +252,15 @@
 	
 	var tname = $(e.target).text();
 	console.log(tname.trim());
-	var tag = Tags.search(tname.trim());
+	var tag = LocalTags.search(tname.trim());
 	
 	if(!tag){
 		return false;
 	}
 	// make it selected and update the ui
 	tag.toggle({select : true});
-	Session.set("selectedTags", Tags.selected());
-	Session.set("remainingTags", Tags.searchTag({searchId: ""}));
+	Session.set("selectedTags", LocalTags.selected());
+	Session.set("remainingTags", LocalTags.searchTag({searchId: ""}));
 	
 	$(inputArea).text("");
 	//$(inputArea).focus();
@@ -298,16 +288,18 @@ Template.tag_view_template.events({
 		e.preventDefault();
 		
 		var tname = this.tagname;
-		var tag = Tags.search(tname.trim());
+		var tag = LocalTags.search(tname.trim());
 		console.log(tag);
 		if(tag){
 			// make it selected and update the ui
 			tag.toggle({select : false});
-			Session.set("selectedTags", Tags.selected());
-			Session.set("remainingTags", Tags.searchTag({searchId: ""}));
-			console.log("lennnnnnn ::::", Tags.selected().length);
-		if(Tags.selected().length <= 0){
-			Session.set("nofoundtag", "Tags");
+			Session.set("selectedTags", LocalTags.selected());
+			Session.set("remainingTags", LocalTags.searchTag({searchId: ""}));
+			
+			//code not responding -- I don't know why??????
+			console.log("lennnnnnn ::::", LocalTags.selected().length);
+		if(LocalTags.selected().length <= 0){
+			Session.set("nofoundtag", "LocalTags");
 		}else{
 			Session.set("nofoundtag", "");
 		}
