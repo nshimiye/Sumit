@@ -1,0 +1,76 @@
+Categories = new Meteor.Collection('categories');
+
+Meteor.methods({
+    categorie: function(categorieAttributes) {
+        var user = Meteor.user();
+        var post = Posts.findOne(categorieAttributes.postId);
+        //ensure the user is logged in
+        if (!user)
+            throw new Meteor.Error(401, "You need to login to make categories");
+
+        if(!categorieAttributes.body)
+            throw new Meteor.Error(402, "Please write some content");
+
+        if(!post)
+            throw new Meteor.Error(422, "You must categorie on a Challenge");
+
+        categorie = _.extend(_.pick(categorieAttributes, 'postId', 'body'), {
+            userId: user._id,
+            author: user.username,
+            submitted: new Date().getTime(),
+            upvoters: [],
+            downvoters: [],
+            votes: 0
+        });
+
+        //update the post with the number of categories
+        Posts.update(categorie.postId, {$inc: {categoriesCount: 1}});
+
+        //create the categorie, save the id
+        categorie._id = Categories.insert(categorie);
+
+        //create a notification, informing the user that there's been a categorie
+        createCategorieNotification(categorie);
+
+        return categorie._id;
+    },
+    
+    upvoteCategorie: function(categorieId) {
+        var user = Meteor.user();
+        //ensure the user is logger in
+        if (!user)
+            throw new Meteor.Error(401, "You need to login to upvote");
+
+	
+	// to be fixed
+
+        Categories.update({
+            _id: categorieId,
+            upvoters: {$ne: user._id}
+        }, {
+            //adds an item to an array property as long as it doesn't already exist
+            $addToSet: {upvoters: user._id},
+            //increments an integer field
+            $inc: {votes: 1}
+        });
+    },
+
+    downvoteCategorie: function(categorieId) {
+        var user = Meteor.user();
+        //ensure the user is logger in
+        if (!user)
+            throw new Meteor.Error(401, "You need to login to downvote");
+
+        Categories.update({
+            _id: categorieId,
+            downvoters: {$ne: user._id}
+        }, {
+            //adds an item to an array property as long as it doesn't already exist
+            $addToSet: {downvoters: user._id},
+            //increments an integer field
+            $inc: {votes: -1}
+        });
+    }
+    
+    
+});
