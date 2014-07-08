@@ -22,7 +22,7 @@ Template.postSubmit.events({
         //parse the tagContainer to get all input tags
         myTags.each(function(i, mytag){
         	console.log(mytag);
-        	newtag = $(mytag).children(".sumit_tag_in").text()
+        	newtag = $(mytag).children(".sumit_tag_in").attr("data-id");
         	
         	if(newtag.trim() !== "")
         		if(newTags.indexOf() <= -1)
@@ -125,6 +125,7 @@ var user = Meteor.user();
      	}
      	
      });
+     
      
      var tmp = new Array();
      $.each(allFiles, function(i, fname){

@@ -37,12 +37,19 @@
 
         <div class="col-xs-4">                                 
            Issue Type:<span class="entry" 
-           	title="Logistics, Infrastructure, Logistics,  Logistics">
-            {{shortenString "Logistics, Infrastructure, Logistics,  Logistics"}} </span>
+           	title="{{cciTagnames}}">
+
+            {{shortenString cciTagnames}} 
+
+            </span>
             <br>
             Thematic Groups:<span class="entry" title="Health, Transportation"> 
             
-            Health, Transportation</span>
+            {{#each tgTags}}
+            	{{shortenString tagnames}} 
+            {{/each}}
+            
+            </span>
             <br>
             <a class=" comment" data-id="{{spostid}}" data-me="comment"
 					href="{{pathFor 'postPage'}}">
@@ -85,10 +92,7 @@
             <div class="panel-body " style="padding: 0; border: none;">
 <div class="col-xs-12" style="padding: 3em; border: 2px solid rgba(208, 224, 227, 1);">
 {{message}}
-<br>
-{{#with FS.GetFile "posts" "RkN2qbQr4239CXbta"}}
-  <img src="{{this.url store='posts'}}" alt="">
-{{/with}}
+
 
 </div>
           </div>

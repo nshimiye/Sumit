@@ -8,10 +8,7 @@ Template.postSubmit.helpers({
 	 },
 	 hasAttach : function(){
 	 	return Session.get("hasAttach");
-	 },
-	hasLinks : function(){
-	 	return Session.get("hasLinks");
-	 },
+	 }
 })
 
 Template.postSubmit.events({
@@ -25,7 +22,7 @@ Template.postSubmit.events({
         //parse the tagContainer to get all input tags
         myTags.each(function(i, mytag){
         	console.log(mytag);
-        	newtag = $(mytag).children(".sumit_tag_in").text()
+        	newtag = $(mytag).children(".sumit_tag_in").attr("data-id");
         	
         	if(newtag.trim() !== "")
         		if(newTags.indexOf() <= -1)
@@ -191,11 +188,7 @@ function addFile( array, fname, type){
      		tmp.push({link: fname});
      	});
      	console.log(tmp);
-     	
-   	if(tmp.length > 0)
-     	Session.set("hasLinks", true);
- 	else
-     	Session.set("hasLinks", false);
+  
      	
          Session.set("links", tmp);
 	

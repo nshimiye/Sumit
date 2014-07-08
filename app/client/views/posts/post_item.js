@@ -75,6 +75,40 @@ Template.postItem.helpers({
             Positions.upsert({postId: post._id}, {$set: {position: newPosition}})
         });
         return attributes;
+    },
+    
+    cciTagnames: function(){
+    	var ctr = Categories.findOne({nid: "cci"});
+
+    	var tns = "";
+    	
+    	if(this.tags)
+    	this.tags.forEach(function(id){ //we get tag id's here
+    		var tag = Tags.findOne({_id: id});
+
+    		if(tag.categoryId === ctr._id)
+    			tns +=  tag.tagname+", ";
+    		
+    	});
+
+    	return tns;
+
+    },
+     tgTagnames: function(){
+    	var ctr = Categories.findOne({nid: "tg"});
+    	
+    	var tns = "";
+    	
+    	if(this.tags)
+    	this.tags.forEach(function(id){ //we get tag id's here
+    		var tag = Tags.findOne({_id: id});
+    		
+    		if(tag.categoryId === ctr._id)
+    			tns +=  tag.tagname+", ";
+    		
+    	});
+
+    	return tns;
     }
 
 });

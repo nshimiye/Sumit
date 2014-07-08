@@ -37,12 +37,19 @@
 
         <div class="col-xs-4">                                 
            Issue Type:<span class="entry" 
-           	title="Logistics, Infrastructure, Logistics,  Logistics">
-            {{shortenString "Logistics, Infrastructure, Logistics,  Logistics"}} </span>
+           	title="{{cciTagnames}}">
+
+            {{shortenString cciTagnames}} 
+
+            </span>
             <br>
-            Thematic Groups:<span class="entry" title="Health, Transportation"> 
+            Thematic Groups:<span class="entry" title="{{tgTagnames}}"> 
             
-            Health, Transportation</span>
+
+            	{{shortenString tgTagnames}} 
+
+            
+            </span>
             <br>
             <a class=" comment" data-id="{{spostid}}" data-me="comment"
 					href="{{pathFor 'postPage'}}">
