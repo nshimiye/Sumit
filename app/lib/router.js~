@@ -6,6 +6,13 @@ Router.configure({
     }
 });
 
+//splash
+SplashController = RouteController.extend({
+	template: 'splash',
+});
+
+
+
 //Route Controller 
 PostsListController = RouteController.extend({
     template: 'postsList',
@@ -53,11 +60,11 @@ BestPostsListController = PostsListController.extend({
     }
 });
 
-// controversial
+// controversial -- to be fixed??????????
 ControversialListController = PostsListController.extend({
     sort: {votes: -1, submitted: -1, _id: -1},
     nextPath: function() {
-        return Router.routes.bestPosts.path({postsLimit: this.limit() + this.increment})
+        return Router.routes.ControversialPosts.path({postsLimit: this.limit() + this.increment})
     }
 });
 
@@ -65,7 +72,7 @@ ControversialListController = PostsListController.extend({
 Router.map(function() {
     this.route('home', {
         path: '/',
-        controller: BestPostsListController
+        controller: SplashController
     });
 
     this.route('newPosts', {
@@ -111,6 +118,22 @@ Router.map(function() {
     this.route('postSubmit', {
         path: '/submit',
         disableProgress: true
+    });
+    
+    //from J Walters
+    this.route('splash', {
+        path: '/splash'
+    });
+    
+    //from J Walters
+    this.route('signInPage', {
+        path: '/signin'
+    });
+    
+    //from J Walters
+    this.route('userProfile', {
+        path: '/user',
+        controller: SplashController
     });
 
 });

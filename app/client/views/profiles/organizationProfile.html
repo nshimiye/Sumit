@@ -1,0 +1,144 @@
+<template name="organizationProfile">
+  <body style="min-width: 1190px;">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="min-width: 1190px;">
+      <div class="container"
+      style="
+      padding-bottom: 0.5em;
+      padding-top: 1em;
+      min-width: 95%;
+      "
+      >
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><span
+          style="
+          font-size: 2em;
+          font-weight: bold;
+          "
+          >SUMIT</span> Organizational Profile</a>
+        </div>
+        <div class="navbar-collapse collapse">
+
+
+          <form class="navbar-form navbar-right" role="form">
+
+            <div class="form-group navbar-right">
+              <input type="text" class="form-control" placeholder="Search for peoples, places, challenges, and solutions" style="width: 500px;">
+            </div>
+
+          </form>
+
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <div style="min-height: 7em;">
+      <!--navigation bar spacer-->
+    </div>
+
+    <div class="container" style="width: 95%;">
+
+      <div class="row">
+        <div class="col-md-2 panel panel-default profPicWrapper">
+          <img src="images/hhph.png">
+        </div>
+        <div class="col-md-9">
+          <div class="info"><h3>{{name}}</h3> <a href="">{{website}}</a>             
+            total points: <b>{{totalPoints}}</b> &nbsp;&nbsp;&nbsp;    
+            primary role: <b>{{primaryRole}}</b> &nbsp;&nbsp;&nbsp;
+            level: <b>{{level}}</b> <br><br>
+            <b>Headquarters:</b> {{headquarters}} <br>
+            <b>Partnerships:</b> {{affiliations}} <br>
+            <b>Social Media:</b> <img src="images/facebook.png">
+            <img src="images/twitter.png"> <img src="images/linkedin.png">{{socialMedia}} <br>
+            <b>About:</b> {{bio}} <br>
+            <a href="">{{board}}</a> | <a href="">{{officers}}</a> | <a href="">{{volunteers}}</a>
+          </div>
+        </div>
+      </div>
+      <br><br>
+
+      <div class="row">
+        <div class="col-md-2 panel panel-default focusAreas"><h3>Focus Areas</h3><hr>
+          <br><br><br>
+          <div>{{focusAreas}}</div>
+          <br><br><br>
+        </div>
+
+
+        <div class="col-md-6 stats">
+          <div class="row globalStats">
+            <div class="col-md-3">
+              <img src="images/globe.png">
+            </div>
+            <div class="col-md-2"><h5> Global Challenges Working Group</h5></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+              <a href="">Problems Posted:</a> {{problemsPostedGlobal}}<br>
+              <a href="">Comments Posted:</a> {{commentsPostedGlobal}}<br>
+              <a href="">Points Earned:</a> {{pointsEarnedGlobal}}
+            </div>
+          </div>
+
+          <div class="row litStats">
+            <div class="col-md-3">
+              <img src="images/pages.png">
+            </div>
+            <div class="col-md-2"><h5> Literature Curation Initiave</h5></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+              <a href="">Papers Indexed:</a> {{papersIndexed}}<br>
+              <a href="">Papers Annotated:</a> {{papersAnnotated}}<br>
+              <a href="">Papers Uploaded:</a> {{papersUploaded}}<br>
+              <a href="">Points Earned:</a> {{pointsEarnedLit}}
+            </div>
+          </div>
+
+          <div class="row openStats">
+            <div class="col-md-3">
+              <img src="images/lightbulb.png">
+            </div>
+            <div class="col-md-2"><h5>Open Innovation Collaborative</h5></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+              <a href="">Problems Posted:</a> {{problemsPostedOpen}}<br>
+              <a href="">Comments Posted:</a> {{commentsPostedOpen}}<br>
+              <a href="">Points Earned:</a> {{pointsEarnedOpen}}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="topContributions panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">Top Contributions</h3></div>
+            <div class="panel-body">
+              {{#each contributions}}
+              {{> contribution}}
+              {{/each}}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /.container -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="assets/js/libs/jquery-2.1.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="assets/bstp/js/bootstrap.js"></script>
+  </body>
+</template>
+
+
+<template name="contribution"> 
+  <div class="row">
+    <div class="col-md-7 title">
+      {{name}}
+    </div>
+    <div class="col-md-5 points">{{points}} points
+    </div>
+  </div> 
+</template>

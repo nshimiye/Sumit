@@ -1,16 +1,13 @@
 <template name="layout">
-  <div class="container" style="width: 100%;">
-    {{> header_alt}}
-    {{> meteorErrors}}
-    <div id="main" class="row-fluid">
-    	
+  
+ 
+  	<div class="container" style="width: 100%;">
+    	{{> header}}
+    	{{> meteorErrors}}
+    	<div id="main" class="row-fluid">
       		{{> yield}}
-      	
-      	<div class="col-lg-3 col-md-3 col-xs-3" >
+    	</div>
+  	</div>
 
-			{{> tagView}}
-
-		</div>
-    </div>
-  </div>
+  
 </template>

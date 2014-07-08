@@ -139,7 +139,7 @@ if (Posts.find().count() === 0) {
         url: 'http://nshimiye.com',
         submitted: now - 7 * 3600 * 1000,
         commentsCount: 0,
-        upvoters: [], votes: 230
+        upvoters: [], votes: 230020
     });
 
  for (var i = 0; i < 10; i++) {
@@ -166,3 +166,19 @@ if (Posts.find().count() === 0) {
     }
    }
 }
+
+
+//------===------
+Meteor.autorun(function() {
+    // Whenever this session variable changes, run this function.
+    var message = Session.get('displayMessage');
+    if (message) {
+      var stringArray = message.split('&amp;');
+      ui.notify(stringArray[0], stringArray[1])
+        .effect('slide')
+        .closable();
+
+      Session.set('displayMessage', null);
+    }
+});
+

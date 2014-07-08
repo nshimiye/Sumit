@@ -1,33 +1,67 @@
 <template name="header">
-  <header class="navbar">
-    <div class="navbar-inner">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <a class="brand" href="{{pathFor 'home'}}">S U M I T</a>
-      <div class="nav-collapse collapse">
-        <ul class="nav">
-          <li class="{{activeRouteClass 'home' 'newPosts'}}">
-            <a href="{{pathFor 'newPosts'}}">New</a>
-          </li>
-          <li class="{{activeRouteClass 'bestPosts'}}">
-            <a href="{{pathFor 'bestPosts'}}">Best</a>
-          </li>
-          {{#if currentUser}}
-            <li class="{{activeRouteClass 'postSubmit'}}">
-              <a href="{{pathFor 'postSubmit'}}">New Post</a>
-            </li>
-            <li class="dropdown">
-              {{> notifications}}
-            </li>
-          {{/if}}
-        </ul>
-        <ul class="nav pull-right">
-          <li>{{> loginButtons}}</li>
-        </ul>
-      </div>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" style="min-width: 1190px;">
+    <div class="container"
+         style="
+         padding-bottom: 0.5em;
+         padding-top: 1em;
+         min-width: 95%;
+         "
+         >
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{pathFor 'home'}}" style="padding-top: 0px;">
+            
+			<img src="/img/logo.png" alt="SUMIT logo" style="height: 50px; vertical-align: text-bottom;">
+                    
+                    
+                     Global Challenges Forum</a>
+        </div>
+        <div class="navbar-collapse collapse">
+
+
+
+            <!--user information here lol!-->
+
+
+
+
+
+            <ul class="nav navbar-nav navbar-right" style="margin-top: 8px;">
+
+                {{> loginButtons}}
+
+            </ul>
+
+            {{#if currentUser}}
+            <ul class="nav navbar-nav navbar-right" style="margin-top: 8px;">
+                <li>{{> notifications}}</li>
+
+
+            </ul>
+            {{/if}}
+            <!--end of user-->
+           
+				{{> searchAutoComplete}}
+   
+
+
+            {{#if currentUser}}
+            <!-- to be modified though -->
+            <form class="navbar-form navbar-right {{activeRouteClass 'postSubmit'}}">
+                <!--a href="{{pathFor 'postSubmit'}}" class="btn btn-primary ">New Post</a-->
+                 <a href="#" class="btn btn-primary new_post {{#if show_submit}}active{{/if}}">New Post</a>
+            </form>
+            {{/if}}
+        </div><!--/.navbar-collapse -->
     </div>
-  </header>
+</div>
+
+<div style="min-height: 7em;">
+    <!--navigation bar spacer-->
+</div>        
 </template>

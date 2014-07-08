@@ -21,7 +21,7 @@ Template.header_alt.events({
 		console.log("yes yes here ...")
 		//
 		
-		if(!Session.get("show_post_form")){
+		//if(!Session.get("show_post_form")){ prevent new Post btn from closing the form
 			
 		 	$( "#for_psubmit" ).animate({
     			height: "toggle"
@@ -29,6 +29,6 @@ Template.header_alt.events({
     		// Animation complete.
     		Session.set("show_post_form", true);	
   			});
-	}
+	//}
 	}
 });

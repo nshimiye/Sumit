@@ -6,6 +6,16 @@ Router.configure({
     }
 });
 
+//splash
+SplashController = RouteController.extend({
+	template: 'splash',
+});
+
+ProfileController = RouteController.extend({
+	template: 'userProfile',
+});
+
+
 //Route Controller 
 PostsListController = RouteController.extend({
     template: 'postsList',
@@ -65,7 +75,7 @@ ControversialListController = PostsListController.extend({
 Router.map(function() {
     this.route('home', {
         path: '/',
-        controller: BestPostsListController
+        controller: SplashController
     });
 
     this.route('newPosts', {
@@ -111,6 +121,22 @@ Router.map(function() {
     this.route('postSubmit', {
         path: '/submit',
         disableProgress: true
+    });
+    
+    //from J Walters
+    this.route('splash', {
+        path: '/splash'
+    });
+    
+    //from J Walters
+    this.route('signInPage', {
+        path: '/signin'
+    });
+    
+    //from J Walters
+    this.route('userProfile', {
+        path: '/user',
+        controller: ProfileController
     });
 
 });

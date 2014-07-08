@@ -1,0 +1,46 @@
+<template name="vision">
+
+
+   <div style="position: absolute; top:0px; left:0; width: 100%; height: 800px; background-color: black;">
+                    <!--cover the picture-->
+                </div>
+                
+                {{#if play_video}}
+               
+                
+                {{> video}}
+                
+                 {{else}}
+                
+               <img class="vision_explain" src="assets/img/sglobe.png" style="position: absolute; top:0px; left:25%; width: 50%;" alt="can you solve world's problems">
+
+               <img class="player_btn" src="assets/img/splayer.png"  title="click to play the video"
+                     style="position: absolute; top:300px; left:45%; width: 150px; height: 115px; " alt="giving water">
+
+                <div class="motto" style="position: absolute; top:650px; left: 35%; 
+
+
+                     width: 30%;
+                     color: white;
+                     font-size: 24px;
+                     font-weight: 600;
+                     text-align: center;
+                     ">
+                    What happens when everyone can help solve the world’s problems?
+                </div>
+                
+                
+                
+                {{/if}}
+                <img class="s_down" src="assets/img/sdown.png" style="position: absolute; top:750px; left:50%; width: 50px; height: 30px; " alt="scroll down">
+
+
+
+
+</template>
+
+<template name="video">
+	<div id="video-wrapper">
+ 		<div id="player"></div>
+	</div>
+</template>

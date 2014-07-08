@@ -1,0 +1,89 @@
+<template name="userProfile">
+{{renderMe}}
+    <div class="container" style="width: 95%;">
+
+      <div class="row">
+        <div class="col-md-2 panel panel-default profPicWrapper">
+          <img src="images/niels.png"><br><br>Change profile picture
+        </div>
+        <div class="col-md-9">
+          <div class="info"><h3>{{name}}</h3> <a href="">{{website}}</a>             
+            total points: <b>{{totalPoints}}</b> &nbsp;&nbsp;&nbsp;   
+            primary role: <b>{{primaryRole}}</b> &nbsp;&nbsp;&nbsp;
+            level: <b>{{level}}</b> <br><br>
+            <b>Home Base:</b> {{home}}            
+            <b>Currently in:</b> {{currentLoc}}              
+            <b>Nationality/Origin:</b> {{nationality}} <br>
+            <b>Affiliations:</b> {{affiliations}} <br>
+            <b>Social Media:</b> <img src="images/facebook.png">
+            <img src="images/twitter.png"> <img src="images/linkedin.png">{{socialMedia}} <br>
+            <b>Bio:</b> {{bio}}
+          </div>
+        </div>
+      </div>
+      <br><br>
+
+      <div class="row">
+        <div class="col-md-2 panel panel-default focusAreas"><h3>Focus Areas</h3><hr>
+          <br><br>
+          <div>{{focusAreas}}</div>
+          <br><br>
+        </div>
+
+
+        <div class="col-md-6 stats">
+          <div class="row globalStats">
+            <div class="col-md-3">
+              <img src="images/globe.png">
+            </div>
+            <div class="col-md-2"><h5> Global Challenges Working Group</h5></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+              <a href="">Problems Posted:</a> {{problemsPostedGlobal}}<br>
+              <a href="">Comments Posted:</a> {{commentsPostedGlobal}}<br>
+              <a href="">Points Earned:</a> {{pointsEarnedGlobal}}
+            </div>
+          </div>
+
+          <div class="row litStats">
+            <div class="col-md-3">
+              <img src="images/pages.png">
+            </div>
+            <div class="col-md-2"><h5> Literature Curation Initiave</h5></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+              <a href="">Papers Indexed:</a> {{papersIndexed}}<br>
+              <a href="">Papers Annotated:</a> {{papersAnnotated}}<br>
+              <a href="">Papers Uploaded:</a> {{papersUploaded}}<br>
+              <a href="">Points Earned:</a> {{pointsEarnedLit}}
+            </div>
+          </div>
+
+          <div class="row openStats">
+            <div class="col-md-3">
+              <img src="images/lightbulb.png">
+            </div>
+            <div class="col-md-2"><h5>Open Innovation Collaborative</h5></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+              <a href="">Problems Posted:</a> {{problemsPostedOpen}}<br>
+              <a href="">Comments Posted:</a> {{commentsPostedOpen}}<br>
+              <a href="">Points Earned:</a> {{pointsEarnedOpen}}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="topContributions panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">Top Contributions</h3></div>
+            <div class="panel-body">
+              {{#each contributions}}
+              {{> contribution}}
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+ 
+</template>

@@ -1,4 +1,4 @@
-Template.header_alt.helpers({
+Template.header.helpers({
     activeRouteClass: function(/* route names */) {
         var args = Array.prototype.slice.call(arguments, 0);
         args.pop();
@@ -15,7 +15,7 @@ Template.header_alt.helpers({
 });
 
 
-Template.header_alt.events({
+Template.header.events({
 	"click .new_post" : function(e){
 		e.preventDefault();
 		console.log("yes yes here ...")

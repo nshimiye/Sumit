@@ -201,13 +201,244 @@ a .auto-view:hover{background-color:rgba(162, 196, 201, 0.2)}
     overflow-y: auto;
     
     box-shadow: 0 0 5px 0 black;
-	border-top-right-radius: 4px;
-	border-top-left-radius: 4px;
+	border-radius: 4px;
 }
 
 /*------------------------------------------*/
 
 
 
+/*Profiles*/
+.profPicWrapper {
+    padding: 20px;
+    color: #999999;
+    background-color: whitesmoke;
+    border-color: #dddddd;
+    text-align: center;
+}
+
+.profPicWrapper img {
+    max-width: 100%;
+    margin: auto
+}
+
+.info {
+    width: 80%;
+    word-spacing: 3pt;
+}
+
+.info img {
+    width: 25px;
+    max-height: 25px;
+}
+
+.focusAreas {
+    color: #999999;
+    background-color: whitesmoke;
+    border-color: #dddddd;
+}
+
+.stats {
+    margin: auto;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-left: 15px;
+}
+
+.stats h5 {
+    color: DodgerBlue;
+}
+
+.stats img {
+    max-width: 100px;
+    max-height: 100px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.stats > div {
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid silver;
+    margin-bottom: 8px;
+}
+
+.stats .col-md-4 {
+    padding-top: 10px;
+    text-align: right;
+}
+
+
+.topContributions {
+    list-style-type: square;
+}
+
+.topContributions row {
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+
+
+.topContributions .title { 
+    padding-left: 1em; 
+    text-indent: -.7em;
+}
+
+.topContributions .title:before {
+    content: "■";
+    padding-right: 7px;
+    color: blue; 
+}
+
+.points {
+    text-align: right;
+}
+
+
+/*Splash page*/
+#sign-in {
+    position:fixed;
+    bottom: 2%;
+    left: 4%;
+    z-index: 15;
+}
+
+.down-arrow {
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    height:40px;
+}
+
+
+#video-wrapper {
+   height: 95%;
+}
+
+#player {
+   position:absolute;
+   height:92%;
+   width:100%;
+   top:0; 
+}
+
+.video.down-arrow{
+    position:relative;
+    top:-10px;
+}
+
+
+.mission#logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 20%;
+}
+
+.mission#text {
+    margin-top: 10%;
+    margin-bottom: 15%;
+    font-size: 24px;
+}
+
+.mission#more {
+    font-size: 20px;
+    color: gray;
+}
+
+
+.project {
+    padding: 15px;
+    margin-top: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    text-align: left; 
+    position: relative;
+}       
+
+.project img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-left: 30px;
+}
+
+.project .title {
+    font-size: 18pt;
+}
+
+.project .btn {
+    float: right;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.project .join {
+    position: relative;
+    left: -15px;
+}
+
+.project .learn-more {
+    background-color: MediumPurple;
+}
+
+#join-global-challenges {
+    background-color: #B0C4DE;
+}
+
+#join-literature-curation {
+    background-color: #f0ad4e;
+}
+
+#join-open-innovation {
+    background-color: SeaGreen;
+}
+
+.divider {
+    position: static;
+    border-left:1px solid black; 
+    min-height: 120px;
+    margin: 0 auto;
+    width:10px;
+}
+
+.long-divider {
+    position: static;
+    border-left:1px solid black; 
+    min-height: 140px;
+    margin: 0 auto;
+    width:10px;
+}
+
+.coming-soon {
+   position: absolute;
+   left: 0;
+   top: 0;
+   background-color: rgba(0,0,0,.80);
+   border-radius: 10px;
+   height: 100%;
+   width: 100%;
+   text-align: center;
+   color: silver;
+   z-index: 10;
+}
+
+.comingsoon h3 {
+    z-index: 11;
+    top: 50%;
+}
+
+.global-challenges .title {
+    color: #B0C4DE;
+}
+
+.literature-curation .title {
+    color: #f0ad4e;
+}
+
+.open-innovation .title {
+    color: SeaGreen;
+}
 
 

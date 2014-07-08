@@ -1,0 +1,66 @@
+<template name="splash">
+<link rel="stylesheet" href="assets/css/jquery.fullPage.css">
+
+
+<style>
+
+   .btn-hover {
+                background-color: rgba(69, 129, 142, 0.48) !important;
+                color: white !important;
+            }
+            .active .btn-full {
+                background-color: rgba(69, 129, 142, 0.48) !important;
+                color: white !important;
+            }
+
+            .s_down{
+                cursor: pointer;
+            }
+
+            .fp-controlArrow.fp-prev{
+                left: 15px;
+                width: 0;
+                border-width: 0px 0px 0px 0;
+                border-color: transparent;
+            }
+            .fp-controlArrow.fp-next{
+                right: 15px;
+                border-width: 0;
+                border-color: transparent;
+            }
+
+
+
+
+</style>
+
+{{> splash_header}}
+
+ <div id="fullpage">
+
+ <div class="section active"  id="section0">
+ 
+ {{> vision}}
+ 
+ </div>
+
+
+ <div class="section"  id="section1">
+ 
+ {{> mission}}
+ 
+ </div>
+
+
+ <div class="section "  id="section2">
+ 
+ {{> shome}}
+ 
+ </div>
+
+</div>
+ 
+ <!-- calling the fullpage to do its job now-->
+ {{ afterLoad}}
+ 
+</template>

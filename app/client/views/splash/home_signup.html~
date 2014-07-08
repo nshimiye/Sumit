@@ -1,0 +1,44 @@
+<template name="home_signup">
+
+                    <div class="row" style="text-align: center;">
+                        <div  class="col-lg-4 col-lg-offset-4">
+                        <div style="font-size: 24pt; color: #45818e;">Create an account</div>
+
+                        <div style="">
+                            <form role="form" id="register-form" action="action">
+                                <div class="form-group">
+
+                                    <input type="text" class="form-control" id="sname" name="sname" placeholder="Name">
+                                </div>
+                                <div class="form-group">
+
+                                    <input type="email" class="form-control" id="semail" name="semail" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="spassword" name="spassword" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" id="spassword_confirm" name="spassword_confirm" placeholder="Confirm Password">
+                                </div>
+
+                                <button type="submit" id="create-account" class="btn btn-primary btn-block">Sign up</button>
+                            </form>
+
+                        </div>
+                        -or-
+                        <div style="">
+                            <!--for external Authentication service-->
+
+                            <button type="button" class="btn btn-default btn-block" 
+                                    style="background-color: #4c66a4; color: white"
+                                    >Sign up with Facebook</button>
+                            <button type="button" class="btn btn-danger btn-block">Sign up with Google</button>
+                            <button type="button" class="btn btn-info btn-block">Sign up with Twitter</button>
+
+                        </div>
+
+                    </div>
+                    </div>
+                    
+                    
+</template>
