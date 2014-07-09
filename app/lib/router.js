@@ -142,6 +142,14 @@ Router.map(function() {
         controller: ProfileController
     });
 
+    this.route('userProfile', {
+        path: '/user/:_id'
+    });
+
+        this.route('organizationProfile', {
+        path: '/org/:_id'
+    });
+
 });
 
 var requireLogin = function(pause) {

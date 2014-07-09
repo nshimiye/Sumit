@@ -64,6 +64,7 @@ Meteor.methods({
             userId: user._id,
             author: user.username,
             affiliate: "default-sumit", //to be fixed
+            affiliateId: "g8iWAfxahczTpFTuQ", //to be fixed
             submitted: new Date().getTime(),
             commentsCount: 0,
             upvoters: [],

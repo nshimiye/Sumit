@@ -29,9 +29,9 @@
                 	<div class="media-heading for-post" data-id="{{spostid}}"> {{title}} </div>
 
 				</a>
-                Author: <span class="entry1"> {{author}}</span>
+                Author: <a href="{{pathFor 'userProfile' _id=userId}}"><span class="entry1"> {{author}}</span></a>
                 <br>
-                Affiliation:<span class="entry1"> {{domain}}</span>
+                Affiliation:<a href="{{pathFor 'organizationProfile' _id=affiliateId}}"><span class="entry1"> {{domain}}</span></a>
             </div>
         </div>
 
