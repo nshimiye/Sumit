@@ -12,9 +12,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand shome_btn" href="#" style="padding-top: 15px;">
+                    <a class="navbar-brand shome_btn" href="#" style="padding-top: 10px;">
 
-                        <img src="assets/img/logo.png" alt="SUMIT logo" style="height: 25px;  ">
+                        <img src="assets/img/logo.png" alt="SUMIT logo" style="height: 35px;  ">
 
 
                     </a>
@@ -27,15 +27,16 @@
 
                     <ul class="nav navbar-nav navbar-left" id="menufl">
 
-
-                        <li style="padding-top: 10px;" data-menuanchor="svision" class="active">
+						
+                        <li style="padding-top: 10px;" data-menuanchor="svision">
                             <a href="#svision" class="btn btn-default svision_btn btn-full" style="
                                background-color: rgba(255, 255, 255, 0.43);
                                border-color: rgba(255, 255, 255, 0);
                                margin-left: 1em;
-                               padding: 35px;
-                               padding-top: 5px;
-                               padding-bottom: 5px;
+padding: 35px;
+padding-top: 5px;
+padding-bottom: 5px;
+
                                ">Vision</a>
                         </li>
 
@@ -44,39 +45,71 @@
                                background-color: rgba(255, 255, 255, 0.43);
                                border-color: rgba(255, 255, 255, 0);
                                margin-left: 1em;
-                               padding: 35px;
-                               padding-top: 5px;
-                               padding-bottom: 5px;
+padding: 35px;
+padding-top: 5px;
+padding-bottom: 5px;
                                ">Mission</a></li>
-                        <li style="padding-top: 10px;"  data-menuanchor="shome">
-                            <a href="#shome" class="btn btn-default shome_btn btn-full" style="
-                               background-color: rgba(255, 255, 255, 0.43);
-                               border-color: rgba(255, 255, 255, 0);
+                       
+                    </ul>
+                    
+                     <ul class="nav navbar-nav navbar-right" >
+{{#if currentUser}}
+
+                      <li style="padding-top: 10px; position: relative" >
+                            <a href="#" class="login_btn btn-nav" style="
                                margin-left: 1em;
-                               padding: 35px;
                                padding-top: 5px;
                                padding-bottom: 5px;
-                               ">Sign up</a></li>
-                        <li style="padding-top: 10px; position: relative" >
+                               font-weight: bold;
+                               "> {{> loginButtons}}</a>
+                      </li>               
+                      <li style="padding-top: 10px; position: relative" >
+                            <a href="#" class="login_btn btn-nav" style="
+                               margin-left: 1em;
+                               padding-top: 5px;
+                               padding-bottom: 5px;
+                               font-weight: bold;
+                               ">Settings</a>
+                      </li>
+                      
+{{ else }}
+                      <li style="padding-top: 10px; position: relative" >
                             <a href="#" class="login_btn btn-nav" style="
                                margin-left: 1em;
                                padding-top: 5px;
                                padding-bottom: 5px;
                                font-weight: bold;
                                ">Sign in</a>
-                               
-                               <div class=" login_here" style="position: absolute; top:40px; left:0; min-width: 450px; 
+
+                               <div class=" login_here" 
+                               style="position: absolute; top:40px; right:0; min-width: 450px; 
                                background-color: rgb(243, 243, 243);
                                border-radius: 1em;
                                box-shadow: 0 0 15px 0 black;
                                border: 1px solid white; display: none; ">
+                               {{#if show_signin}}
                                	{{> signInPage}}
+                               {{ else }}
+                               	{{ > home_signup}}
+                               {{/if}}
                                 </div>
                                
                                </li>
-
-                    </ul>
-
+{{/if}}
+                        </ul>
+                        
+                        {{> searchAutoComplete}}
+                        
+                        {{#if currentUser}}
+            <!-- to be modified though -->
+            <form class="navbar-form navbar-right {{activeRouteClass 'postSubmit'}}">
+                <!--a href="{{pathFor 'postSubmit'}}" class="btn btn-primary ">New Post</a-->
+                 <a href="#" class="btn btn-primary new_post {{#if show_submit}}active{{/if}}"
+                 style="height: 35px;
+padding-top: 0.4em;"
+                 >New Post</a>
+            </form>
+						{{/if}}
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </div>

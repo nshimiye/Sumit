@@ -1,6 +1,6 @@
 <template name="layout">
   
- 
+    {{#if notOnIntro}}
   	<div class="container" style="width: 100%;">
     	{{> header}}
     	{{> meteorErrors}}
@@ -8,6 +8,8 @@
       		{{> yield}}
     	</div>
   	</div>
-
+  {{else}}
+  	{{> yield}}
+  {{/if}}
   
 </template>

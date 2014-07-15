@@ -1,4 +1,4 @@
-<template name="header_alt">
+<template name="header">
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="min-width: 1190px;">
     <div class="container"
          style="
@@ -16,7 +16,7 @@
             </button>
             <a class="navbar-brand" href="{{pathFor 'home'}}" style="padding-top: 0px;">
             
-			<img src="/img/logo.png" alt="SUMIT logo" style="height: 50px; vertical-align: text-bottom;">
+			<img src="/img/logo.png" alt="SUMIT logo" style="height: 35px; vertical-align: text-bottom;">
                     
                     
                      Global Challenges Forum</a>
@@ -26,26 +26,13 @@
 
 
             <!--user information here lol!-->
-
-
-
-
-
             <ul class="nav navbar-nav navbar-right" style="margin-top: 8px;">
 
                 {{> loginButtons}}
 
             </ul>
 
-            {{#if currentUser}}
-            <ul class="nav navbar-nav navbar-right" style="margin-top: 8px;">
-                <li>{{> notifications}}</li>
-
-
-            </ul>
-            {{/if}}
             <!--end of user-->
-           
 				{{> searchAutoComplete}}
    
 
@@ -54,7 +41,12 @@
             <!-- to be modified though -->
             <form class="navbar-form navbar-right {{activeRouteClass 'postSubmit'}}">
                 <!--a href="{{pathFor 'postSubmit'}}" class="btn btn-primary ">New Post</a-->
-                 <a href="#" class="btn btn-primary new_post {{#if show_submit}}active{{/if}}">New Post</a>
+                 <a href="#" class="btn btn-primary new_post {{#if show_submit}}active{{/if}}"
+                 
+                                  style="height: 35px;
+padding-top: 0.4em;"
+                 
+                 >New Post</a>
             </form>
             {{/if}}
         </div><!--/.navbar-collapse -->

@@ -38,6 +38,12 @@
 
  <div id="fullpage">
 
+ <div class="section "  id="section2">
+ 
+ {{> shome}}
+ 
+ </div>
+
  <div class="section"  id="section0">
  
  {{> vision}}
@@ -52,15 +58,10 @@
  </div>
 
 
- <div class="section active"  id="section2">
- 
- {{> shome}}
- 
- </div>
+
 
 </div>
  
  <!-- calling the fullpage to do its job now-->
- {{ afterLoad}}
  
 </template>

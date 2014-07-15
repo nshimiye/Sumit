@@ -1,14 +1,7 @@
 <template name="shome">
 
-<div class="slide">
 <!-- for main category browsing -->
 
-</div>
-
-<div class="slide">
-
-<!-- for sign up form -->
-
-</div>
+{{> home_main}}
 
 </template>

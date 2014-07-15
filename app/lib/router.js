@@ -16,6 +16,44 @@ SplashController = RouteController.extend({
 
 ProfileController = RouteController.extend({
 	template: 'userProfile',
+    waitOn: function() {
+        return [
+        	Meteor.subscribe('posts'),
+        	Meteor.subscribe('comments')
+        ];
+    },
+    posts: function() {
+    	var user = Meteor.user()
+        return Posts.find({userId: user._id});
+    },
+    comments: function() {
+    	var user = Meteor.user();
+        return Comments.find({userId: user._id});
+    },
+    totalPoints: function() {
+    	var user = Meteor.user();
+        var cm = this.comments();
+        var pts = 0;
+        cm.forEach(function(comment){
+        	pts += comment.votes;
+        });
+        
+        var ps = this.posts();
+        ps.forEach(function(post){
+        	pts += post.votes;
+        });
+        
+        return pts;
+    },
+    data: function() {
+    	return {
+    		user: Meteor.user(),
+    		comments: this.comments(),
+            posts: this.posts(),
+            points: this.totalPoints()
+            
+        };
+    },
 });
 
 

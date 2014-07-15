@@ -1,6 +1,6 @@
 <template name="searchAutoComplete">
  {{ waitOn }}
- <form class="navbar-form navbar-right" role="form" style="position: relative;">
+ <form class="navbar-form navbar-right searchForm" role="form" style="position: relative;">
 
                 <div class="form-group navbar-right">
                     <input type="text" class="form-control postSearchInput"

@@ -1,14 +1,11 @@
  Template.splash.helpers({
- 	afterLoad : function(){
- 	
- 	},
  	rendered : function(){
  	
  		$("#fullpage").fullpage({
             	menu: '#menufl',
-            	anchors: ['svision', 'smission', 'shome'],
-            	sectionsColor: ['#C63D0F', '#1BBC9B', '#f3f3f3'],
-            	autoScrolling: true
+            	anchors: ['shome', 'svision', 'smission'],
+            	sectionsColor: ['#f3f3f3', '#f3f3f3', '#f3f3f3'],
+            	autoScrolling: false
             });
 	
 	
@@ -16,12 +13,12 @@
 	
 	            //slide to sinup page -- uses  fullpage library function
             $(".signup").click(function (){
-            $.fn.fullpage.moveSlideRight();
+            	$.fn.fullpage.moveSlideRight();
             });
 
             // slide down to next main page
             $(".s_down").click(function (){
-            $.fn.fullpage.moveSectionDown();
+            	$.fn.fullpage.moveSectionDown();
             });
 
 
@@ -105,17 +102,17 @@
 
 			$(".svision_btn").click(function(){
 	
-				$.fn.fullpage.moveTo(1, 0);
+				$.fn.fullpage.moveTo(2, 0);
 			 });
 			 
 			 $(".smission_btn").click(function(){
 	
-				$.fn.fullpage.moveTo(2, 0);
+				$.fn.fullpage.moveTo(3, 0);
 			 });
 			 
 			 $(".shome_btn").click(function(){
 	
-				$.fn.fullpage.moveTo(3, 0);
+				$.fn.fullpage.moveTo(1, 0);
 			 });
 	
 	}

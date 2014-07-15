@@ -1,7 +1,6 @@
 <template name="home_main">
-
-                    <img src="assets/img/svision_mine.PNG" style="position: absolute; top:0px; left:0; width: 50%; height: 100%;" alt="giving water">
-                    <div style="position: absolute; top:0px; left:0; width: 50%; height: 100%; background-color: rgba(255, 255, 255, 0.4);">
+           <img src="assets/img/svision_mine.PNG" style="position: absolute; top:0px; left:0; width: 100%; height: 100%;" alt="giving water">
+                    <div style="position: absolute; top:0px; left:0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.4);">
                         <!--cover the picture-->
                     </div>
 
@@ -30,7 +29,7 @@
                              padding: 3em;
                              padding-top: 1em;
                              padding-bottom: 1em;
-color: rgb(58, 68, 71);
+
                              background-color: rgba(255, 255, 255, 0.66);
 
                              ">
@@ -42,23 +41,23 @@ color: rgb(58, 68, 71);
                                  padding-left: 0px; 
 
                                  border-right: 2px lightgray solid;">
-                                <a href="/new" class="challenge" style="font-weight: bold; color: #45818e;" >
+                                <a href="/best" class="challenge" style="font-weight: bold; color: #45818e;" >
                                     Global
                                     Challenges 
                                     Forum
                                 </a>
                             </div>
 
-                            <div class="col2" style="width:70%;  float: left; padding: 2em; padding-right: 30px; ">
+                            <div class="col2" style="width:70%;  float: left; padding: 2em; padding-right: 30px; color: rgb(58, 68, 71);">
                                 Shape the discussion about the Sustainable Development Goals (SDGs) by identifying the challenges that you face at the policy, organizational, professional, and personal level.
 
                             </div>
-                            <div class="col3" style="width:20%;  float: left;">
+                            <div class="col3" style="width:20%;  float: left; color: rgb(58, 68, 71);">
                                 Participants: <span>742</span><br>
                                 Problems Posted:  <span>4313</span><br>
                                 Proposals Endorsed:  <span>318</span><br>
 
-                                <a href="#signup" class="btn btn-default btn-hover signup" style="margin-top: 1em;">Sign up</a>
+                                <a href="/best" class="btn btn-default btn-hover signup" style="margin-top: 1em;">Visit</a>
 
                             </div>
                             <div style="clear: both">
@@ -82,7 +81,7 @@ color: rgb(58, 68, 71);
                                  padding: 2em;
 
                                  padding-left: 0px; 
-color: rgb(58, 68, 71);
+
                                  border-right: 2px lightgray solid;">
                                 <a href="#" style="font-weight: bold; color: #ce9b00;" >
                                     Literature
@@ -91,11 +90,11 @@ color: rgb(58, 68, 71);
                                 </a>
                             </div>
 
-                            <div class="col2" style="width:70%;  float: left; padding: 2em; padding-right: 30px; ">
+                            <div class="col2" style="width:70%;  float: left; padding: 2em; padding-right: 30px; color: rgb(58, 68, 71);">
                                 Annotate and index technical solutions and reports published by the Sustainable Development Solutions Network, the World Development Journal, and other related publications.
 
                             </div>
-                            <div class="col3" style="width:20%;  float: left;">
+                            <div class="col3" style="width:20%;  float: left; color: rgb(58, 68, 71);">
                                 Participants: <span>0</span><br>
                                 Pdfs Indexed: <span>0</span><br>
                                 Pdfs Annotated: <span>0</span><br>
@@ -131,7 +130,7 @@ color: rgb(58, 68, 71);
                                  padding: 2em;
 
                                  padding-left: 0px; 
-								 color: rgb(58, 68, 71);
+
                                  border-right: 2px lightgray solid;">
                                 <a href="#" style="font-weight: bold; color: #6aa84f;" >
                                     Open 
@@ -140,11 +139,11 @@ color: rgb(58, 68, 71);
                                 </a>
                             </div>
 
-                            <div class="col2" style="width:70%;  float: left; padding: 2em; padding-right: 30px;">
+                            <div class="col2" style="width:70%;  float: left; padding: 2em; padding-right: 30px; color: rgb(58, 68, 71);">
                                 Collaborate with us in designing the architecture of an online collaboration tool by conceptualizing, developing, and proposing ideas to solve the problems identified by the Global Challenges Forum.
 
                             </div>
-                            <div class="col3" style="width:20%;  float: left;">
+                            <div class="col3" style="width:20%;  float: left; color: rgb(58, 68, 71);">
                                 Individuals Participating: <span>0</span><br>
                                 Organizations Participating: <span>0</span><br>
                                 Proposals Published: <span>0</span><br>

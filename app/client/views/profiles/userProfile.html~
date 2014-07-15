@@ -1,5 +1,5 @@
 <template name="userProfile">
-
+{{checkLogin}}
     <div class="container" style="width: 95%;">
 
       <div class="row">
