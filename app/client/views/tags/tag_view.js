@@ -1,18 +1,16 @@
 var tags = {
 	sortby : [{sid: "u", orderingKey: "Popular", tagRoute: "/best"}, {sid: "n", orderingKey: "New", tagRoute: "/new"}, 
 		{sid: "o", orderingKey: "Old", tagRoute: "/old"}, 
-		{sid: "c", orderingKey: "Controversial", tagRoute: "/votes1to1"}],
-		
-	ccIssues : [ {ccissue: "Logistics"}, { ccissue: "Physical Infrastructure"}, 
-					{ ccissue: "Communications"}, { ccissue: "Social Context"},
-					 { ccissue: "Politics"}, { ccissue: "Legislation"}, { ccissue: "Human Resources"}],
-	
-	themeGroups : [{themeGroup: "Macroeconomics, Population Dynamics, and Planetary Boundaries"},
-	 				{themeGroup: "Reducing Poverty and Building Peace in Fragile Regions"},
-	 				{themeGroup: "Social Inclusion"},{themeGroup: "Childhood Development"}, 
-	 				{themeGroup: "Health for All"}, {themeGroup: "Decarbonization"}, {themeGroup: "Sustainable Agriculture"}]
+		{sid: "c", orderingKey: "Controversial", tagRoute: "/votes1to1"}]
 	};
+var allTs = null;
 Template.tagView.helpers({
+
+	waitOn: function() { 
+        Meteor.subscribe('posts', {sort: {submitted: 1}, limit: 7})
+        
+    },
+
     orderingKeys: function() {
     
     	// temporary fix here
@@ -29,12 +27,8 @@ Template.tagView.helpers({
     },
     ccIssues : function(){
     	
-    	
     	var ctr = Categories.findOne({nid: "cci"});
     	var ts = Tags.find({categoryId: ctr._id});
-    	ts.forEach(function(item){
-    		console.log("ccIssues", item);
-    	});
 
     	return ts;
     },
@@ -42,12 +36,7 @@ Template.tagView.helpers({
     	
     	var ctr = Categories.findOne({nid: "tg"});
     	var ts = Tags.find({categoryId: ctr._id});
-    	ts.forEach(function(item){
-    		console.log("themeGroups", item);
-    	});
-    	
-    	    	
-    
+
     	return ts;
     }
 });
@@ -68,6 +57,67 @@ Template.tagView.events({
 	
 		}
 		
+	},
+
+	'click .tag-list': function(e){
+		e.preventDefault();
+		var tagId = $(e.target).attr("data-id");
+		
+		if(!tagId)
+			return false;
+	
+	if(!allTs)
+		allTs = new Array();
+	
+
+		
+		var fw = ($(e.target).css("font-weight") === "bold")? "normal" : "bold";
+		var fs = ($(e.target).css("font-size") === "16px")? "13px" : "16px" ;
+		
+		$(e.target).css({
+			"font-weight": fw,
+			"font-size": fs
+		});
+	
+	var selected = ($(e.target).css("font-size") === "16px")? true : false;
+	
+	if(selected){
+	 	//push element tag id
+	 	allTs.push(tagId);
+	}else{
+		//slice element
+		allTs.splice(allTs.indexOf(tagId), 1);
 	}
+	
+	
+	var ap = Posts.find({});
+		console.log("tagging--", allTs);
+		
+		
+		var allPosts = Posts.find({ tags: { $in: allTs  } } );
+		console.log("tagging", allPosts.count());
+		
+		if(allPosts.count() === 0){
+			
+			allPosts = Posts.find({});
+        }   
+             console.log("taggingsssfsd", allPosts.count());
+       //this.posts.rewind();
+       var ps = allPosts.map(function(post, index, cursor) {
+         	
+          post._rank = index;
+          //console.log(post);
+           return post;
+       });
+		
+			Session.set("postsWithRank", ps);
+                 
+		
+		return false;
+	}
+		
 });
+
+
+
 

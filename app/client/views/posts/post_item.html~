@@ -43,11 +43,11 @@
 
             </span>
             <br>
-            Thematic Groups:<span class="entry" title="Health, Transportation"> 
+            Thematic Groups:<span class="entry" title="{{tgTagnames}}"> 
             
-            {{#each tgTags}}
-            	{{shortenString tagnames}} 
-            {{/each}}
+
+            	{{shortenString tgTagnames}} 
+
             
             </span>
             <br>

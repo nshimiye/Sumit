@@ -33,5 +33,5 @@
 {{> tagView}}
 
 </div>
-{{refreshHere}}
+{{getPosts}}
 </template>

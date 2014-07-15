@@ -1,5 +1,5 @@
 <template name="tagView">
-
+{{waitOn}}
 <div style="
      min-height: 200px;
      background-color: #f4f4f4;
@@ -23,7 +23,7 @@
 
             <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body tag-body">
-                    <ul class="list-group tag-list">
+                    <ul class="list-group order-keys">
 
                         {{#each orderingKeys}}
                         <li class="list-group-item mytag ">
@@ -53,7 +53,7 @@
                     <ul class="list-group tag-list">
                         {{#each ccIssues}}
                         <li class="list-group-item mytag">
-                            <a href="#" class="tag-btn"
+                            <a href="#" class="tag-btn" data-id="{{_id}}"
                             title="{{themeGroup}}"
                            style="color: #76a5af;" > {{shortenString tagname}}</a>
                         </li>
@@ -80,7 +80,7 @@
 
                         {{#each themeGroups}}
                         <li class="list-group-item mytag">
-                            <a href="#" class="tag-btn"
+                            <a href="#" class="tag-btn" data-id="{{_id}}"
                              title="{{themeGroup}}"
                             style="color: #76a5af;"> {{shortenString tagname}}</a>
                         </li>

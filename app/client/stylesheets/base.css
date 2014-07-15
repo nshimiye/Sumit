@@ -70,7 +70,7 @@ and open the template in the editor.
     border-radius: 5em;
     background: #f4f4f4;
     color:  #999999;
-    font-size: 10pt;
+    font-size: 13px;
     font-weight: 500;
 }
 
@@ -90,12 +90,12 @@ and open the template in the editor.
     position: absolute;
     
 
-    top: 46px;
-    left: 0.5%;
+    top: 36px;
+    left: 3%;
     
 
     background-color: rgba(254, 254, 254, 1);
-    width: 99%;
+    width: 94%;
     z-index: 9;
     font-size: 1.3em;
     font-weight: 400;

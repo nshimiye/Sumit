@@ -24,7 +24,7 @@ if (Posts.find().count() === 0) {
         author: sacha.profile.name,
         url: 'http://sachagreif.com/introducing-telescope/',
         submitted: now - 7 * 3600 * 1000,
-        commentsCount: 2,
+        commentsCount: 0,
         upvoters: [], votes: 0
     });
 
@@ -246,7 +246,7 @@ TG.forEach(function(item){
         
 CCI.forEach(function(item){  
  
-    Tags.insert({
+    var t = Tags.insert({
         userId: niels._id,
         categoryId : category2,
         author: niels.profile.name,
@@ -254,7 +254,13 @@ CCI.forEach(function(item){
         tagname: item,
         ccissue: item
     });
-   
+    var tts = Posts.findOne(postId);
+    
+    
+    if(!tts.tags)
+    	tts = {tags: [t]}
+    tts.tags.push(t);
+   Posts.update(postId, {tags: tts.tags});
    
 });
    

@@ -70,7 +70,7 @@ and open the template in the editor.
     border-radius: 5em;
     background: #f4f4f4;
     color:  #999999;
-    font-size: 10pt;
+    font-size: 13px;
     font-weight: 500;
 }
 
@@ -207,6 +207,64 @@ a .auto-view:hover{background-color:rgba(162, 196, 201, 0.2)}
 /*------------------------------------------*/
 
 
+
+
+
+
+
+
+
+/*for my splash
+*/
+
+
+
+   .btn-hover {
+                background-color: rgba(69, 129, 142, 0.48) !important;
+                color: white !important;
+            }
+            .active .btn-full {
+                background-color: rgba(69, 129, 142, 0.48) !important;
+                color: white !important;
+            }
+
+            .s_down{
+                cursor: pointer;
+            }
+
+            .fp-controlArrow.fp-prev{
+                left: 15px;
+                width: 0;
+                border-width: 0px 0px 0px 0;
+                border-color: transparent;
+            }
+            .fp-controlArrow.fp-next{
+                right: 15px;
+                border-width: 0;
+                border-color: transparent;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*=============================*/
 
 /*Profiles*/
 .profPicWrapper {
