@@ -2,10 +2,21 @@ Template.splash_header.helpers({
 	rendered: function(){
 		
 		Session.set("show_signin", true);
+		Session.set("oprojects", false);
 	},
 	show_signin: function(){
 		return Session.get("show_signin");
-	}
+	},
+	oprojects: function(){
+		return Session.get("oprojects");
+	},
+	userInfo: function(){
+		var user = Meteor.user();	
+	
+		console.log("yes yes here ...", user);
+	
+		return user.username;
+	},
 })
 
 Template.splash_header.events({
@@ -20,12 +31,20 @@ Template.splash_header.events({
 	);
 	
 },
-
-"click signup_caller" : function(e){
-	e.preventDefault();
-	console.log("==================");
-	Session.set("show_signin", false);
-	
-}
+"click .new_post" : function(e){
+		e.preventDefault();
+		console.log("yes yes here ...");
+		//
+		
+		//if(!Session.get("show_post_form")){ prevent new Post btn from closing the form
+			
+		 	$( "#for_psubmit" ).animate({
+    			height: "toggle"
+  			}, 1000, function() {
+    		// Animation complete.
+    			Session.set("show_post_form", true);	
+  			});
+	//}
+	}
 
 });

@@ -1,9 +1,13 @@
 <template name="layout">
-  
+  <!--{{> splash_header}}-->
     {{#if notOnIntro}}
   	<div class="container" style="width: 100%;">
-    	{{> header}}
+    	{{> splash_header}}
+    	<div style="min-height: 7em;">
+    		<!--navigation bar spacer-->
+		</div>   
     	{{> meteorErrors}}
+    	
     	<div id="main" class="row-fluid">
       		{{> yield}}
     	</div>

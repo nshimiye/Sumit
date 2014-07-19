@@ -4,8 +4,9 @@
 
       <div class="row">
         <div class="col-md-2 panel panel-default profPicWrapper">
-          <img src="images/niels.png"><br><br>Change profile picture
+          <img src="images/pholder.png"><br><br><a href="#" class="cprofile">Change profile picture</a>
         </div>
+        <input type="file" class="ifile" style="display:none;">
         <div class="col-md-9">
           <div class="info"><h3>{{name}}</h3> <a href="">{{website}}</a>             
             total points: <b>{{totalPoints}}</b> &nbsp;&nbsp;&nbsp;   
@@ -17,7 +18,7 @@
             <b>Affiliations:</b> {{affiliations}} <br>
             <b>Social Media:</b> <img src="images/facebook.png">
             <img src="images/twitter.png"> <img src="images/linkedin.png">{{socialMedia}} <br>
-            <b>Bio:</b> {{bio}}
+            <b>Bio:</b> {{ bio }}
           </div>
         </div>
       </div>

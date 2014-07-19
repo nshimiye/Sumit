@@ -1,11 +1,13 @@
 Posts = new Meteor.Collection('posts');
 
-PostsFS = new Meteor.Collection('postsa');
-
-/*PostsFS = new FS.Collection("posts", {
-  stores: [new FS.Store.FileSystem("posts", {path: "~/uploads"})]
+//PostsFS = new Meteor.Collection('postsa');
+//FS.HTTP.setBaseUrl('~/Documents/mapps/chamb/sumitRemote/Sumit/app/public');
+PostsFS = new FS.Collection("posts", {
+  stores: [new FS.Store.FileSystem("posts", {path: "~/Documents/mapps/chamb/sumitRemote/Sumit/app/public/upload/postsFS"})]
 });
-*/
+
+
+
 PostsFS.allow({
   insert: function (userId, party) {
     return true;

@@ -19,12 +19,17 @@ ProfileController = RouteController.extend({
     waitOn: function() {
         return [
         	Meteor.subscribe('posts'),
-        	Meteor.subscribe('comments')
+        	Meteor.subscribe('comments'),
+        	Meteor.subscribe('cfs.posts.filerecord')
         ];
     },
     posts: function() {
     	var user = Meteor.user()
         return Posts.find({userId: user._id});
+    },
+    postsFS: function() {
+    	var user = Meteor.user()
+        return PostsFS.find({userId: user._id});
     },
     comments: function() {
     	var user = Meteor.user();
@@ -50,6 +55,7 @@ ProfileController = RouteController.extend({
     		user: Meteor.user(),
     		comments: this.comments(),
             posts: this.posts(),
+            postsFS: this.postsFS(),
             points: this.totalPoints()
             
         };
@@ -172,6 +178,10 @@ Router.map(function() {
     //from J Walters
     this.route('signInPage', {
         path: '/signin'
+    });
+        //from Mars
+    this.route('home_signup', {
+        path: '/signup'
     });
     
     //from J Walters

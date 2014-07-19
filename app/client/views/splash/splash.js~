@@ -4,7 +4,7 @@
  		$("#fullpage").fullpage({
             	menu: '#menufl',
             	anchors: ['shome', 'svision', 'smission'],
-            	sectionsColor: ['#C63D0F', '#1BBC9B', '#f3f3f3'],
+            	sectionsColor: ['#f3f3f3', '#f3f3f3', '#f3f3f3'],
             	autoScrolling: false
             });
 	

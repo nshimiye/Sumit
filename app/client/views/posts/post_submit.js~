@@ -126,6 +126,7 @@ var user = Meteor.user();
      	
      });
      
+     
      var tmp = new Array();
      $.each(allFiles, function(i, fname){
      	tmp.push({attachment: fname});

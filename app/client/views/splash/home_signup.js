@@ -1,5 +1,12 @@
+var thispath = null;
 Template.home_signup.helpers({
-
+	regLogin: function(){
+		var pathArray = window.location.pathname.split( "/" );
+		var path = pathArray[1];
+		console.log("-----------------------------------------------", path);
+		thispath = path;
+		return (path === "signin") || (path === "signup"); /*set to true if we not on the front page*/
+	}
 });
 
 var isValidPassword = function(val, field) {
@@ -64,6 +71,25 @@ Template.home_signup.events({
         });
 
       return false;
-	}
+	},
+     
+     "click .signin_caller" : function(e){
+			e.preventDefault();
+		console.log("==================", thispath);
+		
+		if(thispath === "signup" || (thispath === "signin")){
+			Router.go('signInPage', {});
+		}
+		
+		Session.set("show_signin", true);
+	
+	} ,
+     
+     "click .signout_caller" : function(e){
+			e.preventDefault();
+		console.log("==========signout========");
+		
+		//delete all user information and then sign out
+	} 
 
 });

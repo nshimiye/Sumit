@@ -3,6 +3,11 @@ allPOSTS = new Array(); //make it global
 //passing that object to the helperList function
 Template.postsList.helpers({
 
+	rendered: function(){
+		
+		Session.set("oprojects", true);
+	},
+
 	getPosts: function(){
 	// hide all innovations buttons
     for(var i=0 ; i < allPOSTS.length; i++){

@@ -108,8 +108,8 @@ Template.postSubmit.events({
      	var files = event.target.files;
 
 
-var user = Meteor.user();
-	var newFile = new FS.File(file);
+		var user = Meteor.user();
+		var newFile = new FS.File(file);
       newFile.metadata = {userId: user._id};
 
 			var idd = PostsFS.insert(newFile, function (err, fileObj) {

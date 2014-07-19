@@ -6,9 +6,11 @@ Template.postPage.helpers({
     evidences: function() {
     
     console.log("evidence--", Evidences.find({postId: this._id}).count());
+    console.log("posts--", PostsFS.find().count());
     
         return Evidences.find({postId: this._id});
     },
+    
     spostid : function(){
     	return this._id;
     

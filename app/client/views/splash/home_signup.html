@@ -1,9 +1,10 @@
 <template name="home_signup">
-
                     <div class="row" style="text-align: center; margin: 3em;">
-                        <div  class="col-lg-12">
+                        <div  class="col-lg-{{#if regLogin}}4{{else}}12{{/if}} {{#if regLogin}}col-lg-offset-4{{/if}}">
                         <div style="font-size: 24pt; color: #45818e;">Create an account</div>
-
+                        {{#if currentUser}}
+							<button type="button"  class="btn btn-primary signout_caller">Sign out</button>
+						{{else}}
                         <div style="">
                             <form role="form" id="register-form" action="action">
                             	<div class="serror"></div>
@@ -23,7 +24,8 @@
                                     <input type="password" class="form-control" id="spassword_confirm" name="spassword_confirm" placeholder="Confirm Password">
                                 </div>
 
-                                <button type="submit" id="create-account" class="btn btn-primary btn-block">Sign up</button>
+                                <button type="submit" id="create-account" class="btn btn-primary">Sign up</button>
+                                <button type="button"  class="btn btn-primary signin_caller">Sign in</button>
                             </form>
 
                         </div>
@@ -38,7 +40,7 @@
                             <button type="button" class="btn btn-info btn-block">Sign up with Twitter</button>
 
                         </div>
-
+					{{/if}}
                     </div>
                     </div>
                     

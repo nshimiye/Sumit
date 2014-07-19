@@ -1,5 +1,5 @@
 
-
+var thispath = null;
 Template.signInPage.helpers({
 
 
@@ -7,11 +7,21 @@ Template.signInPage.helpers({
 		var pathArray = window.location.pathname.split( "/" );
 		var path = pathArray[1];
 		console.log("-----------------------------------------------", path);
-		return path !== "splash" && (path !== ""); /*Or whatever this will be*/
+		return path === "signin" || (path === "signup"); /*Or whatever this will be*/
 	}
 });
 
 Template.signInPage.events({
+
+"click .cancel_login" : function(e){
+	e.preventDefault();
+	
+	$(".login_here").animate(
+		{height: "toggle"},
+		1000
+	);
+	
+},
 
     'submit #login-form' : function(e){
       e.preventDefault();
@@ -34,5 +44,25 @@ Template.signInPage.events({
           
       });
          return false; 
-      }
+      },
+     
+     "click .signup_caller" : function(e){
+			e.preventDefault();
+		console.log("==================");
+		if(thispath === "signin" || (thispath === "signup")){
+			Router.go('home_signup', {});
+		}
+		
+		Session.set("show_signin", false);
+	
+		},
+     
+     "click .signout_caller" : function(e){
+			e.preventDefault();
+		console.log("==========signout========");
+		
+		//delete all user information and then sign out
+	} 
+      
+      
   });

@@ -1,10 +1,16 @@
 <template name="signInPage">
 
+{{regLogin}}
+
                     <div class="row" style="text-align: center; margin: 3em;">
                         <div  class="col-lg-{{#if regLogin}}4{{else}}12{{/if}} {{#if regLogin}}col-lg-offset-4{{/if}}">
                         
 
+                        {{#if currentUser}}
+							<button type="button"  class="btn btn-primary signout_caller">Sign out</button>
+						{{else}}
                         <div style="">
+                        
                             <form role="form" id="login-form" action="action">
                             	<div class="serror"></div>
                                 <div class="form-group">
@@ -16,7 +22,7 @@
                                 </div>
 
                                 <button type="submit"  class="btn btn-primary">Sign in</button>
-                                <button type="submit"  class="btn btn-primary">Sign up</button>
+                                <button type="button"  class="btn btn-primary signup_caller">Sign up</button>
                                 <!--button type="button"  class="btn btn-default cancel_login"
                                 style="
                                 font-size: 12pt;
@@ -38,8 +44,9 @@ padding: 0.7em 2.0em;
                             <button type="button" class="btn btn-info btn-block">Sign in with Twitter</button>
 
                         </div>
+					{{/if}}
+                    </div>
+                    </div>
 
-                    </div>
-                    </div>
 
 </template>

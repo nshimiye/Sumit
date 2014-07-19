@@ -1,21 +1,51 @@
 //need to subscribe to all of collections probably
 Template.userProfile.helpers({
-	checkLogin : function(){
 
+	profileImage: function(){
+		return Session.get("pimage");
+	},
+
+	checkLogin : function(){
+		
 		if(!this.user){
 			Router.go('signInPage', {});	
 		}
 		
+		console.log("postsFS::::",FS);
+		
+		if(this.postsFS.count() > 0){
+			var mapper = this.postsFS.map(
+				function(i){
+					console.log("postsFS:::name:",i);
+					return i;
+				}
+			);
+			var fileObj = mapper[0];
+			console.log("postsFS:::out:",fileObj.copies);
+			
+			
+			
+			Session.set("pimage", "../../upload/postsFS/"+ fileObj.copies.posts.key);
+		
+		}else{
+		
+			//to be fixed though --this is set only if there is no profile image uploaded
+			Session.set("pimage", "images/pholder.png");
+		}
+		
+		
 	},
   focusAreas: function() {
   
-   var fa = this.user.profile.affiliations;
+   var fa = this.user.profile.focusAreas;
   	console.log(fa);
   	if(!fa)
   		return "no focus areas set for "+ this.user.profile.name;
     return fa;
   
     return "Task-shifting • ICT for development • Agricultural Inputs • Obesity • Food Systems • Complex Systems Modelling • Technology • mHealth • Social Entrepreneurship • CSR";
+    
+    
   },
   name: function() {
   	
@@ -133,3 +163,46 @@ Template.userProfile.helpers({
     		];
   }
 }); 
+
+
+
+
+Template.userProfile.events({
+/**
+ * open file manager
+ */
+"click .cprofile" : function(e){
+	e.preventDefault();
+	$(".ifile").trigger("click");
+	
+},
+
+"change .ifile" : function(e){
+	e.preventDefault();
+	
+	 	$.each(e.currentTarget.files, function(i, file){
+     		console.log(file.name);
+     		
+     		
+     				var user = Meteor.user();
+		var newFile = new FS.File(file);
+      newFile.userId = user._id;
+
+			var idd = PostsFS.insert(newFile, function (err, fileObj) {
+			 
+			 	console.log("post -- uploading ...", fileObj);
+        		console.log("post -- error ...", err);
+        		if(!err){
+        			//we set a image updator session
+        			Session.set("pimage", fileObj.data);
+        		}
+        			
+			 
+			 });
+     		
+     	
+     	});
+	
+}
+
+});

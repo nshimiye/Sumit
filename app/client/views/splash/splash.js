@@ -1,6 +1,8 @@
  Template.splash.helpers({
  	rendered : function(){
  	
+ 		Session.set("oprojects", false);
+ 	
  		$("#fullpage").fullpage({
             	menu: '#menufl',
             	anchors: ['shome', 'svision', 'smission'],

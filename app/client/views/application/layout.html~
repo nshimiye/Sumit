@@ -1,15 +1,15 @@
 <template name="layout">
-  
+  <!--{{> splash_header}}-->
     {{#if notOnIntro}}
   	<div class="container" style="width: 100%;">
-    	{{> header}}
+    	{{> splash_header}}
     	{{> meteorErrors}}
     	<div id="main" class="row-fluid">
       		{{> yield}}
     	</div>
   	</div>
   {{else}}
-  	{{> yield}}
+  	{{> yield }}
   {{/if}}
   
 </template>

@@ -1,13 +1,14 @@
 
-
+var thispath = null;
 Template.signInPage.helpers({
 
 
 	regLogin: function(){
 		var pathArray = window.location.pathname.split( "/" );
 		var path = pathArray[1];
+		thispath = path;
 		console.log("-----------------------------------------------", path);
-		return path !== "splash" && (path !== ""); /*Or whatever this will be*/
+		return path === "signin" || (path === "signup"); /*Or whatever this will be*/
 	}
 });
 
@@ -44,5 +45,25 @@ Template.signInPage.events({
           
       });
          return false; 
-      }
+      },
+     
+     "click .signup_caller" : function(e){
+			e.preventDefault();
+		console.log("==================");
+		if(thispath === "signin"){
+			Router.go('home_signup', {});
+		}
+		
+		Session.set("show_signin", false);
+	
+		},
+     
+     "click .signout_caller" : function(e){
+			e.preventDefault();
+		console.log("==========signout========");
+		
+		//delete all user information and then sign out
+	} 
+      
+      
   });
