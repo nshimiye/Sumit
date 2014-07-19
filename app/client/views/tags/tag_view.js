@@ -1,3 +1,4 @@
+
 var tags = {
 	sortby : [{sid: "u", orderingKey: "Popular", tagRoute: "/best"}, {sid: "n", orderingKey: "New", tagRoute: "/new"}, 
 		{sid: "o", orderingKey: "Old", tagRoute: "/old"}, 
