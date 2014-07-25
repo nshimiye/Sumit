@@ -2,8 +2,6 @@ Template.postEdit.helpers({
 	getpostTags : function(){
 		var currentPostId = this._id;
 		var thispost = this;
-
-		
 	}
 });
 

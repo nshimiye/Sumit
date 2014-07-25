@@ -16,3 +16,4 @@ collectionFS
 cfs-filesystem
 cfs-ui
 accounts-base
+cfs-s3

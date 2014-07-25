@@ -264,7 +264,12 @@ CCI.forEach(function(item){
    
 });
    
-   
+     var category3 =   Categories.insert({
+        userId: niels._id,
+        submitted: now - 4 * 3600 * 1000,
+        cname: 'Others',
+        nid: 'other'
+    });
    
    
    

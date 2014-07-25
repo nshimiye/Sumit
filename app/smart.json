@@ -4,6 +4,7 @@
     "iron-router-progress": {},
     "accounts-ui-bootstrap-3": {},
     "collectionFS": {},
-    "cfs-ui": {}
+    "cfs-ui": {},
+    "cfs-s3": {}
   }
 }

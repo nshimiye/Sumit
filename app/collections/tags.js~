@@ -1,20 +1,20 @@
-Comments = new Meteor.Collection('comments');
+Tags = new Meteor.Collection('tags');
 
 Meteor.methods({
-    comment: function(commentAttributes) {
+    tag: function(tagAttributes) {
         var user = Meteor.user();
-        var post = Posts.findOne(commentAttributes.postId);
+        var post = Posts.findOne(tagAttributes.postId);
         //ensure the user is logged in
         if (!user)
-            throw new Meteor.Error(401, "You need to login to make comments");
+            throw new Meteor.Error(401, "You need to login to make tags");
 
-        if(!commentAttributes.body)
+        if(!tagAttributes.body)
             throw new Meteor.Error(402, "Please write some content");
 
         if(!post)
-            throw new Meteor.Error(422, "You must comment on a Challenge");
+            throw new Meteor.Error(422, "You must tag on a Challenge");
 
-        comment = _.extend(_.pick(commentAttributes, 'postId', 'body'), {
+        tag = _.extend(_.pick(tagAttributes, 'postId', 'body'), {
             userId: user._id,
             author: user.username,
             submitted: new Date().getTime(),
@@ -23,19 +23,19 @@ Meteor.methods({
             votes: 0
         });
 
-        //update the post with the number of comments
-        Posts.update(comment.postId, {$inc: {commentsCount: 1}});
+        //update the post with the number of tags
+        Posts.update(tag.postId, {$inc: {tagsCount: 1}});
 
-        //create the comment, save the id
-        comment._id = Comments.insert(comment);
+        //create the tag, save the id
+        tag._id = Tags.insert(tag);
 
-        //create a notification, informing the user that there's been a comment
-        createCommentNotification(comment);
+        //create a notification, informing the user that there's been a tag
+        createTagNotification(tag);
 
-        return comment._id;
+        return tag._id;
     },
     
-    upvoteComment: function(commentId) {
+    upvoteTag: function(tagId) {
         var user = Meteor.user();
         //ensure the user is logger in
         if (!user)
@@ -44,8 +44,8 @@ Meteor.methods({
 	
 	// to be fixed
 
-        Comments.update({
-            _id: commentId,
+        Tags.update({
+            _id: tagId,
             upvoters: {$ne: user._id}
         }, {
             //adds an item to an array property as long as it doesn't already exist
@@ -55,14 +55,14 @@ Meteor.methods({
         });
     },
 
-    downvoteComment: function(commentId) {
+    downvoteTag: function(tagId) {
         var user = Meteor.user();
         //ensure the user is logger in
         if (!user)
             throw new Meteor.Error(401, "You need to login to downvote");
 
-        Comments.update({
-            _id: commentId,
+        Tags.update({
+            _id: tagId,
             downvoters: {$ne: user._id}
         }, {
             //adds an item to an array property as long as it doesn't already exist

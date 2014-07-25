@@ -14,13 +14,10 @@ Meteor.methods({
         if(!post)
             throw new Meteor.Error(422, "You must tag on a Challenge");
 
-        tag = _.extend(_.pick(tagAttributes, 'postId', 'body'), {
+        tag = _.extend(_.pick(tagAttributes, 'tagname', 'category'), {
             userId: user._id,
-            author: user.username,
-            submitted: new Date().getTime(),
-            upvoters: [],
-            downvoters: [],
-            votes: 0
+        	author: user.profile.name,
+        	submitted: new Date().getTime()
         });
 
         //update the post with the number of tags

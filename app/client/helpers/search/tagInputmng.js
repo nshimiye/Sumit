@@ -255,6 +255,19 @@
 	var tag = LocalTags.search(tname.trim());
 	
 	if(!tag){
+var user = Meteor.user();
+	//create tag and put it into "others category"	?? change it to meteor method	
+	var t = Tags.insert({
+        userId: user._id,
+        categoryId : category3,
+        author: user.profile.name,
+        submitted: now - 4 * 3600 * 1000,
+        tagname: item,
+        other: item
+    });
+		
+		LocalTags.create({tagname: tname});
+		
 		return false;
 	}
 	// make it selected and update the ui

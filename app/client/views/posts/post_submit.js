@@ -53,7 +53,7 @@ Template.postSubmit.events({
             
             	$( "#for_psubmit" ).animate({
     				height: "toggle"
-  					}, 2000, function() {
+  					}, 500, function() {
     					// Animation complete.
     					Session.set("show_post_form", false);
   					});
@@ -78,7 +78,7 @@ Template.postSubmit.events({
 		if(Session.get("show_post_form")){
 		 $( "#for_psubmit" ).animate({
     		height: "toggle"
-  		}, 2000, function() {
+  		}, 500, function() {
     		// Animation complete.
     		Session.set("show_post_form", false);
   		});

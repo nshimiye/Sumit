@@ -190,7 +190,7 @@
             		
                   		$(localTags_ctn).removeClass("sumit_tag_focus"); 
                   			if(LocalTags.selected().length <= 0){
-								Session.set("nofoundtag", "LocalTags");
+								Session.set("nofoundtag", "Tags");
 							}else{
 								Session.set("nofoundtag", "");
 							} 
