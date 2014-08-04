@@ -1,10 +1,10 @@
 {
   "packages": {
-    "iron-router": {},
-    "iron-router-progress": {},
     "accounts-ui-bootstrap-3": {},
     "collectionFS": {},
     "cfs-ui": {},
-    "cfs-s3": {}
+    "cfs-s3": {},
+    "iron-router": {},
+    "iron-router-progress": {}
   }
 }

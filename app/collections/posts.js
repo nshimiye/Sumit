@@ -2,10 +2,10 @@ Posts = new Meteor.Collection('posts');
 
 var imageStore = new FS.Store.S3("posts", {
   region: "my-s3-region", //optional in most cases
-  accessKeyId: "AKIAJHIX2I55CCU2Z2NQ", //required if environment variables are not set
-  secretAccessKey: "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", //required if environment variables are not set
-  bucket: "image_bucket", //required
-  directory: '/uploads/images/',
+  accessKeyId: "", //required if environment variables are not set
+  secretAccessKey: "", //required if environment variables are not set
+  bucket: "fake", //required
+  directory: '',
   //ACL: myValue //optional, default is 'private', but you can allow public or secure access routed through your app URL
   // The rest are generic store options supported by all storage adapters
   //transformWrite: myTransformWriteFunction, //optional
