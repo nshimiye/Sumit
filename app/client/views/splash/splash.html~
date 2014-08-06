@@ -29,16 +29,14 @@
                 border-color: transparent;
             }
 
-
-
-
 </style>
+
 
 {{> splash_header}}
 
  <div id="fullpage">
 
- <div class="section "  id="section2">
+ <div class="section"  id="section2">
  
  {{> shome}}
  

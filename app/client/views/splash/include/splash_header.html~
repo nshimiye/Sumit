@@ -14,7 +14,7 @@
                     </button>
                     <a class="navbar-brand shome_btn" href="/" style="padding-top: 10px;">
 
-                        <img src="assets/img/logo.png" alt="SUMIT logo" style="height: 35px;  vertical-align: text-bottom; ">
+                        <img src="/assets/img/logo.png" alt="SUMIT logo" style="height: 35px;  vertical-align: text-bottom; ">
 
 						{{#if oprojects}} Global Challenges Forum {{/if}}
                     </a>
@@ -63,7 +63,7 @@ padding-bottom: 5px;
                                padding-bottom: 5px;
                                font-weight: bold;
                                "> 
-                               <img src="images/pholder.png" alt="thumb" style="height: 35px;  width: 35px; 
+                               <img src="/images/pholder.png" alt="thumb" style="height: 35px;  width: 35px; 
                                margin-right: 1em; padding-bottom: 0.4em;">
                                {{userInfo}}</a>
                       </li>               
@@ -106,8 +106,8 @@ padding-bottom: 5px;
                         
                         {{#if oprojects}}
                         {{#if oprojects currentUser }}
-            <!-- to be modified though -->
-            <form class="navbar-form navbar-right {{activeRouteClass 'postSubmit'}}">
+            <!-- to be modified though {{activeRouteClass 'postSubmit'}} -->
+            <form class="navbar-form navbar-right ">
                 <!--a href="{{pathFor 'postSubmit'}}" class="btn btn-primary ">New Post</a-->
                  <a href="#" class="btn btn-primary new_post {{#if show_submit}}active{{/if}}"
                  style="height: 35px;

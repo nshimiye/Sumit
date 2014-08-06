@@ -4,6 +4,18 @@ Template.splash_header.helpers({
 		Session.set("show_signin", true);
 		Session.set("oprojects", false);
 	},
+	
+	    activeRouteClass: function(/* route names */) {
+        var args = Array.prototype.slice.call(arguments, 0);
+        args.pop();
+
+        var active = _.any(args, function(name) {
+            return Router.current() && Router.current().route.name === name
+        });
+
+        return active && 'active';
+    },
+	
 	show_signin: function(){
 		return Session.get("show_signin");
 	},
@@ -27,7 +39,7 @@ Template.splash_header.events({
 	
 	$(".login_here").animate(
 		{height: "toggle"},
-		1000
+		0
 	);
 	
 },
