@@ -90,7 +90,8 @@
         </div>
             <div id="Post{{spostid}}" class="panel-collapse collapse">
             <div class="panel-body " style="padding: 0; border: none;">
-<div class="col-xs-12" style="padding: 3em; border: 2px solid rgba(208, 224, 227, 1);">
+<!--div class="col-xs-12" style="padding: 3em; border: 2px solid rgba(208, 224, 227, 1);"-->
+<div class="col-xs-12" style="padding: 3em; border: none;">
 {{message}}
 
 

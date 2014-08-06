@@ -62,8 +62,8 @@
       },
       "cfs-access-point": {
         "git": "https://github.com/CollectionFS/Meteor-cfs-access-point.git",
-        "tag": "v0.0.33",
-        "commit": "9c0660e42b494ac3c8eb811942fa9fb04c4adec7"
+        "tag": "v0.0.36",
+        "commit": "faf45b12b0e68a8e95d040898c4dbca32c3b515a"
       },
       "cfs-worker": {
         "git": "https://github.com/CollectionFS/Meteor-cfs-worker.git",

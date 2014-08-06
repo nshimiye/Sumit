@@ -1,5 +1,9 @@
 
 Template.postPage.helpers({
+	rendered: function(){
+		
+		Session.set("oprojects", true);
+	},
     comments: function() {
         return Comments.find({postId: this._id});
     },

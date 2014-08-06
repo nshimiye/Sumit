@@ -1,5 +1,6 @@
 <template name="userProfile">
-{{checkLogin}}
+
+{{#if currentUser }}
     <div class="container" style="width: 95%;">
 
       <div class="row">
@@ -7,13 +8,14 @@
           <img src="{{profileImage}}"><br><br><a href="#" class="cprofile">Change profile picture</a>
         </div>
         <input type="file" class="ifile" style="display:none;">
-        <div class="col-md-9">
-          <div class="info"><h3>{{name}}</h3> <a href="">{{website}}</a>             
-            total points: <b>{{totalPoints}}</b> &nbsp;&nbsp;&nbsp;   
-            primary role: <b>{{primaryRole}}</b> &nbsp;&nbsp;&nbsp;
-            level: <b>{{level}}</b> <br><br>
-            <b>Home Base:</b> {{home}}            
-            <b>Currently in:</b> {{currentLoc}}              
+        <div class="col-md-9" style="font-size: 0.8em;">
+          <div class="info">
+          <span style="margin-right: 2em;"><b><a href="{{website}}" style="font-size: 1.7em;">{{name}}</a></b>  <a href="#" class="edit">Edit Profile</a>   </span>          
+            <span style="margin-right: 2em;"> total points: <b style="font-size: 1.7em;">{{totalPoints}}</b>  </span> 
+            <span> primary role: <b style="font-size: 1.7em;">{{primaryRole}}</b>  </span>
+            <br>  
+            <b>Home Base:</b> {{home}}  <br>          
+            <b>Currently in:</b> {{currentLoc}}   <br>           
             <b>Nationality/Origin:</b> {{nationality}} <br>
             <b>Affiliations:</b> {{affiliations}} <br>
             <b>Social Media:</b> <img src="images/facebook.png">
@@ -25,66 +27,42 @@
       <br><br>
 
       <div class="row">
-        <div class="col-md-2 panel panel-default focusAreas"><h3>Focus Areas</h3><hr>
-          <br><br>
-          <div>{{focusAreas}}</div>
-          <br><br>
+        <div class="col-md-2 panel panel-default focusAreas"><h3>Focus Areas</h3>
+          <div style="padding: 1em;
+						border-top: 1px solid grey;">{{focusAreas}}</div>
+          
         </div>
 
 
-        <div class="col-md-6 stats">
-          <div class="row globalStats">
-            <div class="col-md-3">
-              <img src="images/globe.png">
-            </div>
-            <div class="col-md-2"><h5> Global Challenges Working Group</h5></div>
-            <div class="col-md-3"></div>
-            <div class="col-md-4">
-              <a href="">Problems Posted:</a> {{problemsPostedGlobal}}<br>
-              <a href="">Comments Posted:</a> {{commentsPostedGlobal}}<br>
-              <a href="">Points Earned:</a> {{pointsEarnedGlobal}}
-            </div>
-          </div>
+ 
 
-          <div class="row litStats">
-            <div class="col-md-3">
-              <img src="images/pages.png">
-            </div>
-            <div class="col-md-2"><h5> Literature Curation Initiave</h5></div>
-            <div class="col-md-3"></div>
-            <div class="col-md-4">
-              <a href="">Papers Indexed:</a> {{papersIndexed}}<br>
-              <a href="">Papers Annotated:</a> {{papersAnnotated}}<br>
-              <a href="">Papers Uploaded:</a> {{papersUploaded}}<br>
-              <a href="">Points Earned:</a> {{pointsEarnedLit}}
-            </div>
-          </div>
-
-          <div class="row openStats">
-            <div class="col-md-3">
-              <img src="images/lightbulb.png">
-            </div>
-            <div class="col-md-2"><h5>Open Innovation Collaborative</h5></div>
-            <div class="col-md-3"></div>
-            <div class="col-md-4">
-              <a href="">Problems Posted:</a> {{problemsPostedOpen}}<br>
-              <a href="">Comments Posted:</a> {{commentsPostedOpen}}<br>
-              <a href="">Points Earned:</a> {{pointsEarnedOpen}}
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-10">
           <div class="topContributions panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">Top Contributions</h3></div>
-            <div class="panel-body">
-              {{#each contributions}}
-              {{> contribution}}
-              {{/each}}
-            </div>
+            <div class="panel-heading"><h3 class="panel-title">has all buttons</h3></div>
+
+				<div id="accordion_post" class="panel-group inPost"  style="margin-bottom: 0px;">
+    {{#each postsWithRank}}
+    
+    <!-- style="/* padding: 1em; background-color: #f3f3f3*/" -->
+    	<div class="panel panel-default tags">
+      		{{> postItem}}
+      	</div>
+      	
+    {{/each}}
+    
+	</div>
+	
+    {{#if nextPath}}
+        <a class="load-more" href="{{nextPath}}">Load more</a>
+    {{/if}}
+ 
+
           </div>
         </div>
       </div>
 
     </div><!-- /.container -->
- 
+    {{else}}
+    {{checkLogin}}
+ {{/if}}
 </template>

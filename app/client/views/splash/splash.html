@@ -1,28 +1,30 @@
 <template name="splash">
-
+{{init}}
 <link rel="stylesheet" href="assets/css/jquery.fullPage.css">
+
+
 <style>
 
    .btn-hover {
                 background-color: rgba(69, 129, 142, 0.48) !important;
                 color: white !important;
             }
-   .active .btn-full {
+            .active .btn-full {
                 background-color: rgba(69, 129, 142, 0.48) !important;
                 color: white !important;
             }
 
-   .s_down{
+            .s_down{
                 cursor: pointer;
             }
 
-   .fp-controlArrow.fp-prev{
+            .fp-controlArrow.fp-prev{
                 left: 15px;
                 width: 0;
                 border-width: 0px 0px 0px 0;
                 border-color: transparent;
             }
-   .fp-controlArrow.fp-next{
+            .fp-controlArrow.fp-next{
                 right: 15px;
                 border-width: 0;
                 border-color: transparent;
@@ -42,14 +44,14 @@
  </div>
 
  <div class="section"  id="section0">
- 
+
  {{> vision}}
  
  </div>
 
 
  <div class="section"  id="section1">
- 
+
  {{> mission}}
  
  </div>

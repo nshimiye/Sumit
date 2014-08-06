@@ -34,7 +34,7 @@ Template.postSubmit.events({
 	//create a post with user info
         var post = {
             title: $(e.target).find('[name=title]').val(),
-            message: $(e.target).find('[name=message]').val(),
+            message: $('.textarea').val(),
             tags: newTags,
             links: allLinks,
             files: fileIDS
@@ -46,7 +46,7 @@ Template.postSubmit.events({
             if (error) {
                 //display the error to the user
                 //Errors.throw(error.reason);
- console.log(error.reason);
+ 				console.log(error.reason);
                 if (error.error === 302)
                     Router.go('postPage', {_id: error.details})
             } else {
@@ -63,9 +63,9 @@ Template.postSubmit.events({
   				allLinks = null; allFiles = null; newTags = null;
   				Session.set("attachments", []);
   				Session.set("links", []);
-  		$.each(fileIDS, function(i, itemID){
-        	PostsFS.update({_id: itemID}, {$set: {postID: id}});
-        });
+  				$.each(fileIDS, function(i, itemID){
+        			PostsFS.update({_id: itemID}, {$set: {postID: id}});
+        		});
             
                 Router.go('postPage', {_id: id});
             }
@@ -301,4 +301,23 @@ Template.linksView.events({
 
 
 });
+
+
+
+
+Template.cleanEditor.helpers({
+
+	rendered: function(){
+	
+
+    $('.textarea').wysihtml5();
+
+	
+
+
+	}
+
+});
+
+
 

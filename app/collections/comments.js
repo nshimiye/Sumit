@@ -50,6 +50,7 @@ Meteor.methods({
         }, {
             //adds an item to an array property as long as it doesn't already exist
             $addToSet: {upvoters: user._id},
+            $pull: {downvoters: user._id},
             //increments an integer field
             $inc: {votes: 1}
         });
@@ -67,9 +68,11 @@ Meteor.methods({
         }, {
             //adds an item to an array property as long as it doesn't already exist
             $addToSet: {downvoters: user._id},
+            $pull: {upvoters: user._id},
             //increments an integer field
             $inc: {votes: -1}
         });
+        
     }
     
     

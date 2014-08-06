@@ -4,7 +4,7 @@ Router.configure({
     waitOn: function() { 
         return [Meteor.subscribe('notifications'),
         		Meteor.subscribe('categories'),
-        		Meteor.subscribe('tags'),
+        		Meteor.subscribe('tags')
         ]; 
     }
 });
@@ -12,6 +12,25 @@ Router.configure({
 //splash
 SplashController = RouteController.extend({
 	template: 'splash',
+ /*   waitOn: function() {
+        return [
+        	Meteor.subscribe('posts'),
+        	Meteor.subscribe('cfs.posts.filerecord')
+        ];
+    },
+    posts: function() {
+        return Posts.find({});
+    },
+    postsFS: function() {
+        return PostsFS.find({});
+    },
+    data: function() {
+    	return {
+    		user: Meteor.user(),
+            posts: this.posts(),
+            postsFS : this.postsFS()
+        };
+    },*/
 });
 
 ProfileController = RouteController.extend({
@@ -33,6 +52,7 @@ ProfileController = RouteController.extend({
     },
     comments: function() {
     	var user = Meteor.user();
+    	console.log(Meteor);
         return Comments.find({userId: user._id});
     },
     totalPoints: function() {

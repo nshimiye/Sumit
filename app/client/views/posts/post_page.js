@@ -50,7 +50,10 @@ Template.postPage.events({
 	'click .loginTrigger': function(e){
 		e.preventDefault();
 		
-	 	$("#login-dropdown-list").addClass("open");
+	 		$(".login_here").animate(
+			{height: "toggle"},
+			500
+		);
 	 	
 		return false;
 	},

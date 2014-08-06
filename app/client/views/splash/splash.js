@@ -1,4 +1,9 @@
- Template.splash.helpers({
+var posts = null;
+Template.splash.helpers({
+	init: function(){
+		posts = this.posts;
+		postsFS = this.postsFS;
+	},
  	rendered : function(){
  	
  		Session.set("oprojects", false);
@@ -10,10 +15,7 @@
             	autoScrolling: false
             });
 	
-	
-	
-	
-	            //slide to sinup page -- uses  fullpage library function
+	        //slide to sinup page -- uses  fullpage library function
             $(".signup").click(function (){
             	$.fn.fullpage.moveSlideRight();
             });
@@ -119,3 +121,9 @@
 	
 	}
 });
+
+
+
+
+//============================
+

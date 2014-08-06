@@ -52,7 +52,7 @@ Template.comment.helpers({
 Template.comment.events({
     'click .upvotable': function(e) {
         e.preventDefault();
-        console.log("vote =====>", e);
+        console.log("e =====>", e);
         Meteor.call('upvoteComment', this._id);
     },
     'click .downvotable': function(e) {

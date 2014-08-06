@@ -150,12 +150,16 @@ Template.postItem.events({
    
    		//console.log("data-id", $(e.target).attr("data-id"));
    		//console.log("data-id", $(e.target));
+   		if(Session.get(this._id+"Open")){
+   			Session.set(this._id+"Open", false);
+   			return true;
+   		}
    
     	if($(e.target).attr("data-id") === this._id){
     		
 				for(var i=0 ; i < allPOSTS.length; i++){
-				var item = allPOSTS[i];
-				console.log(item);
+					var item = allPOSTS[i];
+					console.log(item);
 					Session.set(item+"Open", false);
 				}
 				

@@ -1,11 +1,30 @@
 allPOSTS = new Array(); //make it global
+increm = 10; 
 //Adds posts key and postsData value and
 //passing that object to the helperList function
 Template.postsList.helpers({
 
 	rendered: function(){
 		
-		Session.set("oprojects", false);
+		Session.set("oprojects", true);
+		
+		$(window).scroll(function() {
+   			if($(window).scrollTop() + $(window).height() == $(document).height()) {
+       		var ps = this.posts.map(function(post, index, cursor) {
+         	if(index > increm)
+		     	return;
+		    post._rank = index;
+			console.log(index);
+		  	return post;
+       	});
+       ps.splice(ps.indexOf(undefined), ps.length);
+		console.log(ps);
+			increm = increm*2;
+			Session.set("postsWithRank", ps);
+   		}
+	});
+		
+		
 	},
 
 	getPosts: function(){
@@ -30,7 +49,7 @@ Template.postsList.helpers({
         var ps = this.posts.map(function(post, index, cursor) {
          	
             post._rank = index;
-            //console.log(post);
+            console.log(index);
             return post;
         });
 		Session.set("postsWithRank", ps);

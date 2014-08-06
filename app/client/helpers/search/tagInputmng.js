@@ -132,7 +132,6 @@
 		}
 	});
 	
-	
 	Session.set("searchok", false);
 	Session.set("remainingTags", LocalTags.remaining());
 	
@@ -145,6 +144,7 @@
 
 			console.log(Session.get("remainingTags"));
 			return Session.get("remainingTags");
+			
 		},
 		searchOK : function(){
 			console.log(Session.get("searchok"));
@@ -152,7 +152,6 @@
 		},
 		
 	});
-	
 	
 	// ---- ==== -----
 	Template.tagview.events({
@@ -167,18 +166,12 @@
                 
                 //save the search area for later used
                 var searchArea = $(tagInputctn).children(".searchRes");
-
-                
-                
 				var tagInput = $(tagInputctn).children(".sumit_tag_in");
 				inputArea = tagInput;
-				
 				
 				console.log(tagInput);
 				
 				$(tagInput).focus(); //this line is the hello
-				
-				
   				$(document).click(function() {
                 	
                 	if($(tagInput).is(":focus")){
@@ -218,6 +211,37 @@
 		console.log(tag);
 		if(!tag){
 			
+			// save to others category
+				var ctr = Categories.findOne({nid: "other"});
+	console.log("others", ctr);
+var user = Meteor.user();
+var now = new Date().getTime();
+	//create tag and put it into "others category"	?? change it to meteor method	
+	var t = {
+        categoryId : ctr._id,
+        submitted: now - 4 * 3600 * 1000,
+        tagname: 	$(inputArea).text(),
+        other: 	$(inputArea).text()
+    };
+    	$(inputArea).text("");
+    
+     Meteor.call('tag', t, function(error, tag) {
+            if (error) {
+                //display the error to the user
+ 				console.log(error.reason);
+            } else {
+            	console.log("iddddd", tag);
+            	tag.selected = true;
+    			LocalTags.create(tag);
+    			Session.set("selectedTags", LocalTags.selected());
+				Session.set("remainingTags", LocalTags.searchTag({searchId: ""}));
+    		}
+    		Session.set("searchok", false);
+    });
+    
+    
+		
+			
 			return false;
 		}else{
 	// make it selected and update the ui
@@ -247,7 +271,7 @@
 	e.preventDefault();
 	
 	console.log("searchres(((");
-	console.log(e.target);
+	console.log($(e.target).text());
 	console.log("))))searchres");
 	
 	var tname = $(e.target).text();
@@ -255,18 +279,35 @@
 	var tag = LocalTags.search(tname.trim());
 	
 	if(!tag){
+	var ctr = Categories.findOne({nid: "other"});
+	console.log("others", ctr);
 var user = Meteor.user();
+var now = new Date().getTime();
 	//create tag and put it into "others category"	?? change it to meteor method	
-	var t = Tags.insert({
-        userId: user._id,
-        categoryId : category3,
-        author: user.profile.name,
+	var t = {
+        categoryId : ctr._id,
         submitted: now - 4 * 3600 * 1000,
-        tagname: item,
-        other: item
+        tagname: 	$(inputArea).text(),
+        other: 	$(inputArea).text()
+    };
+    	$(inputArea).text("");
+    
+     Meteor.call('tag', t, function(error, tag) {
+            if (error) {
+                //display the error to the user
+                //Errors.throw(error.reason);
+ 				console.log(error.reason);
+            } else {
+    			tag.selected = true;
+    			LocalTags.create(tag);
+    			Session.set("selectedTags", LocalTags.selected());
+				Session.set("remainingTags", LocalTags.searchTag({searchId: ""}));
+    		}
     });
+    
+    Session.set("searchok", false);
 		
-		LocalTags.create({tagname: tname});
+		
 		
 		return false;
 	}
@@ -276,6 +317,7 @@ var user = Meteor.user();
 	Session.set("remainingTags", LocalTags.searchTag({searchId: ""}));
 	
 	$(inputArea).text("");
+	Session.set("searchok", false);
 	//$(inputArea).focus();
 }
 

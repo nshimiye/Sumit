@@ -45,7 +45,7 @@ Template.postItem.helpers({
 	// we will have to edit this function
     upvotedClass: function() {
         var userId = Meteor.userId();
-        if (userId && !_.include(this.upvoters, userId) && !_.include(this.downvoters, userId)) {
+        if (userId && !_.include(this.upvoters, userId)) {
             return 'upvotable';
         } else {
             return 'disabled';
@@ -53,7 +53,7 @@ Template.postItem.helpers({
     },
 	downvotedClass: function() {
         var userId = Meteor.userId();
-        if (userId && !_.include(this.downvoters, userId) && !_.include(this.upvoters, userId)) {
+        if (userId && !_.include(this.downvoters, userId) ) {
             return 'downvotable';
         } else {
             return 'disabled';

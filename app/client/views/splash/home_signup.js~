@@ -35,13 +35,13 @@ Template.home_signup.events({
         var valid = isValidPassword(password.trim());
         
         if(!valid){
-        	$(".serror").html("Oops! wrong password, it has to be at least 6 characters");
+        	$(".serror").html("Password is at least 6 characters long");
         	return false;
         }
         
          if(password.trim() !== password_conf.trim()){
           console.log(" ===== in valid ---- in valid ===== ");
-        	$(".serror").html("Oops! password do not match");
+        	$(".serror").html("Password do not match");
         	return false;
         }
         
@@ -60,12 +60,16 @@ Template.home_signup.events({
           if (err) {
             // Inform the user that account creation failed
             console.log("failed",err);
-            $(".serror").html("Oops! problem occured, check your input");
+            $(".serror").html(err.reason);
           } else {
             // Success. Account has been created and the user
             // has logged in successfully.
            
-            Router.go('userProfile', {user: Meteor.user()});
+            $(".login_here").css({display: "none"});
+            if(thispath === "signup"){
+            	Router.go('userProfile', {user: Meteor.user()});
+            }
+
           }
 
         });
@@ -77,7 +81,7 @@ Template.home_signup.events({
 			e.preventDefault();
 		console.log("==================", thispath);
 		
-		if(thispath === "signup" && (thispath === "signin")){
+		if(thispath === "signup" || (thispath === "signin")){
 			Router.go('signInPage', {});
 		}
 		
@@ -87,8 +91,23 @@ Template.home_signup.events({
      
      "click .signout_caller" : function(e){
 			e.preventDefault();
-		console.log("==========signout========");
 		
+		Meteor.logout(function(){
+			//update ui
+			console.log("==========signout========");
+			var pathArray = window.location.pathname.split( "/" );
+			var path = pathArray[1];
+			if(path === "user"){
+				Router.go('signInPage', {});
+			}else{
+				
+				$(".login_here").css(
+					{display: "none"}
+				);
+			
+			}
+			
+		})
 		//delete all user information and then sign out
 	} 
 

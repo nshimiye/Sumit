@@ -8,7 +8,7 @@ var allTs = null;
 Template.tagView.helpers({
 
 	waitOn: function() { 
-        Meteor.subscribe('posts', {sort: {submitted: 1}, limit: 7})
+        Meteor.subscribe('posts', {sort: {submitted: 1}})
         
     },
 
@@ -36,6 +36,13 @@ Template.tagView.helpers({
     themeGroups : function(){
     	
     	var ctr = Categories.findOne({nid: "tg"});
+    	var ts = Tags.find({categoryId: ctr._id});
+
+    	return ts;
+    },
+    others : function(){
+    	
+    	var ctr = Categories.findOne({nid: "other"});
     	var ts = Tags.find({categoryId: ctr._id});
 
     	return ts;
@@ -101,19 +108,19 @@ Template.tagView.events({
 		if(allPosts.count() === 0){
 			
 			allPosts = Posts.find({});
+			
         }   
              console.log("taggingsssfsd", allPosts.count());
        //this.posts.rewind();
        var ps = allPosts.map(function(post, index, cursor) {
-         	
           post._rank = index;
-          //console.log(post);
+         console.log(index);
            return post;
        });
+       	ps.splice(ps.indexOf(undefined), ps.length);
+		console.log(ps);
 		
-			Session.set("postsWithRank", ps);
-                 
-		
+		Session.set("postsWithRank", ps);
 		return false;
 	}
 		

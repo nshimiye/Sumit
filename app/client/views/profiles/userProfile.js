@@ -2,7 +2,8 @@
 Template.userProfile.helpers({
 	rendered: function(){
 		
-		Session.set("oprojects", true);
+		Session.set("oprojects", false);
+		Session.set("notuserpage", false);
 	},
 	profileImage: function(){
 		return Session.get("pimage");
@@ -25,8 +26,7 @@ Template.userProfile.helpers({
 			);
 			var fileObj = mapper[0];
 			console.log("postsFS:::out:",fileObj.copies);
-			
-			
+
 			
 			Session.set("pimage", "../../upload/postsFS/"+ fileObj.copies.posts.key);
 		
@@ -42,9 +42,9 @@ Template.userProfile.helpers({
   
    var fa = this.user.profile.focusAreas;
   	console.log(fa);
-  	if(!fa)
-  		return "no focus areas set for "+ this.user.profile.name;
-    return fa;
+  	//if(!fa)
+  		//return "no focus areas set for "+ this.user.profile.name;
+    //return fa;
   
     return "Task-shifting • ICT for development • Agricultural Inputs • Obesity • Food Systems • Complex Systems Modelling • Technology • mHealth • Social Entrepreneurship • CSR";
     
@@ -109,7 +109,7 @@ Template.userProfile.helpers({
     var b = this.user.profile.affiliations;
   	console.log(b);
   	if(!b)
-  		return "no biography set for "+ this.user.profile.name;
+  		return "no biography set for yet";
     return b;
   },
   problemsPostedGlobal: function() {

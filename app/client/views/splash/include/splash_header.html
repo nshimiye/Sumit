@@ -16,8 +16,11 @@
 
                         <img src="/assets/img/logo.png" alt="SUMIT logo" style="height: 35px;  vertical-align: text-bottom; ">
 
-						{{#if oprojects}} Global Challenges Forum {{/if}}
+						
                     </a>
+                    {{#if oprojects}} 
+                    	<a class="navbar-brand shome_btn" href="http://localhost:3000/best" style="padding-top: 1em; float: right;">Global Challenges Forum</a>
+                    {{/if}}
                 </div>
 
 
@@ -26,6 +29,7 @@
 
 {{#if oprojects}}
 {{else}}
+{{#if notuserpage}}
                     <ul class="nav navbar-nav navbar-left" id="menufl">
 
 						
@@ -52,6 +56,7 @@ padding-bottom: 5px;
                                ">Mission</a></li>
                        
                     </ul>
+  {{/if}}
 {{/if}}
                      <ul class="nav navbar-nav navbar-right" >
 {{#if currentUser}}
@@ -67,14 +72,14 @@ padding-bottom: 5px;
                                margin-right: 1em; padding-bottom: 0.4em;">
                                {{userInfo}}</a>
                       </li>               
-                      <li style="padding-top: 10px; position: relative" >
+                      <!--li style="padding-top: 10px; position: relative" >
                             <a href="#" class="btn-nav" style="
                                margin-left: 1em;
                                padding-top: 5px;
                                padding-bottom: 5px;
                                font-weight: bold;
                                ">Settings</a>
-                      </li>
+                      </li-->
                       
 {{/if}}
                       <li style="padding-top: 10px; position: relative" >
@@ -104,8 +109,9 @@ padding-bottom: 5px;
                         
                         {{> searchAutoComplete}}
                         
+                       
+                       {{#if currentUser }}
                         {{#if oprojects}}
-                        {{#if oprojects currentUser }}
             <!-- to be modified though -->
             <form class="navbar-form navbar-right {{activeRouteClass 'postSubmit'}}">
                 <!--a href="{{pathFor 'postSubmit'}}" class="btn btn-primary ">New Post</a-->

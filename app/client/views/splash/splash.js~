@@ -1,5 +1,12 @@
- Template.splash.helpers({
+var posts = null;
+Template.splash.helpers({
+	init: function(){
+		posts = this.posts;
+		postsFS = this.postsFS;
+	},
  	rendered : function(){
+ 	
+ 		Session.set("oprojects", false);
  	
  		$("#fullpage").fullpage({
             	menu: '#menufl',
@@ -8,10 +15,7 @@
             	autoScrolling: false
             });
 	
-	
-	
-	
-	            //slide to sinup page -- uses  fullpage library function
+	        //slide to sinup page -- uses  fullpage library function
             $(".signup").click(function (){
             	$.fn.fullpage.moveSlideRight();
             });
@@ -117,3 +121,33 @@
 	
 	}
 });
+
+
+
+
+//============================
+
+ Template.home_main.helpers({
+ totalParticipants: function(e){
+     	var allp = posts, allU = [];
+    	var unique = 0;
+    	allp.forEach(function(post){
+    	console.log(post);
+    		if(allU.indexOf(post.userId) < 0){
+        		unique += 1;
+        		allU.push(post.userId);
+        	}
+        });
+ 		allU = [];
+ 	return unique;
+ },
+ totalPosts: function(e){
+ 	
+ 	return posts.count();
+
+ },
+ endorsedProposals: function(e){
+ 	return postsFS.count();
+ }
+ 	
+ });

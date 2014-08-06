@@ -16,8 +16,11 @@
 
                         <img src="/assets/img/logo.png" alt="SUMIT logo" style="height: 35px;  vertical-align: text-bottom; ">
 
-						{{#if oprojects}} Global Challenges Forum {{/if}}
+						
                     </a>
+                    {{#if oprojects}} 
+                    	<a class="navbar-brand shome_btn" href="http://localhost:3000/best" style="padding-top: 1em; float: right;">Global Challenges Forum</a>
+                    {{/if}}
                 </div>
 
 
@@ -26,6 +29,7 @@
 
 {{#if oprojects}}
 {{else}}
+{{#if notuserpage}}
                     <ul class="nav navbar-nav navbar-left" id="menufl">
 
 						
@@ -52,6 +56,7 @@ padding-bottom: 5px;
                                ">Mission</a></li>
                        
                     </ul>
+  {{/if}}
 {{/if}}
                      <ul class="nav navbar-nav navbar-right" >
 {{#if currentUser}}
@@ -104,10 +109,11 @@ padding-bottom: 5px;
                         
                         {{> searchAutoComplete}}
                         
+                       
+                       {{#if currentUser }}
                         {{#if oprojects}}
-                        {{#if oprojects currentUser }}
-            <!-- to be modified though {{activeRouteClass 'postSubmit'}} -->
-            <form class="navbar-form navbar-right ">
+            <!-- to be modified though -->
+            <form class="navbar-form navbar-right {{activeRouteClass 'postSubmit'}}">
                 <!--a href="{{pathFor 'postSubmit'}}" class="btn btn-primary ">New Post</a-->
                  <a href="#" class="btn btn-primary new_post {{#if show_submit}}active{{/if}}"
                  style="height: 35px;

@@ -5,7 +5,7 @@ var imageStore = new FS.Store.S3("posts", {
   accessKeyId: "", //required if environment variables are not set
   secretAccessKey: "", //required if environment variables are not set
   bucket: "fake", //required
-  directory: '',
+  directory: '/uploads/images/',
   //ACL: myValue //optional, default is 'private', but you can allow public or secure access routed through your app URL
   // The rest are generic store options supported by all storage adapters
   //transformWrite: myTransformWriteFunction, //optional
@@ -117,6 +117,7 @@ Meteor.methods({
         }, {
             //adds an item to an array property as long as it doesn't already exist
             $addToSet: {upvoters: user._id},
+            $pull: {downvoters: user._id},
             //increments an integer field
             $inc: {votes: 1}
         });
@@ -134,6 +135,7 @@ Meteor.methods({
         }, {
             //adds an item to an array property as long as it doesn't already exist
             $addToSet: {downvoters: user._id},
+            $pull: {upvoters: user._id},
             //increments an integer field
             $inc: {votes: -1}
         });

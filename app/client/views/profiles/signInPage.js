@@ -19,7 +19,7 @@ Template.signInPage.events({
 	
 	$(".login_here").animate(
 		{height: "toggle"},
-		1000
+		500
 	);
 	
 },
@@ -36,11 +36,21 @@ Template.signInPage.events({
         if (err) {
             // Inform the user that account creation failed
             console.log("failed",err);
-            $(".serror").html("Oops! problem occured, check your input");
+            
+            var msg = "Please provide all required input"; 
+            
+            if(err.error !== 400)
+            	msg = err.reason;
+            
+            $(".serror").html(msg || "Please make sure your input is correct" );
           } else {
             // Success. Account has been created and the user
             // has logged in successfully.
-            Router.go('userProfile', {user: Meteor.user()});
+            $(".login_here").css({display: "none"});
+            if(thispath === "signin"){
+            	Router.go('userProfile', {user: Meteor.user()});
+            }
+            
           }
           
       });
@@ -59,10 +69,25 @@ Template.signInPage.events({
 		},
      
      "click .signout_caller" : function(e){
-			e.preventDefault();
-		console.log("==========signout========");
+		e.preventDefault();
+		var pathArray = window.location.pathname.split( "/" );
+		var path = pathArray[1];
+		Meteor.logout(function(){
+			//update ui
+			console.log("==========signout========");
+			console.log("==========signout========");
+
+			$(".login_here").css(
+				{display: "none"}
+			);
+			if(path === "user"){
+
+				Router.go('signInPage', {});
+			}
+			
+			
+		});
 		
-		//delete all user information and then sign out
 	} 
       
       

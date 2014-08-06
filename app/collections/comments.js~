@@ -17,7 +17,10 @@ Meteor.methods({
         comment = _.extend(_.pick(commentAttributes, 'postId', 'body'), {
             userId: user._id,
             author: user.username,
-            submitted: new Date().getTime()
+            submitted: new Date().getTime(),
+            upvoters: [],
+            downvoters: [],
+            votes: 0
         });
 
         //update the post with the number of comments
@@ -64,9 +67,11 @@ Meteor.methods({
         }, {
             //adds an item to an array property as long as it doesn't already exist
             $addToSet: {downvoters: user._id},
+            $pull: {upvoters: user._id},
             //increments an integer field
             $inc: {votes: -1}
         });
+        
     }
     
     
