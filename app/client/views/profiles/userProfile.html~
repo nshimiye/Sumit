@@ -18,7 +18,7 @@
             <b>Currently in:</b> {{currentLoc}}   <br>           
             <b>Nationality/Origin:</b> {{nationality}} <br>
             <b>Affiliations:</b> {{affiliations}} <br>
-            <b>Social Media:</b> <img src="images/facebook.png">
+            <b>Networks:</b> <img src="images/facebook.png">
             <img src="images/twitter.png"> <img src="images/linkedin.png">{{socialMedia}} <br>
             <b>Bio:</b> {{ bio }}
           </div>
@@ -27,35 +27,29 @@
       <br><br>
 
       <div class="row">
-        <div class="col-md-2 panel panel-default focusAreas"><h3>Focus Areas</h3><hr>
-          
-          <div>{{focusAreas}}</div>
+        <div class="col-md-2 panel panel-default focusAreas"><h3>Focus Areas</h3>
+          <div style="padding: 1em;
+						border-top: 1px solid grey;">{{focusAreas}}</div>
           
         </div>
 
-
- 
-
         <div class="col-md-10">
-          <div class="topContributions panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">has all buttons</h3></div>
+          <div class="topContributions panel panel-default" style="border: 1px solid grey">
+            <div class="panel-heading">
+            <button type="button" class="btn btn-primary " style="">Subscribe</button>
+            <button type="button" class="btn btn-primary " style="">Saved Evidence</button>
+            <button type="button"  class="btn btn-primary myposts" style="">Submit</button>
+            <button type="button"  class="btn btn-primary " style="">My comments</button>
+            <button type="button"  class="btn btn-primary " style="">upvoted</button>
+            <button type="button"  class="btn btn-primary " style="">Downvoted</button>
+            
+            </div>
 
-				<div id="accordion_post" class="panel-group inPost"  style="margin-bottom: 0px;">
-    {{#each postsWithRank}}
+				
+{{> postsList}}
     
-    <!-- style="/* padding: 1em; background-color: #f3f3f3*/" -->
-    	<div class="panel panel-default tags">
-      		{{> postItem}}
-      	</div>
-      	
-    {{/each}}
-    
-	</div>
 	
-    {{#if nextPath}}
-        <a class="load-more" href="{{nextPath}}">Load more</a>
-    {{/if}}
- 
+
 
           </div>
         </div>

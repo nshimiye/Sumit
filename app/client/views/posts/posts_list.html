@@ -1,6 +1,6 @@
 <template name="postsList">
 {{getPosts}}
-<div class="col-lg-9 col-md-9 col-xs-9" >
+<div class="col-lg-{{#if nuserpage}}9{{else}}12{{/if}}" style="{{#if nuserpage}} {{else}}border: 1px solid rgb(221, 221, 221);{{/if}}">
   
   <div id="for_psubmit" style="display: {{#if show_submit}}block{{else}}none{{/if}};">
   	
@@ -9,7 +9,7 @@
   </div>
   
   <div class="posts">
-	<div id="accordion_post" class="panel-group inPost"  style="margin-bottom: 0px;">
+	<div id="accordion_post" class="panel-group inPost"  style="{{#if nuserpage}} margin-bottom: 0px; {{else}} margin-top: 15px; margin-bottom: 15px;{{/if}}">
     {{#each postsWithRank}}
     
     <!-- style="/* padding: 1em; background-color: #f3f3f3*/" -->
@@ -29,10 +29,11 @@
 </div>
 
 
+{{#if nuserpage}}
 <div class="col-lg-3 col-md-3 col-xs-3" >
 
 {{> tagView}}
 
 </div>
-
+{{/if}}
 </template>

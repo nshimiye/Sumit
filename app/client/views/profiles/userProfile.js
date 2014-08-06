@@ -113,8 +113,8 @@ Template.userProfile.helpers({
     return b;
   },
   problemsPostedGlobal: function() {
-    return this.posts.count();
-  },
+		return Session.get("problemsPostedGlobal");
+    },
   commentsPostedGlobal: function() {
 
   	
@@ -138,6 +138,9 @@ Template.userProfile.helpers({
   problemsPostedOpen: function() { //define difference between global and open
 
     return this.posts.count();
+    
+    
+    
   },
   commentsPostedOpen: function() {
 
@@ -206,6 +209,17 @@ Template.userProfile.events({
      	
      	});
 	
+}, "click .myposts" : function(){
+
+var all = this.posts.map(
+				function(post, index, cursor){
+					console.log("postsFS:::name:",post);
+					return post;
+				}
+			);
+
+
+	Session.set("problemsPostedGlobal", all);
 }
 
 });
