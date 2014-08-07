@@ -110,6 +110,7 @@ Meteor.methods({
 
 	
 	// to be fixed
+	
 
         Posts.update({
             _id: postId,
@@ -139,6 +140,28 @@ Meteor.methods({
             //increments an integer field
             $inc: {votes: -1}
         });
+    },
+    subscribe : function(postId) {
+        var user = Meteor.user();
+        //ensure the user is logger in
+        if (!user)
+            throw new Meteor.Error(401, "You need to login to subscribe");
+		var check = Posts.findOne({_id : postId, subscribers : { $all: [user._id] }});
+		console.log(check);
+		if(!check){ //user not subscribed
+			Posts.update({
+            _id: postId,
+            
+        },{$addToSet: {subscribers: user._id}});
+		}else{//user subscribed, so we remove them
+		 Posts.update({
+            _id: postId,
+            
+        },{
+        $pull: {subscribers: user._id},
+        });
+		}
+       
     },
     //upload files here
      postFS: function(file) {

@@ -38,6 +38,7 @@ ProfileController = RouteController.extend({
     waitOn: function() {
         return [
         	Meteor.subscribe('posts'),
+        	Meteor.subscribe('evidences'),
         	Meteor.subscribe('comments'),
         	Meteor.subscribe('cfs.posts.filerecord')
         ];
@@ -50,10 +51,27 @@ ProfileController = RouteController.extend({
     	var user = Meteor.user()
         return PostsFS.find({userId: user._id});
     },
+    ups: function() {
+    	var user = Meteor.user()
+        return Posts.find({upvoters : { $all: [user._id] }});
+    },
+    downs: function() {
+    	var user = Meteor.user()
+        return Posts.find({ downvoters : { $all: [user._id] }});
+    },
+    subs: function() {
+    	var user = Meteor.user()
+        return Posts.find({subscribers: {$all : [user._id] }});
+    },
     comments: function() {
     	var user = Meteor.user();
-    	console.log(Meteor);
+    	console.log("-----------------------------------------",user._id);
         return Comments.find({userId: user._id});
+    },
+    evidences: function() {
+    	var user = Meteor.user();
+    	console.log(Meteor);
+        return Evidences.find({userId: user._id});
     },
     totalPoints: function() {
     	var user = Meteor.user();
@@ -75,6 +93,10 @@ ProfileController = RouteController.extend({
     		user: Meteor.user(),
     		comments: this.comments(),
             posts: this.posts(),
+            ups : this.ups(),
+            downs : this.downs(),
+            subs : this.subs(),
+            evidences : this.evidences(),
             postsFS: this.postsFS(),
             points: this.totalPoints()
             
@@ -225,4 +247,5 @@ var requireLogin = function(pause) {
 
 Router.onBeforeAction('loading');
 Router.onBeforeAction(requireLogin, {only: 'postSubmit'});
+Router.onBeforeAction(requireLogin, {only: 'userProfile'});
 Router.onBeforeAction(function() { Errors.clearSeen(); });

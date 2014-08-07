@@ -59,9 +59,8 @@
             <br>
 
 {{#if isPostPage}}
-	<a data-me="evidence" class="btn btn-warning evidence" data-id="{{spostid}}" 
- 			href="{{pathFor 'postPage'}}">
-            Evidence</a>
+	<a data-me="evidence" class="btn btn-warning evidence" data-id="{{spostid}}"  			href="{{pathFor 'postPage'}}"> Evidence</a>
+	<a data-me="subs" class="btn btn-default subs"			href="#"> Subscribe</a>
              <!--a data-me="innovation" class="btn btn-success innovation" data-id="{{spostid}}" 
              	 		href="#Post{{spostid}}">
             Innovations</a-->
@@ -71,6 +70,7 @@
 	<a data-me="evidence" class="btn btn-warning evidence" data-id="{{spostid}}" 
  			href="{{pathFor 'postPage'}}">
             Evidence</a>
+            <a data-me="subs" class="btn btn-{{#if sbs}}success{{else}}default{{/if}} subs"	href="#"> {{#if sbs}}  Un{{/if}}subscribe</a>
              <!--a data-me="innovation" class="btn btn-success innovation" data-id="{{spostid}}" 
              	 		href="#Post{{spostid}}">  
             Innovations</a-->
@@ -92,7 +92,7 @@
             <div class="panel-body " style="padding: 0; border: none;">
 <!--div class="col-xs-12" style="padding: 3em; border: 2px solid rgba(208, 224, 227, 1);"-->
 <div class="col-xs-12" style="padding: 3em; border: none;">
-{{message}}
+{{{message}}}
 
 
 </div>

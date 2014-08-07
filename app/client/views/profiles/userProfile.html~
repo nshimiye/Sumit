@@ -34,23 +34,41 @@
         </div>
 
         <div class="col-md-10">
-          <div class="topContributions panel panel-default" style="border: 1px solid grey">
+          <div class="topContributions panel panel-default" >
             <div class="panel-heading">
-            <button type="button" class="btn btn-primary " style="">Subscribe</button>
-            <button type="button" class="btn btn-primary " style="">Saved Evidence</button>
+            <button type="button" class="btn btn-primary subscription" style="">Subscribe</button>
+            <button type="button" class="btn btn-primary myevidence" style="">Saved Evidence</button>
             <button type="button"  class="btn btn-primary myposts" style="">Submit</button>
-            <button type="button"  class="btn btn-primary " style="">My comments</button>
-            <button type="button"  class="btn btn-primary " style="">upvoted</button>
-            <button type="button"  class="btn btn-primary " style="">Downvoted</button>
+            <button type="button"  class="btn btn-primary mycomments" style="">My comments</button>
+            <button type="button"  class="btn btn-primary myupvotes" style="">upvoted</button>
+            <button type="button"  class="btn btn-primary mydownvotes" style="">Downvoted</button>
             
             </div>
 
-				
-{{> postsList}}
-    
-	
+			{{#if plist}}	
+				{{> postsList}}
+    		{{/if}}
+	<!-- for comments -->
+            <div class="panel-body " style="padding-top: 0; padding-bottom: 0; border: none;">
 
+                <ul class="media-list comments">
+                {{#if cms}}
+ 					{{#each allcomments}}
 
+ 						{{> comment}}
+                        
+ 					{{/each}}
+				{{/if}}
+	<!-- for evidences -->
+				{{#if evd}}
+						{{#each allevidence}}
+
+                        	{{> evidence}}
+                        
+                    	{{/each}}
+                {{/if}}
+				</ul>
+			</div>
           </div>
         </div>
       </div>

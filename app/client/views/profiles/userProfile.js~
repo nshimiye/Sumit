@@ -4,6 +4,7 @@ Template.userProfile.helpers({
 		
 		Session.set("oprojects", false);
 		Session.set("notuserpage", false);
+		Session.set("nuserpage", false);
 	},
 	profileImage: function(){
 		return Session.get("pimage");
@@ -14,16 +15,13 @@ Template.userProfile.helpers({
 		if(!this.user){
 			Router.go('signInPage', {});	
 		}
-		
 		console.log("postsFS::::",FS);
 		
 		if(this.postsFS.count() > 0){
-			var mapper = this.postsFS.map(
-				function(i){
-					console.log("postsFS:::name:",i);
+			var mapper = this.postsFS.map(function(i){
+					console.log("postsFS:::name:", i );
 					return i;
-				}
-			);
+				});
 			var fileObj = mapper[0];
 			console.log("postsFS:::out:",fileObj.copies);
 
@@ -112,9 +110,24 @@ Template.userProfile.helpers({
   		return "no biography set for yet";
     return b;
   },
+	plist: function() {
+		return Session.get("plist");
+    },
+  	evd: function() {
+		return Session.get("evd");
+    },
+    cms: function() {
+		return Session.get("cms");
+    },
   problemsPostedGlobal: function() {
-    return this.posts.count();
-  },
+		return Session.get("problemsPostedGlobal");
+    },
+	allcomments: function() {
+		return Session.get("allcomments");
+    },
+	allevidence: function() {
+		return Session.get("allevidence");
+    },
   commentsPostedGlobal: function() {
 
   	
@@ -209,7 +222,10 @@ Template.userProfile.events({
      	
      	});
 	
-}, "click .myposts" : function(){
+}, 
+
+//user profile data control --- for posts
+"click .myposts" : function(){
 
 var all = this.posts.map(
 				function(post, index, cursor){
@@ -217,9 +233,83 @@ var all = this.posts.map(
 					return post;
 				}
 			);
-
+Session.set("evd", false);
+Session.set("cms", false);
+Session.set("plist", true);
 
 	Session.set("postsWithRank", all);
+},
+"click .myupvotes" : function(){
+
+var all = this.ups.map(
+				function(post, index, cursor){
+					console.log("postsFS:::name:",post);
+					return post;
+				}
+			);
+Session.set("evd", false);
+Session.set("cms", false);
+Session.set("plist", true);
+
+	Session.set("postsWithRank", all);
+},
+"click .mydownvotes" : function(){
+
+var all = this.downs.map(
+				function(post, index, cursor){
+					console.log("postsFS:::name:",post);
+					return post;
+				}
+			);
+
+Session.set("evd", false);
+Session.set("cms", false);
+Session.set("plist", true);
+	Session.set("postsWithRank", all);
+},
+"click .subscription" : function(){
+
+var all = this.subs.map(
+				function(post, index, cursor){
+					console.log("postsFS:::name:",post);
+					return post;
+				}
+			);
+Session.set("evd", false);
+Session.set("cms", false);
+Session.set("plist", true);
+
+	Session.set("postsWithRank", all);
+},
+
+//user profile data control --- for posts
+"click .myevidence" : function(){
+
+var all = this.evidences.map(
+				function(post, index, cursor){
+					console.log("postsFS:::name:",post);
+					return post;
+				}
+			);
+
+Session.set("evd", true);
+Session.set("cms", false);
+Session.set("plist", false);
+	Session.set("allevidence", all);
+},
+"click .mycomments" : function(){
+console.log("postsFS:::name:",this.comments1.count());
+var all = this.comments1.map(function(comment, index, cursor){
+					console.log("postsFS:::name:",comment);
+					return comment;
+				});
+
+Session.set("evd", false);
+Session.set("cms", true);
+Session.set("plist", false);
+	Session.set("allcomments", all);
 }
+
+
 
 });

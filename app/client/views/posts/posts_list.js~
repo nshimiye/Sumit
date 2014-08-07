@@ -7,8 +7,13 @@ Template.postsList.helpers({
 	rendered: function(){
 		
 		Session.set("oprojects", true);
+		var rt = Router.current({}).route.name;
+		Session.set("nuserpage", rt.trim() !== "user");
 		
 		$(window).scroll(function() {
+		
+			console.log();
+		
    			if($(window).scrollTop() + $(window).height() == $(document).height()) {
        		var ps = this.posts.map(function(post, index, cursor) {
          	if(index > increm)
@@ -26,6 +31,9 @@ Template.postsList.helpers({
 		
 		
 	},
+	nuserpage: function(){
+		return Session.get("nuserpage");
+	},
 
 	getPosts: function(){
 	// hide all innovations buttons
@@ -42,6 +50,7 @@ Template.postsList.helpers({
         	rt = rt.toString();
         	Template.postItem.isPostPage = (rt.trim() === "postPage")? true : false;
         	Template.postItem.isPostList = (rt.trim() === "postList")? true : false;
+        	
         	
        //===================================
         

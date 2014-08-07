@@ -42,10 +42,17 @@ Template.postItem.helpers({
         } 
         
     },
+    sbs: function(){
+    var userId = Meteor.userId();
+    	if (userId && !_.include(this.subscribers, userId)) {
+    		return false;
+    	}
+    	return true;
+    },
 	// we will have to edit this function
     upvotedClass: function() {
         var userId = Meteor.userId();
-        if (userId && !_.include(this.upvoters, userId) && !_.include(this.downvoters, userId)) {
+        if (userId && !_.include(this.upvoters, userId)) {
             return 'upvotable';
         } else {
             return 'disabled';
@@ -53,7 +60,7 @@ Template.postItem.helpers({
     },
 	downvotedClass: function() {
         var userId = Meteor.userId();
-        if (userId && !_.include(this.downvoters, userId) && !_.include(this.upvoters, userId)) {
+        if (userId && !_.include(this.downvoters, userId) ) {
             return 'downvotable';
         } else {
             return 'disabled';
@@ -144,6 +151,13 @@ Template.postItem.events({
         //e.preventDefault(); 
         Session.set("innovate", false);//innovate = true
         Session.set("evident", false);
+    },
+     "click .subs" : function(e) {
+        //e.preventDefault(); 
+         e.preventDefault();
+        
+         	Meteor.call('subscribe', this._id);
+         //Session.set("sbs-"+this._id, true);
     },
     
    "click .collapseit" : function(e){

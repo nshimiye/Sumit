@@ -42,6 +42,13 @@ Template.postItem.helpers({
         } 
         
     },
+    sbs: function(){
+    var userId = Meteor.userId();
+    	if (userId && !_.include(this.subscribers, userId)) {
+    		return false;
+    	}
+    	return true;
+    },
 	// we will have to edit this function
     upvotedClass: function() {
         var userId = Meteor.userId();
@@ -144,6 +151,14 @@ Template.postItem.events({
         //e.preventDefault(); 
         Session.set("innovate", false);//innovate = true
         Session.set("evident", false);
+    },
+     "click .subs" : function(e) {
+        //e.preventDefault(); 
+         e.preventDefault();
+        
+         	Meteor.call('subscribe', this._id);
+         //Session.set("sbs-"+this._id, true);
+         return false;
     },
     
    "click .collapseit" : function(e){
