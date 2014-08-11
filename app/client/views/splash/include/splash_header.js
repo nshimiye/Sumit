@@ -1,9 +1,20 @@
 Template.splash_header.helpers({
+	activeRouteClass: function(/* route names */) {
+        var args = Array.prototype.slice.call(arguments, 0);
+        args.pop();
+
+        var active = _.any(args, function(name) {
+            return Router.current() && Router.current().route.name === name
+        });
+
+        return active && 'active';
+    },
+
 	rendered: function(){
 		
 		Session.set("show_signin", true);
-		Session.set("oprojects", false);
-		Session.set("notuserpage", true);
+		Session.set("isProfile", false);
+		Session.set("openProjects", false);
 		
 		//make sure the login_area is closed
 		$(".login_here").css(
@@ -21,22 +32,24 @@ Template.splash_header.helpers({
 
         return active && 'active';
     },
-	notuserpage: function(){
-		return Session.get("notuserpage");
+	isProfile: function(){
+		return Session.get("isProfile");
 	},
 	show_signin: function(){
 		return Session.get("show_signin");
 	},
-	oprojects: function(){
-		return Session.get("oprojects");
+	openProjects: function(){
+		return Session.get("openProjects");
 	},
 	userInfo: function(){
 		var user = Meteor.user();	
-	
 		console.log("yes yes here ...", user);
-	
 		return user.profile.name;
 	},
+
+    show_submit : function(){
+        return Session.get("show_post_form");
+    }
 })
 
 Template.splash_header.events({
@@ -67,6 +80,20 @@ Template.splash_header.events({
     			Session.set("show_post_form", true);	
   			});
 	//}
-	}
+},
+"click .cancel_new_post" : function(e){
+        e.preventDefault();
+        console.log("yes yes here ...")
+        
+        if(Session.get("show_post_form")){
+         $( "#for_psubmit" ).animate({
+            height: "toggle"
+        }, 1000, function() {
+            // Animation complete.
+            Session.set("show_post_form", false);
+        });
+        }
+        
+    },
 
 });

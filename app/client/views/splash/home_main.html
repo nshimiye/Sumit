@@ -1,166 +1,85 @@
 <template name="home_main">
+    <div class="home_main">
 {{waitOn}}
            <img src="assets/img/svision_mine.PNG" style="position: absolute; top:0px; left:0; width: 100%; height: 100%;" alt="giving water">
-                    <div style="position: absolute; top:0px; left:0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.4);">
+            <div style="position: absolute; top:0px; left:0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.6);">
                         <!--cover the picture-->
+            </div>
+
+            <div style="position: absolute; top:80px; left: 22.5%; width: 55%; text-align: center">
+                
+                <div style="color: #134f5c; font-weight: normal;">
+                    
+                    <div style="font-size: 28pt; color: #134f5c;
+                    font-weight: bold;">
+                        OPEN PROJECTS 
+                        <!-- <img src="assets/img/creative_cmon.png" alt="Creative Commons" style="width: 40px; margin-bottom: 10px;"> -->
                     </div>
 
-                    <div style="position: absolute; top:75px; left: 5%;  width: 90%; ">
-
-                        <div style="color: #134f5c; font-weight: bold;">
-
-                            <div style="font-size: 30pt; color: #134f5c;
-                                 font-weight: bolder; ">
-                                Open Projects 
-                                <img src="assets/img/creative_cmon.png" alt="Creative Commons" style="width: 50px; ">
-                            </div>
-
-
-                            <div >
-                                <span style="color: #134f5c;">Sumits are open source projects under the <br>
-                                    Creative Commons Attribution-Sharealike License</span> 
-                            </div>
-
-                        </div>
-
-                        <div style="
-                             border-radius: 1em;
-
-                             margin-top: 15px;
-                             padding: 3em;
-                             padding-top: 1em;
-                             padding-bottom: 1em;
-
-                             background-color: rgba(255, 255, 255, 0.66);
-
-                             ">
-
-                            <div class="col1" style="width:10%; float: left; 
-
-                                 padding: 2em;
-
-                                 padding-left: 0px; 
-
-                                 border-right: 2px lightgray solid;">
-                                <a href="/best" class="challenge" style="font-weight: bold; color: #45818e;" >
-                                    Global
-                                    Challenges 
-                                    Forum
-                                </a>
-                            </div>
-
-                            <div class="col2" style="width:70%;  float: left; padding: 2em; padding-right: 30px; color: rgb(58, 68, 71);">
-                                Shape the discussion about the Sustainable Development Goals (SDGs) by identifying the challenges that you face at the policy, organizational, professional, and personal level.
-
-                            </div>
-                            <div class="col3" style="width:20%;  float: left; color: rgb(58, 68, 71);">
-                                Participants: <span>{{totalParticipants}}</span><br>
-                                Problems Posted:  <span>{{totalPosts}}</span><br>
-                                Proposals Endorsed:  <span>{{endorsedProposals}}</span><br>
-
-                                <a href="/best" class="btn btn-default btn-hover signup" style="margin-top: 1em;">Visit</a>
-
-                            </div>
-                            <div style="clear: both">
-                                <!--stop floating effect-->
-                            </div>
-                        </div>
-                        <div style="
-                             border-radius: 1em;
-
-                             margin-top: 15px;
-                             padding: 3em;
-                             padding-top: 1em;
-                             padding-bottom: 1em;
-
-                             background-color: rgba(255, 255, 255, 0.66);
-
-                             ">
-
-                            <div class="col1" style="width:10%; float: left; 
-
-                                 padding: 2em;
-
-                                 padding-left: 0px; 
-
-                                 border-right: 2px lightgray solid;">
-                                <a href="#" style="font-weight: bold; color: #ce9b00;" >
-                                    Literature
-                                    Curation
-                                    Initiative
-                                </a>
-                            </div>
-
-                            <div class="col2" style="width:70%;  float: left; padding: 2em; padding-right: 30px; color: rgb(58, 68, 71);">
-                                Annotate and index technical solutions and reports published by the Sustainable Development Solutions Network,
-                                the World Development Journal, and other related publications.
-
-                            </div>
-                            <div class="col3" style="width:20%;  float: left; color: rgb(58, 68, 71);">
-                                Participants: <span>0</span><br>
-                                Pdfs Indexed: <span>0</span><br>
-                                Pdfs Annotated: <span>0</span><br>
-                                Pdfs Uploaded: <span>0</span><br>
-
-                                <div style="margin-top: 0.5em;">
-                                    <a href="#evidence"  class=" evidence" style="color: #ce9b00; "  >Coming Soon</a>
-                                </div>
-
-                            </div>
-                            <div style="clear: both">
-                                <!--stop floating effect-->
-                            </div>
-                        </div>
-
-
-                        <div style="
-                             border-radius: 1em;
-                             margin-top: 15px;
-
-                             padding: 3em;
-                             padding-top: 1em;
-                             padding-bottom: 1em;
-
-                             background-color: rgba(255, 255, 255, 0.66);
-
-                             ">
-
-                            <div class="col1" style="width:10%; float: left; 
-
-                                 padding: 2em;
-
-                                 padding-left: 0px; 
-
-                                 border-right: 2px lightgray solid;">
-                                <a href="#" style="font-weight: bold; color: #6aa84f;" >
-                                    Open 
-                                    Innovation 
-                                    Collaborative
-                                </a>
-                            </div>
-
-                            <div class="col2" style="width:70%;  float: left; padding: 2em; padding-right: 30px; color: rgb(58, 68, 71);">
-                                Collaborate with us in designing the architecture of an online collaboration tool by conceptualizing, developing, and proposing ideas to solve the problems identified by the Global Challenges Forum.
-
-                            </div>
-                            <div class="col3" style="width:20%;  float: left; color: rgb(58, 68, 71);">
-                                Individuals Participating: <span>0</span><br>
-                                Organizations Participating: <span>0</span><br>
-                                Proposals Published: <span>0</span><br>
-                                Proposals Implemented: <span>0</span>
-
-                                <div style="margin-top: 0.5em;">
-                                    <a  href="#innovation" class=" innovation" style="color:  #6aa84f;" >Coming Soon</a>
-                                </div>
-
-                            </div>
-                            <div style="clear: both">
-                                <!--stop floating effect-->
-                            </div>
-                        </div>
-
-
-
+                    <div>
+                        <span style="font-size: 14pt; color: #134f5c;">
+                            <span style="font-size: 14pt; color: #134f5c;">
+                                <span style="font-weight: bold; color: #134f5c;"> Sumits </span> 
+                                are open source projects under the
+                            </span>
+                             <br>
+                            <a style="color: #3870cb" href="http://creativecommons.org/licenses/by-sa/2.5/">Creative Commons Attribution-Sharealike License</a></span> 
                     </div>
+                </div>
+                            
+                <a class="sumit-button" href="/best">
+                    <div class="sumit-button-contents" id="GCF">
+                        <div class="row1" style="width:100%; float: center; 
+                         padding-left: 0px;">
+                            Global Challenges Forum
+                         </div>
+                        <div class="sumit-description">
+                            {{>descWrapper text="Shape the discussion around the Sustainable Development Goals"}}
+                        </div>
+                    </div>
+                </a>
 
+
+                <a class="sumit-button " href="#">
+                    <div class="sumit-button-contents" id="LCI">
+                        <div class="row1" style="width:100%; float: center; 
+                         padding-left: 0px; color: #ce9b00;">
+                            Literature Curation Initiative
+                         </div>
+                        <div class="sumit-description">
+                            {{>descWrapper text="A repository of the world's technical solutions, publications, and reports."}}
+                    </div>
+                    <div style="clear: both">
+                        <!--stop floating effect-->
+                    </div>
+                </div>
+                </a>
+
+                <a class="sumit-button" href="#">
+                    <div class="sumit-button-contents" id="OIC">
+                        <div class="row1" style="width:100%; float: center; 
+                         padding-left: 0px; color: #6aa84f;">
+                            Open Innovation Collaborative
+                         </div>
+                        <div class="sumit-description">
+                            {{>descWrapper text="A collaboration and design tool for sustainable development."}}
+                        </div>
+                    <div style="clear: both">
+                        <!--stop floating effect-->
+                    </div>
+                </div>
+                </a>
+
+            </div>
+    </div>
+</template>
+
+<template name="descWrapper">
+    <div class="desc-wrapper">
+        
+        <div>
+            {{this.text}}
+        </div>
+
+    </div>
 </template>

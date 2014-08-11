@@ -1,15 +1,16 @@
 <template name="postsList">
-{{getPosts}}
-<div class="col-lg-{{#if nuserpage}}9{{else}}12{{/if}}" style="{{#if nuserpage}} {{else}}border: 1px solid grey{{/if}};">
+<div class="col-lg-{{#if isProfile}}12{{else}}9{{/if}}" style="{{#if isProfile}} border: 1px solid rgb(221, 221, 221);{{/if}}">
   
+  {{#unless isProfile}} <!-- show this div only if we are not on the userpage -->
   <div id="for_psubmit" style="display: {{#if show_submit}}block{{else}}none{{/if}};">
   	
   	{{ > postSubmit}}
   
   </div>
+  {{/unless}}
   
   <div class="posts">
-	<div id="accordion_post" class="panel-group inPost"  style="{{#if nuserpage}} margin-bottom: 0px; {{else}} margin-top: 15px; margin-bottom: 15px;{{/if}}">
+	<div id="accordion_post" class="panel-group inPost"  style="{{#if isProfile}} margin-top: 15px; margin-bottom: 15px;  {{else}} margin-bottom: 0px; {{/if}}">
     {{#each postsWithRank}}
     
     <!-- style="/* padding: 1em; background-color: #f3f3f3*/" -->
@@ -19,6 +20,11 @@
       	
     {{/each}}
     
+     {{#if isLoading}}
+    	<div class="panel panel-default" style="text-align: center;">
+      		Loading...
+      	</div>
+    {{/if}}
 	</div>
 	
     {{#if nextPath}}
@@ -29,11 +35,10 @@
 </div>
 
 
-{{#if nuserpage}}
+{{#unless isProfile}}
 <div class="col-lg-3 col-md-3 col-xs-3" >
-
 {{> tagView}}
 
 </div>
-{{/if}}
+{{/unless}}
 </template>

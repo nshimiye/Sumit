@@ -47,11 +47,12 @@
 
 			{{#if plist}}	
 				{{> postsList}}
-    		{{/if}}
+    		{{else}}
 	<!-- for comments -->
             <div class="panel-body " style="padding-top: 0; padding-bottom: 0; border: none;">
 
                 <ul class="media-list comments">
+                 nnmnmmnmn
                 {{#if cms}}
  					{{#each allcomments}}
 
@@ -69,6 +70,7 @@
                 {{/if}}
 				</ul>
 			</div>
+			{{/if}}
           </div>
         </div>
       </div>

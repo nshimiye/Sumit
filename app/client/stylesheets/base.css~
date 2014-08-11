@@ -7,23 +7,48 @@ and open the template in the editor.
     Created on : Jun 6, 2014, 5:41:18 PM
     Author     : mars
 */
-*{
+
+/*================ toolbar ================ */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body {
+    font-family: 'Raleway', sans-serif;
+    color: #999999;
+    font-weight: normal;
+}
+
+/** {
 	font-family: 'Raleway', sans-serif;
 	color: #999999;
-}
+    font-weight: normal;
+}*/
 .post h4{
     color: #45818e;
 }
 
 .post{
 	font-size: 12pt;
+    font-family: "Lucida Sans Unicode", sans-serif;
 }
+
+.post .post-metadata{
+    font-size: 10pt;
+    padding-top: 10px;  
+}
+
 .post .entry{
 	font-weight: bold;
 }
 .post .entry1{
-	font-weight: 600;
+    color:  #7e7e7e;
 }
+
+.post .post-date{
+    color:  #7e7e7e;
+}
+
 .post .sumit_vote{
 	font-weight: 600;
 	color: #45818e;
@@ -31,25 +56,38 @@ and open the template in the editor.
 
 .post .for-post{
     color: #45818e;
-
 }
 .for-post{
 	font-weight: 600;
 }
 .post .for-post a{
 	color:  #45818e;
-	
 	text-decoration: none;
-	
 }
 
+.posts .panel{
+    margin-bottom: 10px;
+}
 
+.posts .panel-collapse{
+    font-size: 12pt;
+    color: #7e7e7e;
+    font-family: "Lucida Sans Unicode", sans-serif;
+    border: 2px solid whitesmoke;
+}
+
+.posts .panel-heading{
+    padding: 20px;
+}
+
+.filter-bar {
+    font-family: "Lucida Sans Unicode", sans-serif;
+}
 
 .tags{
     background-color: transparent;
     border: none;
     box-shadow: none;
-    
     color: #999999;
 }
 .mytag{
@@ -83,6 +121,7 @@ and open the template in the editor.
 }
 
 /* ---- */
+.serror{color: red;}
 
 /*=========================== for search textarea ===========*/
 .autocmp{
@@ -118,10 +157,10 @@ a .auto-view:hover{background-color:rgba(162, 196, 201, 0.2)}
 
 .sumit_tag{
     border: 1px solid lightgray;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: white;
     padding-bottom: 5px;
-
+    padding-left: 20px;
     position: relative;
     margin: 15px;
     margin-left: 0px;
@@ -142,15 +181,9 @@ a .auto-view:hover{background-color:rgba(162, 196, 201, 0.2)}
 .sumit_tag_body{
 
     border: 1px solid lightgray; 
-
-
     padding-left: 10px;
-
-
     padding-right: 10px;
-
     margin: 5px; 
-    margin-bottom: 0px; 
     float: left;
 
 }
@@ -161,21 +194,21 @@ a .auto-view:hover{background-color:rgba(162, 196, 201, 0.2)}
 }
 
 .tag_input{
-
     border: 0px solid lightgray; 
-
+    font-size: 12pt;
     padding: 0px;
-
     margin: 0px; 
-    margin-top: 7px; 
+    margin-top: 5px; 
+    margin-bottom: 5px; 
     float: left;
 }
 
 .tag_input .sumit_tag_in{
+    font-size: 12pt;
     min-width: 10px;
     padding-left: 0px;
     padding-right: 3px;
-    box-shadow: inset 0 -10px 10px -10px #D7EEF1;
+    /*box-shadow: inset 0 -10px 10px -10px #D7EEF1;*/
 }
 
 .tag_input .sumit_tag_in:focus, input:focus{
@@ -208,10 +241,11 @@ a .auto-view:hover{background-color:rgba(162, 196, 201, 0.2)}
 
 
 
+/*=========================== for searchAutoComplete ===========*/
 
-
-
-
+.searchForm {
+    border-color: none;
+}
 
 
 /*for my splash
@@ -369,6 +403,41 @@ a .auto-view:hover{background-color:rgba(162, 196, 201, 0.2)}
     height:40px;
 }
 
+.sumit-button {
+    font-size: 18pt;
+    font-weight: normal;
+    color: #45818e;
+}
+
+.sumit-button:hover, 
+.sumit-button:visited, 
+.sumit-button:link 
+.sumit-button:active {
+    text-decoration: none;
+}
+
+.sumit-button-contents {
+    background-color: rgba(245, 245, 245, 0.7);
+    font-weight:600;
+    border-radius: 0.5em;
+    margin-top:20px;
+    margin-left: 15%;
+    padding: 35px;
+    width: 70%;
+}
+
+.sumit-button-contents:hover {
+    background-color: rgba(245, 245, 245, 0.9);
+}
+
+.sumit-description {
+    font-family: 'Open Sans';
+    font-size: 18px;
+    color: #939393;
+    opacity: 0;
+    height: 0px;
+    padding: 0px;
+}
 
 #video-wrapper {
    height: 95%;

@@ -47,6 +47,23 @@ Posts.deny({
 });
 
 Meteor.methods({
+
+	nextPosts: function(options) {
+		
+		var posts = Posts.find(options.query, options.attrs);
+		
+		var out = posts.map(function(post, index, cursor) {
+         	
+		    		post._rank = index;
+					
+		  			return post;
+       			});
+		
+		
+		
+		return out;
+	},
+
 	search_post: function(postAttributes) {
 		return Posts.find();
 	},
@@ -108,10 +125,7 @@ Meteor.methods({
         if (!user)
             throw new Meteor.Error(401, "You need to login to upvote");
 
-	
-	// to be fixed
-	
-
+		// to be fixed
         Posts.update({
             _id: postId,
             upvoters: {$ne: user._id}
@@ -122,6 +136,8 @@ Meteor.methods({
             //increments an integer field
             $inc: {votes: 1}
         });
+        
+        return Posts.findOne({_id: postId});
     },
 
     downvote: function(postId) {
@@ -140,8 +156,9 @@ Meteor.methods({
             //increments an integer field
             $inc: {votes: -1}
         });
+        return Posts.findOne({_id: postId});
     },
-    subscribe : function(postId) {
+        subscribe : function(postId) {
         var user = Meteor.user();
         //ensure the user is logger in
         if (!user)
@@ -151,12 +168,14 @@ Meteor.methods({
 		if(!check){ //user not subscribed
 			Posts.update({
             _id: postId,
-            $addToSet: {subscribers: user._id}
-        });
+            
+        },{$addToSet: {subscribers: user._id}});
 		}else{//user subscribed, so we remove them
 		 Posts.update({
             _id: postId,
-            $pull: {subscribers: user._id},
+            
+        },{
+        $pull: {subscribers: user._id},
         });
 		}
        
@@ -169,17 +188,11 @@ Meteor.methods({
         //ensure the user is logged in
         if (!user)
             throw new Meteor.Error(401, "You need to login to post new stories");
-            
-            
             // uploading starts here
       		PostsFS.insert(file, function (err, fileObj) {
         		//Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
         		console.log("uploading ...", fileObj);
         		console.log("error ...", err);
       		});
-            
-            
-            
-            
         }
 });

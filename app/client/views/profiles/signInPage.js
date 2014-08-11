@@ -23,7 +23,6 @@ Template.signInPage.events({
 	);
 	
 },
-
     'submit #login-form' : function(e){
       e.preventDefault();
       var email = $(e.target).find('[name=semail]').val()

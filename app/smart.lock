@@ -5,15 +5,17 @@
       "accounts-ui-bootstrap-3": {},
       "collectionFS": {},
       "cfs-ui": {},
+      "ui-dropped-event": {},
       "cfs-s3": {},
+      "bootstrap-3": {},
       "iron-router": {},
       "iron-router-progress": {}
     },
     "packages": {
       "accounts-ui-bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-accounts-ui-bootstrap-3.git",
-        "tag": "v0.3.3",
-        "commit": "2e50b605d8d5ed68e48c4529a65f13552d8af3f9"
+        "tag": "v0.3.4",
+        "commit": "9f006ee48d869877d90d54ac75b54550a587df8f"
       },
       "collectionFS": {
         "git": "https://github.com/CollectionFS/Meteor-CollectionFS.git",
@@ -25,10 +27,20 @@
         "tag": "v0.1.0",
         "commit": "41feb979e88cb2cf4c6f2934ba58ae0bb4e3dddb"
       },
+      "ui-dropped-event": {
+        "git": "https://github.com/CollectionFS/Meteor-ui-dropped-event.git",
+        "tag": "v0.0.7",
+        "commit": "cea1b4dff66044398586dbc43861e6c491672f53"
+      },
       "cfs-s3": {
         "git": "https://github.com/CollectionFS/Meteor-cfs-s3.git",
         "tag": "v0.0.29",
         "commit": "97d3c544165c766115f2b91a6aaca54a7438a558"
+      },
+      "bootstrap-3": {
+        "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
+        "tag": "v3.2.0-1",
+        "commit": "17a63902fc6cf1096c5289d963c66cf28b474727"
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
@@ -67,8 +79,8 @@
       },
       "cfs-worker": {
         "git": "https://github.com/CollectionFS/Meteor-cfs-worker.git",
-        "tag": "v0.0.16",
-        "commit": "172abbf679a9c9ce65d5cac7b51f23967aff94f7"
+        "tag": "v0.0.17",
+        "commit": "654fa7c552f558a293429da790b016af6f1c4fc3"
       },
       "cfs-upload-http": {
         "git": "https://github.com/CollectionFS/Meteor-cfs-upload-http.git",

@@ -1,48 +1,90 @@
 var POST_HEIGHT = 80;
 var Positions = new Meteor.Collection(null);
+
+function updateVotes(userId, obj){
+
+		Session.set(obj._id+"_up", userId && _.include(obj.upvoters, userId));
+		Session.set(obj._id+"_voteNumber", obj.votes);
+		if(Session.get(obj._id+"_up")){
+        	
+        	Session.set(obj._id+"_upvotedClass", "disabled");
+        	
+        	
+        }else{
+       	
+       		Session.set(obj._id+"_upvotedClass", "upvotable");
+        }
+        
+        Session.set(obj._id+"_down", userId && _.include(obj.downvoters, userId));
+     
+        if(Session.get(obj._id+"_down")){
+        	
+        	Session.set(obj._id+"_downvotedClass", "disabled");
+        }else{
+       		
+       		Session.set(obj._id+"_downvotedClass", "downvotable");
+        }
+        
+       
+    	
+        
+}
+
 Template.postItem.helpers({
+
+	rendered: function(){
+		
+		var userId = Meteor.userId();
+		var self = this.data;
+		Session.set(self._id+"Open", false);
+		
+		// Session.set("up", userId && _.include(this.upvoters, userId));
+		updateVotes(userId, self);
+		
+		
+    		Session.set(self._id+"_sbs", userId && _.include(self.subscribers, userId));
+    
+		
+        $(".evidence").addClass("evidence_out");
+        
+        var rt = Router.current({}).route.name;
+        rt = rt.toString();
+        console.log("rrrrrrrrrrrrrrtttttttttttttt", rt);
+        var rtCondition = (rt.trim() === "postPage");
+        
+        if(rtCondition)
+        	$(".evidence").removeClass("evidence_out");
+        
+        	
+	},
     ownPost: function() {
         return this.userId == Meteor.userId();
-    },
-    waitOn : function(){
-    	allPOSTS.push(this._id);
-    	
     },
     domain: function() {
         var a = document.createElement('a');
         a.href = this.url;
         return a.hostname;
     },
-    postOpen : function(){
-    	
-    	return Session.get(this._id+"Open");
-    },
     spostid : function(){
     	return this._id;
     
     },
+    voteNumber: function(){
+    return Session.get(this._id+"_voteNumber");
+        
+    },
     up: function(){
-    var userId = Meteor.userId();
-        if (userId && _.include(this.upvoters, userId)) {
-        	
-            return true;
-        } else{
-        	
-        	return false;
-        }
+    return Session.get(this._id+"_up");
+        
     },
     down: function(){
-    	var userId = Meteor.userId();
-        if (userId && _.include(this.downvoters, userId)) {
-        	
-            return true;
-        }else{
-        
-        	return false;
-        } 
-        
+    	return Session.get(this._id+"_down");
+    	
     },
     sbs: function(){
+    
+    return Session.get(this._id+"_sbs");
+    
     var userId = Meteor.userId();
     	if (userId && !_.include(this.subscribers, userId)) {
     		return false;
@@ -51,6 +93,7 @@ Template.postItem.helpers({
     },
 	// we will have to edit this function
     upvotedClass: function() {
+    	return Session.get(this._id+"_upvotedClass");
         var userId = Meteor.userId();
         if (userId && !_.include(this.upvoters, userId)) {
             return 'upvotable';
@@ -59,6 +102,9 @@ Template.postItem.helpers({
         }
     },
 	downvotedClass: function() {
+	
+		return Session.get(this._id+"_downvotedClass");
+	
         var userId = Meteor.userId();
         if (userId && !_.include(this.downvoters, userId) ) {
             return 'downvotable';
@@ -116,34 +162,57 @@ Template.postItem.helpers({
     	});
 
     	return tns;
-    }
+    },
 
+    formatDate: function() {
+        var months = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May',
+            'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var d = new Date(this.submitted);
+        console.log(this.formatMonth);
+        return ( months[d.getMonth()] + '-' + d.getDay() + '-' + d.getFullYear() );
+    }
 });
 
 Template.postItem.events({
     'click .upvotable': function(e) {
         e.preventDefault();
-        Meteor.call('upvote', this._id);
+        console.log(this._id);
+        var self = this;
+        Meteor.call('upvote', self._id, function(error, obj){
+        	if(error){
+        	console.log(error);
+        	}
+        	
+         	var userId = Meteor.userId();
+        	console.log(obj);
+        	updateVotes(userId, obj);
+
+        	 console.log(Session.get("up"));
+        	 
+        });
+       return false;
     },
-    'click .downvotable': function(e) {
+    'click .downvotable': function(e) { //
         e.preventDefault();
-        Meteor.call('downvote', this._id);
-    },
-    
-    
-    "click .evidence" : function(e) {
-        
-        Session.set("evident", true); //evident = true
-        Session.set("innovate", false);
-           		var user = Meteor.user();
-   		console.log("posts--", PostsFS.find({userId: user._id}).count());
+        console.log(this._id);
+        Meteor.call('downvote', this._id, function(error, obj){
+        	if(error){
+        	console.log(error);
+        	}
+        	
+         	var userId = Meteor.userId();
+        	console.log(obj);
+        	
+			updateVotes(userId, obj);
+        	
+        });
     },
     "click .innovation" : function(e) {
         
         Session.set("innovate", true);//innovate = true
         Session.set("evident", false);
         
-           		console.log("data-id", $(e.target).attr("data-id"));
+        console.log("data-id", $(e.target).attr("data-id"));
    		console.log("data-id", $(e.target));
        
     },
@@ -152,35 +221,55 @@ Template.postItem.events({
         Session.set("innovate", false);//innovate = true
         Session.set("evident", false);
     },
-     "click .subs" : function(e) {
+    "click .subs" : function(e) {
         //e.preventDefault(); 
          e.preventDefault();
         
-         	Meteor.call('subscribe', this._id);
-         //Session.set("sbs-"+this._id, true);
+         	Meteor.call('subscribe', this._id, function(error, obj){
+        	if(error){
+        	console.log(error);
+        	}
+        	
+         	var userId = Meteor.userId();
+        	console.log(obj);
+        	
+			Session.set(obj._id+"_sbs", userId && _.include(obj.subscribers, userId));
+        	
+        });
+         
          return false;
     },
-    
    "click .collapseit" : function(e){
    
-   		//console.log("data-id", $(e.target).attr("data-id"));
-   		//console.log("data-id", $(e.target));
-   		if(Session.get(this._id+"Open")){
-   			Session.set(this._id+"Open", false);
+   		var rt = Router.current({}).route.name;
+        	rt = rt.toString();
+        	var rtCondition = (rt.trim() === "postPage");
+        
+        if(rtCondition){
+        	return true;
+        }
+ 
+		var pitem = $(e.target).parents(".row");
+   		pitem = $(pitem).children(".aside");
+   		
+   		var evidenceClasses = $($(pitem).children(".evidence")[0]).attr("class");
+   		
+   		if(evidenceClasses.search("evidence_out") < 0){ //remove if this panel is closing
+   		
+   			$($(pitem).children(".evidence")).addClass("evidence_out");
    			return true;
+   			
    		}
-   
-    	if($(e.target).attr("data-id") === this._id){
-    		
-				for(var i=0 ; i < allPOSTS.length; i++){
-					var item = allPOSTS[i];
-					console.log(item);
-					Session.set(item+"Open", false);
-				}
-				
-    		Session.set(this._id+"Open", true);
-    		//$('#Post'+this._id).collapse({parent: "#accordion_post", toggle: true});
-    	}
+   		
+   		
+   		
+   		
+   		console.log($($(pitem).children(".evidence")[0]).attr("class")); //
+
+   		$(".evidence").addClass("evidence_out");
+   		$($(pitem).children(".evidence")).removeClass("evidence_out");
+
+    	
 },
  
     	

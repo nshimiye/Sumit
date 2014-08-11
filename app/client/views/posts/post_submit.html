@@ -5,12 +5,12 @@
 
 <form class="main" role="form" style="
       padding-bottom: 50px;">
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom: 1em;">
 
-        <input type="text" class="form-control" id="title" name="title" placeholder="Title" style="
-
-               font-size: 1.5em;
-
+        <input type="text" class="form-control" id="title" name="title" placeholder="Title" 
+          style="
+              font-size: 12pt;
+              padding-left: 20px;
                ">
     </div>
     <div class="form-group">
@@ -18,16 +18,11 @@
         <!--textarea class="form-control" name="message" placeholder="Explain your challenge" rows="3" 
                   style="resize: none; font-size: 1.5em;"
                   ></textarea-->
-              {{> cleanEditor}}   
-                  
-                  
+              {{> cleanEditor}}
 
     </div>
-    <div class="form-group">
-    <div class="input-group">
-    	<span class="input-group-addon">Tags</span>
+    <div class="form-group" style="border-radius: 5px;">
         {{> tagview}}
-    </div>
     </div>
     {{#if hasAttach}}
     <div class="form-group">
@@ -37,27 +32,25 @@
     </div>
     </div>
     {{/if}}
-    <div class="form-group">
+<!--     <div class="form-group">
     <div class="input-group">
   		<span class="input-group-addon">Links</span>
   		{{> linksView}}
-  		
-	</div>
-	</div>
+  	</div>
+	</div> -->
 
-    <div style="
-         position: relative;
-         "><input type="file" id="attach" name="attach"  style="display: none" multiple="multiple">
-          <a href="#" value="cancel" class=" attach_new " >
+    <div class="form-group">
+    <div class="input-group">
+      <input type="file" id="attach" name="attach"  style="display: none" multiple="multiple">
+<!--           <a href="#" value="cancel" class=" attach_new " >
           <img src="/img/add_attach.png" alt="attach file" style="width: 40px; margin-right: 10px;">
           </a>
           <a href="#" value="cancel" class="links_new" >
           <img src="/img/add_link.png" alt="add a link" style="width: 40px;">
-          </a>
-        <button type="submit" value="submit" class="btn btn-primary " style="position: absolute; right: 5em;">Submit</button>
-        <a href="#" value="cancel" class=" cancel_new_post" 
-        style="position: absolute; right: 1em; top: 1em; color: #f55">Cancel</a>
-        
+          </a> -->
+        <button type="submit" value="submit" class="btn btn-primary " style="position: absolute;">Submit</button>
+<!--         <a href="#" value="cancel" class=" cancel_new_post" style="position: absolute; right: 1em; top: 1em; color: #f55">Cancel</a> -->
+    </div>
     </div>
 </form>
 

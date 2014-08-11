@@ -1,0 +1,29 @@
+<template name="article">
+	<head> 
+		<link rel="stylesheet" href="http://assets.annotateit.org/annotator/v1.2.7/annotator.min.css"> 
+		{{{insertScript}}}
+	</head> 
+
+		
+	<div id="frameWrap">
+		{{{insertFrame}}}
+	<div style="position: absolute;top:70px;
+    left: 0px;
+    margin-left: auto; margin-right: auto;
+    width: 5%;
+    height:calc(100% - 70px);
+    z-index: 10;">
+		<img style="margin-left:auto;margin-right:auto;position:relative;top:50%;
+  transform:translateY(-50%);width:50%;height:10%;" src="/img/iconLeft.png"></div>
+	</div>
+
+	
+	<script type="text/javascript">
+		jQuery(function ($) {
+
+			document.body.style.overflow = "hidden";
+			
+		});
+	</script>
+</template>
+

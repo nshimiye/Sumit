@@ -1,8 +1,10 @@
 <template name="splash_header">
         <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="
-             background-color:rgba(255, 255, 255, {{#if oprojects}} 1 {{else}}0.0{{/if}});
+             background-color:rgba(240, 240, 240, {{#if oprojects}} 1 {{else}}0.9{{/if}});
+             box-shadow: 0px 0px 20px 0 rgba(0,0,0,0.3);
              border-color: rgba(0,0,0,0.0);
-             z-index: 100;">
+             z-index: 100;
+             margin-bottom: 0px;">
             <div class="container" style="width: 100%;">   
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -12,64 +14,77 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand shome_btn" href="/" style="padding-top: 10px;">
+
+                    <a class="navbar-brand shome_btn" href="{{pathFor 'home'}}" style="padding-top: 10px;">
 
                         <img src="/assets/img/logo.png" alt="SUMIT logo" style="height: 35px;  vertical-align: text-bottom; ">
-
-						
                     </a>
-                    {{#if oprojects}} 
-                    	<a class="navbar-brand shome_btn" href="http://localhost:3000/best" style="padding-top: 1em; float: right;">Global Challenges Forum</a>
+                    {{#if openProjects}} 
+                            <ul class="nav navbar-nav navbar-left" id="menufl">
+                              <li style="padding-top: 10px;" data-menuanchor="svision">
+                                <a href="/best" class="btn btn-default btn-full"
+                                  style="
+                                  background-color: rgba(255, 255, 255, 0.8);
+                                  border-color: rgba(255, 255, 255, 0);
+                                  margin-left: 0.5em;
+                                  padding: 25px;
+                                  padding-top: 6px;
+                                  padding-bottom: 6px;
+                                  ">Global Challenges Forum
+                                  </a>
+                                </li>
+                            </ul>
                     {{/if}}
                 </div>
 
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+{{#unless openProjects}}
 
-{{#if oprojects}}
-{{else}}
-{{#if notuserpage}}
                     <ul class="nav navbar-nav navbar-left" id="menufl">
 
 						
                         <li style="padding-top: 10px;" data-menuanchor="svision">
                             <a href="#svision" class="btn btn-default svision_btn btn-full" style="
-                               background-color: rgba(255, 255, 255, 0.43);
-                               border-color: rgba(255, 255, 255, 0);
-                               margin-left: 1em;
-padding: 35px;
-padding-top: 5px;
-padding-bottom: 5px;
+                              background-color: rgba(255, 255, 255, 0.8);
+                              border-color: rgba(255, 255, 255, 0);
+                              margin-left: 1em;
+                              padding: 35px;
+                              padding-top: 5px;
+                              padding-bottom: 5px;
 
                                ">Vision</a>
                         </li>
 
                         <li style="padding-top: 10px;"  data-menuanchor="smission">
                             <a href="#smission" class="btn btn-default smission_btn btn-full" style="
-                               background-color: rgba(255, 255, 255, 0.43);
-                               border-color: rgba(255, 255, 255, 0);
-                               margin-left: 1em;
-padding: 35px;
-padding-top: 5px;
-padding-bottom: 5px;
+                              background-color: rgba(255, 255, 255, 0.8);
+                              border-color: rgba(255, 255, 255, 0);
+                              margin-left: 1em;
+                              padding: 35px;
+                              padding-top: 5px;
+                              padding-bottom: 5px;
                                ">Mission</a></li>
                        
                     </ul>
-  {{/if}}
-{{/if}}
+
+{{/unless}}
                      <ul class="nav navbar-nav navbar-right" >
 {{#if currentUser}}
 
                       <li style="padding-top: 10px; position: relative" >
                             <a href="/user" class="btn-nav" style="
                                margin-left: 1em;
-                               padding-top: 0px;
+                               padding-top: 5px;
                                padding-bottom: 5px;
                                font-weight: bold;
+                               font-size: 14px;
                                "> 
-                               <img src="/images/pholder.png" alt="thumb" style="height: 35px;  width: 35px; 
-                               margin-right: 1em; padding-bottom: 0.4em;">
+                               <!-- Profile Image Thumbnail -->
+                               <!-- <img src="/images/pholder.png" alt="thumb" style="height: 35px;  width: 35px; 
+                               margin-right: 1em; padding-bottom: 0.4em;
+                               "> -->
                                {{userInfo}}</a>
                       </li>               
                       <!--li style="padding-top: 10px; position: relative" >
@@ -79,8 +94,8 @@ padding-bottom: 5px;
                                padding-bottom: 5px;
                                font-weight: bold;
                                ">Settings</a>
-                      </li-->
-                      
+                      </li> -->
+
 {{/if}}
                       <li style="padding-top: 10px; position: relative" >
                             <a href="#" class="login_btn btn-nav" style="
@@ -88,6 +103,7 @@ padding-bottom: 5px;
                                padding-top: 5px;
                                padding-bottom: 5px;
                                font-weight: bold;
+                               font-size: 14px;
                                ">{{#if currentUser}} Sign out  {{else}} Sign in {{/if}}</a>
 
                                <div class=" login_here" 
@@ -111,16 +127,17 @@ padding-bottom: 5px;
                         
                        
                        {{#if currentUser }}
-                        {{#if oprojects}}
+                        	{{#unless isProfile}}
             <!-- to be modified though -->
-            <form class="navbar-form navbar-right {{activeRouteClass 'postSubmit'}}">
+            <form class="navbar-form navbar-right {{activeRouteClass 'postSubmit'}}"
+            style="height: 20px;">
                 <!--a href="{{pathFor 'postSubmit'}}" class="btn btn-primary ">New Post</a-->
-                 <a href="#" class="btn btn-primary new_post {{#if show_submit}}active{{/if}}"
+                 <a href="#" class="btn btn-primary {{#if show_submit}}cancel_new_post {{else}}new_post {{/if}}"
                  style="height: 35px;
-padding-top: 0.4em;"
+                      padding-top: 0.4em;"
                  >New Post</a>
             </form>
-						{{/if}}
+							{{/unless}}
 						{{/if}}
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

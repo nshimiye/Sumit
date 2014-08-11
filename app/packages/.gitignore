@@ -30,7 +30,11 @@
 /micro-queue
 /cfs-ui
 /cfs-s3
-/bootstrap-wysiwyg
+/bootstrap-3
+/ui-dropped-event
 /iron-layout
 /iron-core
 /iron-dynamic-template
+/aws-sdk
+/blocking
+/bootstrap-wysiwyg

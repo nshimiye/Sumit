@@ -1,5 +1,4 @@
 <template name="postItem">
-{{waitOn}}
         <div class="panel-heading">
             <div class="panel-title">
             
@@ -11,7 +10,7 @@
     		alt="64x64" 
     		src="/img/{{#if up}}button_upvote_clickedComment.png{{else}}iconUp.png{{/if}}" style="width: 60px; height: 25px;">
                                                             </a>
-     	<span class="sumit_vote">{{votes}}</span>
+     	<span class="sumit_vote">{{voteNumber}}</span>
       	<a  href="#" class="downVote {{downvotedClass}}">
       	<img class="media-object" data-src="holder.js/64x64" 
       		alt="64x64" 
@@ -29,13 +28,26 @@
                 	<div class="media-heading for-post" data-id="{{spostid}}"> {{title}} </div>
 
 				</a>
-                Author: <span class="entry1"> {{author}}</span>
-                <br>
-                Affiliation:<span class="entry1"> {{domain}}</span>
+                <span class="post-metadata">
+                  submitted on 
+                  <span class="post-date">
+                    {{formatDate}}
+                  </span>
+                  <span>
+                  {{#if author}}
+                    by <span class="entry1"> {{author}} </span>
+                  {{else}}
+                    from <span class="entry1"> {{source}} </span>
+                  {{/if}}
+                  </span>
+                <!-- <br>
+                  Affiliation:<span class="entry1"> {{domain}}</span> -->
+                </span>
+                
             </div>
         </div>
 
-        <div class="col-xs-4">                                 
+        <div class="col-xs-4 aside">                                 
            Issue Type:<span class="entry" 
            	title="{{cciTagnames}}">
 
@@ -58,25 +70,18 @@
             </a>
             <br>
 
-{{#if isPostPage}}
-	<a data-me="evidence" class="btn btn-warning evidence" data-id="{{spostid}}"  			href="{{pathFor 'postPage'}}"> Evidence</a>
-	<a data-me="subs" class="btn btn-default subs"			href="#"> Subscribe</a>
-             <!--a data-me="innovation" class="btn btn-success innovation" data-id="{{spostid}}" 
-             	 		href="#Post{{spostid}}">
-            Innovations</a-->
 
-{{else}}   
-     {{#if postOpen }}
+
 	<a data-me="evidence" class="btn btn-warning evidence" data-id="{{spostid}}" 
  			href="{{pathFor 'postPage'}}">
+            
             Evidence</a>
-            <a data-me="subs" class="btn btn-{{#if sbs}}success{{else}}default{{/if}} subs"	href="#"> {{#if sbs}}  Un{{/if}}subscribe</a>
-             <!--a data-me="innovation" class="btn btn-success innovation" data-id="{{spostid}}" 
+    <button data-me="subs" class="btn btn-{{#if sbs}}success{{else}}default{{/if}} subs  evidence"> {{#if sbs}}  Un{{/if}}subscribe</button>
+            <!--a data-me="innovation" class="btn btn-success innovation" data-id="{{spostid}}" 
              	 		href="#Post{{spostid}}">  
             Innovations</a-->
             
-{{/if}}    
-{{/if}}       <!--  ownPost and -->
+
 
             {{#if false}}<a  class=" edit" href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
 

@@ -42,7 +42,7 @@ Template.signInPage.events({
             if(err.error !== 400)
             	msg = err.reason;
             
-            $(".serror").html(mesg || "Please make sure your input is correct" );
+            $(".serror").html(msg || "Please make sure your input is correct" );
           } else {
             // Success. Account has been created and the user
             // has logged in successfully.

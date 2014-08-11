@@ -71,20 +71,20 @@ Template.postSubmit.events({
             }
         });
     },
-    "click .cancel_new_post" : function(e){
-		e.preventDefault();
-		console.log("yes yes here ...")
+// ========== Moved this functionality to splash_header template ========
+//     "click .cancel_new_post" : function(e){
+// 		e.preventDefault();
+// 		console.log("yes yes here ...")
+// 		if(Session.get("show_post_form")){
+// 		 $( "#for_psubmit" ).animate({
+//     		height: "toggle"
+//   		}, 500, function() {
+//     		// Animation complete.
+//     		Session.set("show_post_form", false);
+//   		});
+//   		}
 		
-		if(Session.get("show_post_form")){
-		 $( "#for_psubmit" ).animate({
-    		height: "toggle"
-  		}, 500, function() {
-    		// Animation complete.
-    		Session.set("show_post_form", false);
-  		});
-  		}
-		
-	},
+// 	},
 	"click .attach_new" : function(e){
 		e.preventDefault();
 		$("#attach").trigger("click");

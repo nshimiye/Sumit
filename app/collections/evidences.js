@@ -1,6 +1,21 @@
 Evidences = new Meteor.Collection('evidences');
 
 Meteor.methods({
+	nextEvidence: function(options) {
+		
+		var evidences = Evidences.find(options.query, options.attrs);
+		
+		var out = evidences.map(function(evidence, index, cursor) {
+         	
+		    		evidence._rank = index;
+					
+		  			return evidence;
+       			});
+		
+		
+		
+		return out;
+	},
     evidence: function(evidenceAttributes) {
         var user = Meteor.user();
         var post = Posts.findOne(evidenceAttributes.postId);
@@ -27,7 +42,7 @@ Meteor.methods({
         Posts.update(evidence.postId, {$inc: {evidencesCount: 1}});
 
         //create the comment, save the id
-        evidence._id = evidences.insert(evidence);
+        evidence._id = Evidences.insert(evidence);
 
         //create a notification, informing the user that there's been a comment
         createevidenceNotification(evidence);
@@ -71,8 +86,4 @@ Meteor.methods({
             $inc: {votes: -1}
         });
     }
-    
-    
-    
-    
 });

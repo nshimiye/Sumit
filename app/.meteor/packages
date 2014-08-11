@@ -11,8 +11,12 @@ backbone
 collectionFS
 cfs-filesystem
 cfs-ui
-accounts-base
 cfs-s3
+accounts-base
+ui-dropped-event
+pdf2htmlEXWrapper
+bootstrap-3
 jquery
 iron-router
 iron-router-progress
+iron-layout

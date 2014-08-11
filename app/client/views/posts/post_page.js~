@@ -2,7 +2,12 @@
 Template.postPage.helpers({
 	rendered: function(){
 		
-		Session.set("oprojects", true);
+		Session.set("show_signin", true);
+		
+		Session.set("isProfile", false);
+		
+		Session.set("openProjects", true);
+		
 	},
     comments: function() {
         return Comments.find({postId: this._id});
@@ -50,7 +55,10 @@ Template.postPage.events({
 	'click .loginTrigger': function(e){
 		e.preventDefault();
 		
-	 	$("#login-dropdown-list").addClass("open");
+	 		$(".login_here").animate(
+			{height: "toggle"},
+			500
+		);
 	 	
 		return false;
 	},

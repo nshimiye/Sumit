@@ -1,0 +1,30 @@
+<template name="fileAddWrapper">
+  <div id="fileDropID">
+    {{> fileAdd}}
+  </div>
+</template>
+
+<template name="fileAdd">
+  <div class="container panel">
+    <h3>collection Tester</h3>
+    <span class="pull-right text-info">UserId: {{userId}} Token: {{loginToken}}</span>
+    <div class="loginTemp">
+      {{> loginButtons align="right"}}
+    </div>
+  </div>
+  <div class="container panel fileDrop">
+     {{#each files}} 
+      {{#unless this.isUploaded}}
+       {{> FS.UploadProgressBar bootstrap=true}}
+      {{/unless}}
+      URL: {{this.url}}
+      <a href="{{pathFor 'article'}}">Link</a>
+       <strong>{{this.name}}</strong> <a href="{{this.url download=true}}" class="btn btn-primary">Download</a>
+      Delete: {{> FS.DeleteButton class="btn btn-danger btn-xs"}}
+      <br>
+    {{/each}}
+    {{#unless files.count}}
+      <input type="file" class="myFileInput"/>
+    {{/unless}}
+  </div>
+</template>

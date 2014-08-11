@@ -2,7 +2,12 @@
 Template.postPage.helpers({
 	rendered: function(){
 		
-		Session.set("oprojects", true);
+		Session.set("show_signin", true);
+		
+		Session.set("isProfile", false);
+		
+		Session.set("openProjects", true);
+		
 	},
     comments: function() {
         return Comments.find({postId: this._id});
@@ -61,10 +66,7 @@ Template.postPage.events({
 	
 	'click .inPost1' : function(e){
 	
-	//close all posts
-	$.each(allPOSTS, function(i, item){
-		Session.set(item, false);
-	});
+
 	Session.set(this._id+"Open", true);
 	var psd = this._id;console.log(psd);
 	

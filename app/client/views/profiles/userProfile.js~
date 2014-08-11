@@ -2,30 +2,31 @@
 Template.userProfile.helpers({
 	rendered: function(){
 		
-		Session.set("oprojects", false);
-		Session.set("notuserpage", false);
-		Session.set("nuserpage", false);
+		Session.set("show_signin", true);
+		Session.set("isProfile", true);
+		Session.set("openProjects", true);
 	},
 	profileImage: function(){
 		return Session.get("pimage");
 	},
 
 	checkLogin : function(){
-		
-		if(!this.user){
+		var user = Meteor.user();
+		if(!user){
 			Router.go('signInPage', {});	
 		}
+		
 		console.log("postsFS::::",FS);
 		
 		if(this.postsFS.count() > 0){
-			var mapper = this.postsFS.map(function(i){
-					console.log("postsFS:::name:", i );
+			var mapper = this.postsFS.map(
+				function(i){
+					console.log("postsFS:::name:",i);
 					return i;
-				});
+				}
+			);
 			var fileObj = mapper[0];
 			console.log("postsFS:::out:",fileObj.copies);
-
-			
 			Session.set("pimage", "../../upload/postsFS/"+ fileObj.copies.posts.key);
 		
 		}else{
@@ -36,12 +37,22 @@ Template.userProfile.helpers({
 		
 		
 	},
+
+  renderMe : function(){
+    var user = Meteor.user();
+    console.log("ddd",user);
+    if(!user){
+      Router.go('signInPage', {});  
+    }
+
+  },
+
   focusAreas: function() {
-  
-   var fa = this.user.profile.focusAreas;
+  	var user = Meteor.user();
+   var fa = user.profile.focusAreas;
   	console.log(fa);
   	//if(!fa)
-  		//return "no focus areas set for "+ this.user.profile.name;
+  		//return "no focus areas set for "+ user.profile.name;
     //return fa;
   
     return "Task-shifting • ICT for development • Agricultural Inputs • Obesity • Food Systems • Complex Systems Modelling • Technology • mHealth • Social Entrepreneurship • CSR";
@@ -49,14 +60,15 @@ Template.userProfile.helpers({
     
   },
   name: function() {
-  	
-    return this.user.profile.name;
+  	var user = Meteor.user();
+    return user.profile.name;
   },
   website: function() {
-  	var web = this.user.profile.website;
+  	var user = Meteor.user();
+  	var web = user.profile.website;
   	console.log(web);
   	if(!web)
-  		return "no website for "+ this.user.profile.name;
+  		return "no website for "+ user.profile.name;
     return web;
   },
   totalPoints: function() {
@@ -69,33 +81,36 @@ Template.userProfile.helpers({
     return 99;
   },
   home: function() {
-     	var h = this.user.profile.home;
+  var user = Meteor.user();
+     	var h = user.profile.home;
   	console.log(h);
   	if(!h)
-  		return "no home set for "+ this.user.profile.name;
+  		return "no home set for "+ user.profile.name;
     return h;
   },
   currentLoc: function() {
-     	var cl = this.user.profile.currentLocation;
+  	var user = Meteor.user();
+    var cl = user.profile.currentLocation;
   	console.log(cl);
   	if(!cl)
-  		return "no location set for "+ this.user.profile.name;
+  		return "no location set for "+ user.profile.name;
     return cl;
   },
   nationality: function() {
-     	var nt = this.user.profile.nationality;
+  	var user = Meteor.user();
+   	var nt = user.profile.nationality;
   	console.log(nt);
   	if(!nt)
-  		return "no nationality set for "+ this.user.profile.name;
+  		return "no nationality set for "+ user.profile.name;
     return nt;
   },
   affiliations: function() {
- 
+ 	var user = Meteor.user();
     
-    var afl = this.user.profile.affiliations;
+    var afl = user.profile.affiliations;
   	console.log(afl);
   	if(!afl)
-  		return "no affiliations set for "+ this.user.profile.name;
+  		return "no affiliations set for "+ user.profile.name;
     return afl;
     
     
@@ -104,13 +119,14 @@ Template.userProfile.helpers({
     return;
   },
   bio: function() {
-    var b = this.user.profile.affiliations;
+  var user = Meteor.user();
+    var b = user.profile.affiliations;
   	console.log(b);
   	if(!b)
   		return "no biography set for yet";
     return b;
   },
-	plist: function() {
+  	plist: function() {
 		return Session.get("plist");
     },
   	evd: function() {
@@ -121,12 +137,6 @@ Template.userProfile.helpers({
     },
   problemsPostedGlobal: function() {
 		return Session.get("problemsPostedGlobal");
-    },
-	allcomments: function() {
-		return Session.get("allcomments");
-    },
-	allevidence: function() {
-		return Session.get("allevidence");
     },
   commentsPostedGlobal: function() {
 
@@ -222,64 +232,123 @@ Template.userProfile.events({
      	
      	});
 	
-}, 
+},
+
+
 
 //user profile data control --- for posts
 "click .myposts" : function(){
 
-var all = this.posts.map(
-				function(post, index, cursor){
-					console.log("postsFS:::name:",post);
-					return post;
-				}
-			);
 Session.set("evd", false);
 Session.set("cms", false);
 Session.set("plist", true);
+Session.set("postsWithRank", []);
+Session.set("loading", true);
+		 mainOptions = {};
+		mainOptions.query = { userId: Meteor.userId()};
+		mainOptions.attrs = {limit : 10};
+   			Meteor.call('nextPosts', mainOptions , function(error, allposts) {
+   			
+   			
+   			
+   				if(error){
+   			//display error
+   			console.log(error);
+   			}else{
+   				console.log(allposts);
 
-	Session.set("postsWithRank", all);
+       			Session.set("postsWithRank", allposts);
+       			
+   			}
+   			Session.set("loading", false);
+   			
+   			});
 },
 "click .myupvotes" : function(){
-
-var all = this.ups.map(
-				function(post, index, cursor){
-					console.log("postsFS:::name:",post);
-					return post;
-				}
-			);
 Session.set("evd", false);
 Session.set("cms", false);
 Session.set("plist", true);
+Session.set("postsWithRank", []);
+Session.set("loading", true);
+		 mainOptions = {};
+		mainOptions.query = {upvoters : { $all: [Meteor.userId()] }};
+		mainOptions.attrs = {limit : 10};
+   			Meteor.call('nextPosts', mainOptions , function(error, allposts) {
+   			
+   			
+   			
+   				if(error){
+   			//display error
+   			console.log(error);
+   			}else{
+   				console.log(allposts);
 
-	Session.set("postsWithRank", all);
+       			Session.set("postsWithRank", allposts);
+       			
+   			}
+   			Session.set("loading", false);
+   			
+   			});
+
+
+// 
+
 },
 "click .mydownvotes" : function(){
-
-var all = this.downs.map(
-				function(post, index, cursor){
-					console.log("postsFS:::name:",post);
-					return post;
-				}
-			);
-
 Session.set("evd", false);
 Session.set("cms", false);
 Session.set("plist", true);
-	Session.set("postsWithRank", all);
+Session.set("postsWithRank",[]);
+Session.set("loading", true);
+ mainOptions = {};
+		mainOptions.query = {downvoters : { $all: [Meteor.userId()] }};
+		mainOptions.attrs = {limit : 10};
+   			Meteor.call('nextPosts', mainOptions , function(error, allposts) {
+   			
+   			
+   			
+   				if(error){
+   			//display error
+   			console.log(error);
+   			}else{
+   				console.log(allposts);
+
+       			Session.set("postsWithRank", allposts);
+       			
+   			}
+   			Session.set("loading", false);
+   			
+   			});
+
+
+	
 },
-"click .subscription" : function(){
+"click .subscription" : function(){ //{subscribers: {$all : [user._id] }}
 
-var all = this.subs.map(
-				function(post, index, cursor){
-					console.log("postsFS:::name:",post);
-					return post;
-				}
-			);
 Session.set("evd", false);
 Session.set("cms", false);
 Session.set("plist", true);
+Session.set("postsWithRank",[]);
+Session.set("loading", true);
+ mainOptions = {};
+		mainOptions.query = {subscribers : { $all: [Meteor.userId()] }};
+		mainOptions.attrs = {limit : 10};
+   			Meteor.call('nextPosts', mainOptions , function(error, allposts) {
+   			
+   			
+   			
+   			if(error){
+   				//display error
+   				console.log(error);
+   			}else{
+   				console.log(allposts);
+       			Session.set("postsWithRank", allposts);
+       			
+   			}
+   				Session.set("loading", false);
+   			
+   			});
 
-	Session.set("postsWithRank", all);
 },
 
 //user profile data control --- for posts
@@ -298,17 +367,36 @@ Session.set("plist", false);
 	Session.set("allevidence", all);
 },
 "click .mycomments" : function(){
-console.log("postsFS:::name:",this.comments1.count());
-var all = this.comments1.map(function(comment, index, cursor){
-					console.log("postsFS:::name:",comment);
-					return comment;
-				});
-
 Session.set("evd", false);
-Session.set("cms", true);
+
 Session.set("plist", false);
-	Session.set("allcomments", all);
+Session.set("cms", true);
+
+Session.set("allcomments",[]);
+Session.set("loading", true);
+ mainOptions = {};
+		mainOptions.query = { userId: Meteor.userId()};
+		mainOptions.attrs = {limit : 10};
+   			Meteor.call('nextComments', mainOptions , function(error, allcms) {
+   			
+   			
+   			
+   				if(error){
+   			//display error
+   			console.log(error);
+   			}else{
+   				console.log(allcms);
+
+       			Session.set("allcomments", allcms);
+       			
+   			}
+   			Session.set("loading", false);
+   			
+   			});
+
+
 }
+
 
 
 

@@ -1,6 +1,21 @@
 Comments = new Meteor.Collection('comments');
 
 Meteor.methods({
+	nextComments: function(options) {
+		
+		var comments = Comments.find(options.query, options.attrs);
+		
+		var out = comments.map(function(comment, index, cursor) {
+         	
+		    		comment._rank = index;
+					
+		  			return comment;
+       			});
+		
+		
+		
+		return out;
+	},
     comment: function(commentAttributes) {
         var user = Meteor.user();
         var post = Posts.findOne(commentAttributes.postId);

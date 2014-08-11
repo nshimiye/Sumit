@@ -14,7 +14,7 @@ Template.splash.helpers({
             	sectionsColor: ['#f3f3f3', '#f3f3f3', '#f3f3f3'],
             	autoScrolling: false
             });
-	
+
 	        //slide to sinup page -- uses  fullpage library function
             $(".signup").click(function (){
             	$.fn.fullpage.moveSlideRight();
@@ -76,10 +76,10 @@ Template.splash.helpers({
             left: x+"px"
             });
 
-			w = $(".s_down").outerWidth();
-			x = (W/2) - (w/2);
-			y = H-40;
- 			$(".s_down").css({
+            w = $(".s_down").outerWidth();
+            x = (W/2) - (w/2);
+            y = H-40;
+            $(".s_down").css({
             top: y+"px",
             left: x+"px"
             });
@@ -87,8 +87,8 @@ Template.splash.helpers({
             // positioning 
 
 
-		
-			//playing video here
+
+            //playing video here
 
             $(".player_btn").mouseover(function(){
             $(this).attr({src: "assets/img/splayer_hover.png"});
@@ -118,12 +118,32 @@ Template.splash.helpers({
 	
 				$.fn.fullpage.moveTo(1, 0);
 			 });
-	
-	}
+	},
+
+
+});
+
+Template.splash.events({
+      "mouseenter .sumit-button-contents" : function(e){
+            e.preventDefault();
+            $(e.target).children('.sumit-description')
+                  .animate({opacity: 1, height: 60, 'padding-top': 10}, 
+                        200,
+                        function() {
+                        //Animation complete
+                        });
+    },
+      "mouseleave .sumit-button-contents" : function(e){
+            e.preventDefault();
+            $(e.target).children('.sumit-description')
+                  .animate({opacity: 0, height: 0, 'padding-top': 0}, 
+                        200,
+                        function() {
+                        //Animation complete
+                        });
+    }
 });
 
 
 
-
 //============================
-

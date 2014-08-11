@@ -3,7 +3,9 @@
     "accounts-ui-bootstrap-3": {},
     "collectionFS": {},
     "cfs-ui": {},
+    "ui-dropped-event": {},
     "cfs-s3": {},
+    "bootstrap-3": {},
     "iron-router": {},
     "iron-router-progress": {}
   }

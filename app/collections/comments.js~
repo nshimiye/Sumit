@@ -1,6 +1,21 @@
 Comments = new Meteor.Collection('comments');
 
 Meteor.methods({
+	nextComments: function(options) {
+		
+		var comments = Comments.find(options.query, options.attrs);
+		
+		var out = Comments.map(function(comment, index, cursor) {
+         	
+		    		comment._rank = index;
+					
+		  			return comment;
+       			});
+		
+		
+		
+		return out;
+	},
     comment: function(commentAttributes) {
         var user = Meteor.user();
         var post = Posts.findOne(commentAttributes.postId);
@@ -50,6 +65,7 @@ Meteor.methods({
         }, {
             //adds an item to an array property as long as it doesn't already exist
             $addToSet: {upvoters: user._id},
+            $pull: {downvoters: user._id},
             //increments an integer field
             $inc: {votes: 1}
         });

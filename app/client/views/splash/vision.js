@@ -1,4 +1,3 @@
-
 Template.vision.helpers({
 
 	play_video : function(){

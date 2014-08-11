@@ -1,6 +1,7 @@
 Router.configure({
     layoutTemplate: 'layout',
     loadingTemplate: 'loading',
+    notFoundTemplate: 'notFound',
     waitOn: function() { 
         return [Meteor.subscribe('notifications'),
         		Meteor.subscribe('categories'),
@@ -12,69 +13,44 @@ Router.configure({
 //splash
 SplashController = RouteController.extend({
 	template: 'splash',
- /*   waitOn: function() {
-        return [
-        	Meteor.subscribe('posts'),
-        	Meteor.subscribe('cfs.posts.filerecord')
-        ];
-    },
-    posts: function() {
-        return Posts.find({});
-    },
-    postsFS: function() {
-        return PostsFS.find({});
-    },
-    data: function() {
-    	return {
-    		user: Meteor.user(),
-            posts: this.posts(),
-            postsFS : this.postsFS()
-        };
-    },*/
 });
 
 ProfileController = RouteController.extend({
 	template: 'userProfile',
+	 userPosts : new Meteor.Collection('userPosts'),
+    userComments : new Meteor.Collection('userComments'),
     waitOn: function() {
+   
         return [
-        	Meteor.subscribe('posts'),
-        	Meteor.subscribe('evidences'),
-        	Meteor.subscribe('comments'),
+        	Meteor.subscribe('userPosts'),
+        	Meteor.subscribe('userComments'),
         	Meteor.subscribe('cfs.posts.filerecord')
         ];
     },
+
+  action: function () {
+    if (this.ready()){
+      this.render();
+    }else{
+      this.render('loading');
+    }
+  },
     posts: function() {
-    	var user = Meteor.user()
-        return Posts.find({userId: user._id});
+    
+    	
+    	console.log(this.userPosts.find({}).count());
+        return this.userPosts.find({});
     },
     postsFS: function() {
-    	var user = Meteor.user()
-        return PostsFS.find({userId: user._id});
-    },
-    ups: function() {
-    	var user = Meteor.user()
-        return Posts.find({upvoters : { $all: [user._id] }});
-    },
-    downs: function() {
-    	var user = Meteor.user()
-        return Posts.find({ downvoters : { $all: [user._id] }});
-    },
-    subs: function() {
-    	var user = Meteor.user()
-        return Posts.find({subscribers: {$all : [user._id] }});
+
+        return PostsFS.find({});
     },
     comments: function() {
-    	var user = Meteor.user();
-    	console.log("-----------------------------------------",user._id);
-        return Comments.find({});
-    },
-    evidences: function() {
-    	var user = Meteor.user();
-    	console.log(Meteor);
-        return Evidences.find({userId: user._id});
+    	
+    	console.log(this.userComments.find().count());
+        return this.userComments.find({});
     },
     totalPoints: function() {
-    	var user = Meteor.user();
         var cm = this.comments();
         var pts = 0;
         cm.forEach(function(comment){
@@ -90,13 +66,8 @@ ProfileController = RouteController.extend({
     },
     data: function() {
     	return {
-    		user: Meteor.user(),
-    		comments1: this.comments(),
-            posts: this.posts(),
-            ups : this.ups(),
-            downs : this.downs(),
-            subs : this.subs(),
-            evidences : this.evidences(),
+    		posts: this.posts(),
+    		comments: this.comments(),
             postsFS: this.postsFS(),
             points: this.totalPoints()
             
@@ -118,7 +89,8 @@ PostsListController = RouteController.extend({
     waitOn: function() {
         return Meteor.subscribe('posts', this.findOptions());
     },
-    posts: function() {
+ 	posts   : function() {
+    	console.log("-----------============------00000000000---==============-", Posts.find({}));
         return Posts.find({}, this.findOptions());
     },
     data: function() {
@@ -126,6 +98,7 @@ PostsListController = RouteController.extend({
         var nextPath = this.route.path({postsLimit: this.limit() + this.increment});
         return {
             posts: this.posts(),
+            oldOptions : this.findOptions(),
             nextPath: hasMore ? this.nextPath() : null
         };
     }
@@ -134,7 +107,7 @@ PostsListController = RouteController.extend({
 NewPostsListController = PostsListController.extend({
     sort: {submitted: -1, _id: -1},
     nextPath: function() {
-        return Router.routes.newPosts.path({postsLimit: this.limit() + this.increment})
+        return Router.routes.newPosts.path({postsLimit: this.limit() + this.increment});
     }
 });
 
@@ -160,8 +133,8 @@ ControversialListController = PostsListController.extend({
     }
 });
 
-
 Router.map(function() {
+
     this.route('home', {
         path: '/',
         controller: SplashController
@@ -229,12 +202,32 @@ Router.map(function() {
     //from J Walters
     this.route('userProfile', {
         path: '/user',
-        controller: ProfileController
+        controller: ProfileController,
+        options: function() {return Meteor.user();}
+    });
+
+     this.route('fileAddWrapper', {
+        path: '/fileAdd'
+    });
+
+
+    this.route('article', {
+        path: '/article/:_id',
+        data: function() {
+            return this.params;
+        }
+    });
+
+    this.route('notAPath', {
+        path: '*'
     });
 
 });
 
 var requireLogin = function(pause) {
+
+console.log("===========0000000000000-------============", Meteor.user());
+
     if (! Meteor.user()) {
         if (Meteor.loggingIn())
             this.render(this.loadingTemplate);
@@ -246,6 +239,5 @@ var requireLogin = function(pause) {
 }
 
 Router.onBeforeAction('loading');
-Router.onBeforeAction(requireLogin, {only: 'postSubmit'});
 Router.onBeforeAction(requireLogin, {only: 'userProfile'});
 Router.onBeforeAction(function() { Errors.clearSeen(); });
