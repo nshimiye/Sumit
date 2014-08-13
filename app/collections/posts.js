@@ -31,6 +31,39 @@ PostsFS.allow({
 });
 
 
+var myTransformWriteFunction = function(fileObj, readStream, writeStream){
+	var rs = readStream.pipe(writeStream);
+	  console.log("You pressed the error button", rs.toString());
+	  
+	  	var meteor_root = __meteor_bootstrap__;
+				console.log(__meteor_bootstrap__.serverDir);
+}
+
+var myTransformReadFunction = function(){
+
+}
+
+
+var imageStore = new FS.Store.FileSystem("pimages", {
+  path: "~/app_files/images", //optional, default is "/cfs/files" path within app container
+  transformWrite: myTransformWriteFunction, //optional
+  transformRead: myTransformReadFunction, //optional
+  maxTries: 1 //optional, default 5
+});
+
+var Images = new FS.Collection("pimages", {
+  stores: [imageStore]
+});
+
+Images.allow({
+  insert: function (userId, party) {
+    return true;
+  },
+  update:  ownsDocument,
+  remove:  ownsDocument
+});
+
+
 
 //allows posts on the client
 Posts.allow({

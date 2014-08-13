@@ -1,0 +1,2 @@
+<head> <title>html5-file-upload</title> </head> <body> {{> html5uploader}} </body> 
+- See more at: http://georgeinenglish.com/upload-files-meteor-js/#sthash.SJsl34f4.dpuf

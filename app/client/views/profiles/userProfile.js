@@ -1,3 +1,7 @@
+var Images = new FS.Collection("pimages", {
+  stores: new FS.Store.FileSystem("pimages")
+});
+
 //need to subscribe to all of collections probably
 Template.userProfile.helpers({
 	rendered: function(){
@@ -16,18 +20,14 @@ Template.userProfile.helpers({
 			Router.go('signInPage', {});	
 		}
 		
-		console.log("postsFS::::",FS);
+		var user = Meteor.user();
+		var profileImage = user.profile.pimage;
 		
-		if(this.postsFS.count() > 0){
-			var mapper = this.postsFS.map(
-				function(i){
-					console.log("postsFS:::name:",i);
-					return i;
-				}
-			);
-			var fileObj = mapper[0];
-			console.log("postsFS:::out:",fileObj.copies);
-			Session.set("pimage", "../../upload/postsFS/"+ fileObj.copies.posts.key);
+		if(this.postsFS){
+
+			var fileObj = this.postsFS;
+			Session.set("pimage", "//localhost/meteor_files/app_files/images/"+ fileObj.copies.posts.key);
+			
 		
 		}else{
 		
@@ -215,28 +215,30 @@ Template.userProfile.events({
 "change .ifile" : function(e){
 	e.preventDefault();
 	
-	 	$.each(e.currentTarget.files, function(i, file){
-     		console.log(file.name);
-     		
-     		
-     				var user = Meteor.user();
-		var newFile = new FS.File(file);
-      newFile.userId = user._id;
+	var files = event.target.files;
+    console.log("You pressed the error button", files);
+    for (var i = 0, ln = files.length; i < ln; i++) {
+    
+       	var user = Meteor.user();
+		var newFile = new FS.File(files[i]);
+      	newFile.userId = user._id;
+    
+      	Images.insert(newFile, function (err, fileObj) {
+        	//Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+        
+         	console.log("You pressed the error button", err);
+            console.log("You pressed the success button", fileObj);
+            
+            Meteor.users.update({
+            	_id : user._id,
+            	profile : _.extend(user.profile, {pimage: fileObj.copies.pimages.key})
+            }); 
 
-			var idd = PostsFS.insert(newFile, function (err, fileObj) {
-			 
-			 	console.log("post -- uploading ...", fileObj);
-        		console.log("post -- error ...", err);
-        		if(!err){
-        			//we set a image updator session
-        			Session.set("pimage", fileObj.data);
-        		}
-        			
-			 
-			 });
-     		
-     	
-     	});
+    });
+  }
+	
+	
+
 	
 },
 

@@ -1,3 +1,7 @@
+var Images = new FS.Collection("pimages", {
+  stores: new FS.Store.FileSystem("pimages")
+});
+
 //need to subscribe to all of collections probably
 Template.userProfile.helpers({
 	rendered: function(){
@@ -16,18 +20,14 @@ Template.userProfile.helpers({
 			Router.go('signInPage', {});	
 		}
 		
-		console.log("postsFS::::",FS);
+		var user = Meteor.user();
+		var profileImage = user.profile.pimage;
 		
-		if(this.postsFS.count() > 0){
-			var mapper = this.postsFS.map(
-				function(i){
-					console.log("postsFS:::name:",i);
-					return i;
-				}
-			);
-			var fileObj = mapper[0];
-			console.log("postsFS:::out:",fileObj.copies);
-			Session.set("pimage", "../../upload/postsFS/"+ fileObj.copies.posts.key);
+		if(this.postsFS){
+
+			var fileObj = this.postsFS;
+			Session.set("pimage", "//localhost/meteor_files/app_files/images/"+ fileObj.copies.posts.key);
+			
 		
 		}else{
 		
@@ -135,6 +135,12 @@ Template.userProfile.helpers({
     cms: function() {
 		return Session.get("cms");
     },
+    allcomments: function() {
+		return Session.get("allcomments");
+    },
+    allevidence: function() {
+		return Session.get("allevidence");
+    },
   problemsPostedGlobal: function() {
 		return Session.get("problemsPostedGlobal");
     },
@@ -209,28 +215,30 @@ Template.userProfile.events({
 "change .ifile" : function(e){
 	e.preventDefault();
 	
-	 	$.each(e.currentTarget.files, function(i, file){
-     		console.log(file.name);
-     		
-     		
-     				var user = Meteor.user();
-		var newFile = new FS.File(file);
-      newFile.userId = user._id;
+	var files = event.target.files;
+    console.log("You pressed the error button", files);
+    for (var i = 0, ln = files.length; i < ln; i++) {
+    
+       	var user = Meteor.user();
+		var newFile = new FS.File(files[i]);
+      	newFile.userId = user._id;
+    
+      	Images.insert(newFile, function (err, fileObj) {
+        	//Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
+        
+         	console.log("You pressed the error button", err);
+            console.log("You pressed the success button", fileObj);
+            
+            Meteor.users.update({
+            	_id : user._id,
+            	profile : _.extend(user.profile, {pimage: fileObj.copies.images.key})
+            }); 
 
-			var idd = PostsFS.insert(newFile, function (err, fileObj) {
-			 
-			 	console.log("post -- uploading ...", fileObj);
-        		console.log("post -- error ...", err);
-        		if(!err){
-        			//we set a image updator session
-        			Session.set("pimage", fileObj.data);
-        		}
-        			
-			 
-			 });
-     		
-     	
-     	});
+    });
+  }
+	
+	
+
 	
 },
 
@@ -354,17 +362,34 @@ Session.set("loading", true);
 //user profile data control --- for posts
 "click .myevidence" : function(){
 
-var all = this.evidences.map(
-				function(post, index, cursor){
-					console.log("postsFS:::name:",post);
-					return post;
-				}
-			);
 
 Session.set("evd", true);
 Session.set("cms", false);
 Session.set("plist", false);
-	Session.set("allevidence", all);
+	
+	Session.set("allevidence",[]);
+Session.set("loading", true);
+ mainOptions = {};
+		mainOptions.query = { userId: Meteor.userId()};
+		mainOptions.attrs = {limit : 10};
+   			Meteor.call('nextEvidence', mainOptions , function(error, allcms) {
+   			
+   			
+   			
+   				if(error){
+   			//display error
+   			console.log(error);
+   			}else{
+   				console.log(allcms);
+
+       			Session.set("allevidence", allcms);
+       			
+   			}
+   			Session.set("loading", false);
+   			
+   			});
+	
+	
 },
 "click .mycomments" : function(){
 Session.set("evd", false);
