@@ -1,3 +1,26 @@
+var imageStore = new FS.Store.FileSystem("pimages", {
+  path: "~/app_files/images", //optional, default is "/cfs/files" path within app container
+  transformWrite: myTransformWriteFunction, //optional
+  transformRead: myTransformReadFunction, //optional
+  maxTries: 1 //optional, default 5
+});
+
+var Images = new FS.Collection("pimages", {
+  stores: [imageStore]
+});
+
+Images.allow({
+  insert: function (userId, party) {
+    return true;
+  },
+  update:  ownsDocument,
+  remove:  ownsDocument
+});
+
+
+
+
+
 Meteor.publish('posts', function(options){
     return Posts.find({}, options)
 });
@@ -10,8 +33,9 @@ console.log(this.userId);
 });
 
 Meteor.publish('userComments', function(options){
-console.log(this.userId);
-    return Comments.find({userId: this.userId}, options);
+var nn = Comments.find({userId: this.userId}, options);
+console.log(nn.count());
+    return nn;
 });
 
 Meteor.publish('cfs.posts.filerecord', function(options){

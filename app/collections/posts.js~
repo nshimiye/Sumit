@@ -44,24 +44,6 @@ var myTransformReadFunction = function(){
 }
 
 
-var imageStore = new FS.Store.FileSystem("images", {
-  path: "~/app_files/images", //optional, default is "/cfs/files" path within app container
-  transformWrite: myTransformWriteFunction, //optional
-  transformRead: myTransformReadFunction, //optional
-  maxTries: 1 //optional, default 5
-});
-
-var Images = new FS.Collection("images", {
-  stores: [imageStore]
-});
-
-Images.allow({
-  insert: function (userId, party) {
-    return true;
-  },
-  update:  ownsDocument,
-  remove:  ownsDocument
-});
 
 
 

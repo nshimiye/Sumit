@@ -9,6 +9,10 @@ Template.userProfile.helpers({
 		Session.set("show_signin", true);
 		Session.set("isProfile", true);
 		Session.set("openProjects", true);
+		
+		var user = Meteor.user();
+		var profileImage = user.profile.pimage;
+		Session.set("pimage", "//localhost/meteor_files/app_files/images/"+profileImage);
 	},
 	profileImage: function(){
 		return Session.get("pimage");
@@ -226,12 +230,20 @@ Template.userProfile.events({
       	Images.insert(newFile, function (err, fileObj) {
         	//Inserted new doc with ID fileObj._id, and kicked off the data upload using HTTP
         
+        var fname = fileObj.collection.name + "-" + fileObj._id +"-"+fileObj.original.name;
+        
          	console.log("You pressed the error button", err);
             console.log("You pressed the success button", fileObj);
             
             Meteor.users.update({
             	_id : user._id,
-            	profile : _.extend(user.profile, {pimage: fileObj.copies.pimages.key})
+            	
+            }, { $set: {profile : _.extend(user.profile, {pimage: fname}) }}, function(err, obj){
+            
+            	console.log("----------------------", err);
+            	console.log("----------------------", obj);
+            
+            	Session.set("pimage", "//localhost/meteor_files/app_files/images/"+fname);
             }); 
 
     });
