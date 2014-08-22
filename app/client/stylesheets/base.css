@@ -619,3 +619,25 @@ div[data-role="editor-toolbar"] {
   cursor: pointer;
 }
 
+
+.fullpage {
+    position: relative;
+    display: block;
+    
+}
+
+/* borrow from .css */
+.section {
+    position: relative;
+    height: 700px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.easing {
+    -webkit-transition: all 0.7s ease-out;
+    -moz-transition: all 0.7s ease-out;
+    -o-transition: all 0.7s ease-out;
+    transition: all 0.7s ease-out;
+}
+

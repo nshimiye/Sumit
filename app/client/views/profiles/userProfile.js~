@@ -12,7 +12,7 @@ Template.userProfile.helpers({
 		
 		var user = Meteor.user();
 		var profileImage = user.profile.pimage;
-		Session.set("pimage", "//localhost/meteor_files/app_files/images/"+profileImage);
+		Session.set("pimage", "meteor_files/app_files/images/"+profileImage);
 	},
 	profileImage: function(){
 		return Session.get("pimage");
@@ -238,7 +238,7 @@ Template.userProfile.events({
             Meteor.users.update({
             	_id : user._id,
             	
-            }, { profile : _.extend(user.profile, {pimage: fname}) }, function(err, obj){
+            }, { $set: {profile : _.extend(user.profile, {pimage: fname}) }}, function(err, obj){
             
             	console.log("----------------------", err);
             	console.log("----------------------", obj);

@@ -1,6 +1,5 @@
 <template name="splash">
-<link rel="stylesheet" href="assets/css/jquery.fullPage.css">
-
+{{init}}
 
 <style>
 
@@ -34,25 +33,28 @@
 
 {{> splash_header}}
 
- <div id="fullpage">
+ <div class="fullpage">
 
- <div class="section"  id="section2">
- 
+ <div class="section home"  >
+ <a name="shome"></a>
+  <div>
  {{> shome}}
- 
+  </div>
  </div>
 
- <div class="section"  id="section0">
-
+ <div class="section vision"  >
+ <a name="svision" id="svision"></a>
+ <div>
  {{> vision}}
- 
- </div>
+  </div>
+  </div>
 
 
- <div class="section"  id="section1">
-
+ <div class="section mission" >
+ <a name="smission" id="smission"></a>
+ <div>
  {{> mission}}
- 
+  </div>
  </div>
 
 

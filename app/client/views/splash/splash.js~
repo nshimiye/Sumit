@@ -1,4 +1,11 @@
 var posts = null;
+var jump = function(h){
+    var top = $(h).offset().top; //Getting Y of target element
+    $('html,body').animate({
+          scrollTop: top
+    }, 700);
+}
+
 Template.splash.helpers({
 	init: function(){
 		posts = this.posts;
@@ -8,27 +15,23 @@ Template.splash.helpers({
  	
  		Session.set("oprojects", false);
  	
- 		$("#fullpage").fullpage({
-            	menu: '#menufl',
-            	anchors: ['shome', 'svision', 'smission'],
-            	sectionsColor: ['#f3f3f3', '#f3f3f3', '#f3f3f3'],
-            	autoScrolling: false
-            });
-	
+$(".section").css({
+	height: $(window).innerHeight()
+});
 	        //slide to sinup page -- uses  fullpage library function
             $(".signup").click(function (){
-            	$.fn.fullpage.moveSlideRight();
+            	//$.fn.fullpage.moveSlideRight();
             });
 
             // slide down to next main page
             $(".s_down").click(function (){
-            	$.fn.fullpage.moveSectionDown();
+            	jump(".mission");
             });
 
 
             //getting dimension of main holder/wrapper
-            var W = $(".fp-tableCell").outerWidth();
-            var H = $(".fp-tableCell").outerHeight();
+            var W = $(window).outerWidth();
+            var H = $(window).outerHeight();
 
             // positioning the vision elements
             //video here
@@ -76,10 +79,10 @@ Template.splash.helpers({
             left: x+"px"
             });
 
-			w = $(".s_down").outerWidth();
-			x = (W/2) - (w/2);
-			y = H-40;
- 			$(".s_down").css({
+            w = $(".s_down").outerWidth();
+            x = (W/2) - (w/2);
+            y = H-40;
+            $(".s_down").css({
             top: y+"px",
             left: x+"px"
             });
@@ -87,8 +90,8 @@ Template.splash.helpers({
             // positioning 
 
 
-		
-			//playing video here
+
+            //playing video here
 
             $(".player_btn").mouseover(function(){
             $(this).attr({src: "assets/img/splayer_hover.png"});
@@ -104,50 +107,49 @@ Template.splash.helpers({
             // ....
             });
 
-			$(".svision_btn").click(function(){
-	
-				$.fn.fullpage.moveTo(2, 0);
+			$(".svision_btn").click(function(e){
+				e.preventDefault();
+				jump(".vision");
+				return false;
 			 });
 			 
-			 $(".smission_btn").click(function(){
-	
-				$.fn.fullpage.moveTo(3, 0);
+			 $(".smission_btn").click(function(e){
+				e.preventDefault();
+				jump(".mission");
+				return false;
 			 });
 			 
-			 $(".shome_btn").click(function(){
-	
-				$.fn.fullpage.moveTo(1, 0);
+			 $(".shome_btn").click(function(e){
+				e.preventDefault();
+				jump(".home");
+				return false;
 			 });
-	
-	}
+	},
+
+
+});
+
+Template.splash.events({
+      "mouseenter .sumit-button-contents" : function(e){
+            e.preventDefault();
+            $(e.target).children('.sumit-description')
+                  .animate({opacity: 1, height: 60, 'padding-top': 10}, 
+                        200,
+                        function() {
+                        //Animation complete
+                        });
+    },
+      "mouseleave .sumit-button-contents" : function(e){
+            e.preventDefault();
+            $(e.target).children('.sumit-description')
+                  .animate({opacity: 0, height: 0, 'padding-top': 0}, 
+                        200,
+                        function() {
+                        //Animation complete
+                        });
+    }
 });
 
 
 
-
 //============================
-
- Template.home_main.helpers({
- totalParticipants: function(e){
-     	var allp = posts, allU = [];
-    	var unique = 0;
-    	allp.forEach(function(post){
-    	console.log(post);
-    		if(allU.indexOf(post.userId) < 0){
-        		unique += 1;
-        		allU.push(post.userId);
-        	}
-        });
- 		allU = [];
- 	return unique;
- },
- totalPosts: function(e){
- 	
- 	return posts.count();
-
- },
- endorsedProposals: function(e){
- 	return postsFS.count();
- }
- 	
- });

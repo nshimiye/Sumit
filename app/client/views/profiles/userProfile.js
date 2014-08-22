@@ -12,7 +12,7 @@ Template.userProfile.helpers({
 		
 		var user = Meteor.user();
 		var profileImage = user.profile.pimage;
-		Session.set("pimage", "//localhost/meteor_files/app_files/images/"+profileImage);
+		Session.set("pimage", "meteor_files/app_files/images/"+profileImage);
 	},
 	profileImage: function(){
 		return Session.get("pimage");
@@ -30,7 +30,7 @@ Template.userProfile.helpers({
 		if(this.postsFS){
 
 			var fileObj = this.postsFS;
-			Session.set("pimage", "//localhost/meteor_files/app_files/images/"+ fileObj.copies.posts.key);
+			Session.set("pimage", "meteor_files/app_files/images/"+ fileObj.copies.posts.key);
 			
 		
 		}else{

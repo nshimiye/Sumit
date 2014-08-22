@@ -1,7 +1,5 @@
 <template name="splash">
 {{init}}
-<link rel="stylesheet" href="assets/css/jquery.fullPage.css">
-
 
 <style>
 
@@ -9,7 +7,7 @@
                 background-color: rgba(69, 129, 142, 0.48) !important;
                 color: white !important;
             }
-            .active .btn-full {
+            .btn-full {
                 background-color: rgba(69, 129, 142, 0.48) !important;
                 color: white !important;
             }
@@ -35,25 +33,28 @@
 
 {{> splash_header}}
 
- <div id="fullpage">
+ <div class="fullpage">
 
- <div class="section"  id="section2">
- 
+ <div class="section home"  >
+ <a name="shome"></a>
+  <div>
  {{> shome}}
- 
+  </div>
  </div>
 
- <div class="section"  id="section0">
-
+ <div class="section vision"  >
+ <a name="svision" id="svision"></a>
+ <div>
  {{> vision}}
- 
- </div>
+  </div>
+  </div>
 
 
- <div class="section"  id="section1">
-
+ <div class="section mission" >
+ <a name="smission" id="smission"></a>
+ <div>
  {{> mission}}
- 
+  </div>
  </div>
 
 
